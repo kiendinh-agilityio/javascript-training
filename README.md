@@ -43,7 +43,7 @@
 - Understand how asynchronous code work & apply in practice (API call or any place we can as mock API in code).
 - Get familiar with DevTools (e.g Google Chrome DevTools) for debugging issues (breakpoint, log, etc..).
 - Deploy to the hosting (with help from supporter)
-### OPEN QUESTIONS:
+### OPEN QUESTIONS
 1. What's difference between Truthy/Falsy vs true/false in JavaScript? Why we should understand Truthy/Falsy in JS world? How differences between equals (==) and strict equals (===)?
 2. What's difference between null and undefined?
 3. How do you understand about callback function? List some cases we should use callback function.
