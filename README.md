@@ -26,17 +26,17 @@
 - Querying/Modifying DOM: **[Link](https://www.digitalocean.com/community/tutorials/how-to-modify-attributes-classes-and-styles-in-the-dom)**
 - Evens: **[Link](https://www.digitalocean.com/community/tutorials/understanding-events-in-javascript)**
 ### PRACTICE:
-####### Exercise 1
+###### Exercise 1
 - Target: Selecting Elements, Getting Values, and Setting Values
 - **[Link](https://www.teaching-materials.org/javascript/exercises/dom.html)** or **[PDF version](https://drive.google.com/file/d/1wR598xMbVLke42t8S-vfC3y5TIb-uybI/view)** (Part "About me")
-####### Exercise 2
+###### Exercise 2
 - Target: Attributes, Classes and CSS Manipulation
 - **[Link](https://www.w3resource.com/javascript-exercises/javascript-dom-exercises.php)** or **[PDF version](https://drive.google.com/file/d/1JHsEkSchphyXK5D2jB0TGbisAeXBouZY/view)** (Part 1, 2, 3, 4, 5, 8, 9, 10)
-####### Exercise 3
+###### Exercise 3
 - Target: DOM manipulation with simple table, form
 - PDF version (**[Table](https://drive.google.com/file/d/1nLypEFH_KzfPhEQcY0W81kmAavQ-rw1k/view)**, **[Form](https://drive.google.com/file/d/16nYUuoH_dAeNsba0hNQ9thyO3-hLaivU/view)**)
 ### BIG PRACTICE (Optional)
-####### Target
+###### Target
 - Understand & apply knowledge HTML/CSS/JavaScript (with ES6 syntax)
 - Understanding & apply MVC (or any MV model or module concept)
 - DOM manipulation, form validation.
