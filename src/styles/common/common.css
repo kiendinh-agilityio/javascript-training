@@ -1,0 +1,22 @@
+.d-flex {
+  display: flex;
+}
+
+.c-pointer {
+  cursor: pointer;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .border-left {
+    border-left: 2px solid var(--color-blur);
+    padding-left: 90px;
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .border-left {
+    padding-left: 120px;
+  }
+}
