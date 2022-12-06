@@ -1,0 +1,72 @@
+.footer {
+  width: var(--size-full);
+  background-color: var(--bg-footer);
+}
+
+.footer-nav {
+  flex-direction: column;
+}
+
+.contact-gmail {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-base);
+  color: var(--color-primary);
+}
+
+.dot-list {
+  margin-top: 27px;
+}
+
+.footer-content {
+  margin-top: 60px;
+  border-top: 2px solid var(--color-blur);
+  padding: 10px 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-nav-item:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.copyright {
+  color: var(--color-copyright);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+}
+
+.footer-nav-heading {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 22px;
+}
+
+.footer-nav-description {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-xl);
+  color: var(--color-descripton);
+}
+
+.services-list .footer-nav-description:hover,
+.company-list .footer-nav-description:hover {
+  color: var(--color-primary);
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .footer {
+    padding-top: 60px;
+  }
+
+  .footer-nav {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .footer-nav-item:not(:last-child) {
+    margin-bottom: 0;
+  }
+}
