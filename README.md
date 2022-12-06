@@ -34,6 +34,6 @@
 | `git clone git@gitlab.asoft-python.com:kien.dinh/javascript-training.git` | Clone repo |
 | `cd javascript-training`   | Move to the javascript-training folder |
 | `git checkout feature/practice-two` | Checkout branch |
-| `pnpm install` | Installs dependencies |
+| `pnpm install` | Install dependencies |
 | `pnpm start`   | Start local dev server at `localhost:1234` |
 | `pnpm build`   | Build your production site to `./dist` |
