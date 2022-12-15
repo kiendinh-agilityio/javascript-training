@@ -11,14 +11,35 @@
     <!-- Header start -->
     <header class="header">
       <div class="container">
-        <div class="d-flex header-content">
+        <nav class="d-flex header-content">
           <a class="header-logo" href="/src/index.html">
             <img src="./assets/images/logo.png" alt="Furniture">
           </a>
-          <button class="c-pointer btn-list-favorites">
-            <img src="./assets/images/icon-heart.svg" alt="Heart">
+          <div class="header-navbar">
+            <div class="header-nav-list d-flex">
+              <a class="header-nav-item" href="#">Space Builder<span class="header-nav-active">(Coming soon)</span><i class="dropdown"></i></a></li>
+              <a class="header-nav-item" href="#">Products<i class="dropdown"></i></a></li>
+              <form class="input-group d-flex">
+                <button class="btn-search">
+                  <img src="./assets/images/icon-search.svg" alt="icon-search">
+                </button>
+                <input type="text" class="search-input" placeholder="Search for minimalist chair">
+              </form>
+            </div>
+            <div class="d-flex nav-group">
+              <button class="c-pointer btn-list-favorites">
+                <img src="./assets/images/icon-heart.svg" alt="Heart">
+              </button>
+              <buton class="c-pointer btn-cart">
+                <img src="./assets/images/icon-cart.svg" alt="Cart">
+              </buton>
+              <img class="c-pointer avatar" alt="Avatar" src="./assets/images/avatar.png">
+            </div>
+          </div>
+          <button class="nav-toggler">
+            <i class="fa-bars"></i>
           </button>
-        </div>
+        </nav>
       </div>
     </header>
     <!-- Header end -->
