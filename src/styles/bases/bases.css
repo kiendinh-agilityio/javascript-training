@@ -3,7 +3,7 @@
 
 body {
   background-color: var(--color-primary);
-  font-family: var(--font-family);
+  font-family: var(--font-family-primary);
   font-weight: var(--font-weight-normal);
   font-size: var(--font-size-base);
   color: var(--color-text);
@@ -38,20 +38,6 @@ body {
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .container {
-    max-width: var(--container-width-lg);
-  }
-}
-
-/* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-  .container {
-    max-width: var(--container-width-xl);
-  }
-}
-
-/* XX-Large devices (larger desktops, 1600px and up) */
-@media (min-width: 1600px) {
-  .container {
-    max-width: var(--container-width-2xl);
+    max-width: var(--container-width-2xl)
   }
 }

@@ -1,0 +1,11 @@
+/* Add font Lufga */
+@font-face {
+  font-family: 'Lufga';
+  font-style: 'normal';
+  font-weight: 400;
+  font-display: swap;
+  src: url('/src/assets/fonts/Lufga-Regular.otf') format('otf'),
+    url('/src/assets/fonts/Lufga-Regular.ttf') format('ttf'),
+    url('/src/assets/fonts/Lufga-Regular.woff2') format('woff2'),
+    url('/src/assets/fonts/Lufga-Regular.woff') format('woff');
+}
