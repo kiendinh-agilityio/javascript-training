@@ -10,3 +10,36 @@
   padding: 0;
   background: var(--color-primary);
 }
+
+.btn-add-favorite, .btn-remove-favorite {
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--border-radius-round);
+  width: 26px;
+  height: 23px;
+  padding: 7px;
+  align-items: center;
+  justify-content: center;
+  left: 110px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.btn-close-modal {
+  color: var(--color-text);
+  text-decoration: none;
+  border: 0;
+  padding: 0;
+  background: var(--color-primary);
+  cursor: pointer;
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .btn-add-favorite, .btn-remove-favorite {
+    width: 50px;
+    height: 45px;
+    padding: 15px;
+    left: 210px;
+  }
+}

@@ -1,0 +1,42 @@
+.favorite-heading {
+  font-family: var(--font-family-secondary);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+  color: var(--color-favorite-heading);
+}
+
+.favorites-list {
+  grid-template-columns: repeat(2, 50%);
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .favorites-list {
+    grid-template-columns: repeat(3, 25%);
+    justify-content: center;
+  }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .favorites-list {
+    grid-template-columns: repeat(2, 50%);
+    grid-gap: 80px;
+  }
+}
+
+/* Medium devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .favorites-list {
+    grid-template-columns: repeat(3, 25%);
+  }
+}
+
+/* Medium devices (large desktops, 1500px and up) */
+@media (min-width: 1500px) {
+  .favorites-list {
+    grid-template-columns: repeat(4, 25%);
+    grid-gap: 0;
+  }
+}
