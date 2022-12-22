@@ -1,0 +1,45 @@
+.modal-dialog {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: var(--z-index-md); /* Sit on top */
+  padding-top: 30px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: var(--size-full); /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: var(--bg-color-modal);
+}
+
+.modal-open {
+  display: block;
+}
+
+.modal-dialog:target {
+  visibility: visible;
+  opacity: var(--opacity-md);
+  pointer-events: auto;
+}
+
+.modal-content {
+  width: calc(100% - 30px);
+  min-height: 80vh;
+  overflow-y: auto;
+  margin: auto;
+  background: var(--bg-furniture);
+}
+
+.modal-header {
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  margin-bottom: 50px;
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .modal-content {
+    width: calc(100% - 110px);
+    min-height: 110vh;
+  }
+}

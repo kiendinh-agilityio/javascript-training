@@ -9,11 +9,17 @@
   --color-nav-text: #3a3a3a;
   --color-active: #e68314;
   --color-placeholder: #616161;
+  --color-furniture-name: #aaa;
+  --color-favorite-heading: #284f49;
 
+  --bg-card: #fff;
   --bg-footer: #4f553d;
   --bg-dot-active: #e68314;
   --bg-border-search: #bdbdbd;
   --bg-dark: #000;
+  --bg-furniture: #fafafa;
+  --bg-shadow: rgba(32, 32, 32, 0.1);
+  --bg-color-modal: #000c;
 
 
   /* width */
@@ -41,16 +47,31 @@
   --font-size-tiny: 13px;
   --font-size-sm: 14px;
   --font-size-base: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 22px;
   --font-size-xl: 24px;
 
   /* line height */
+  --line-height-super-small: 12px;
   --line-height-tiny: 19px;
   --line-height-sm: 21px;
   --line-height-md: 24px;
+  --line-height-lg: 28px;
   --line-height-base: 38px;
   --line-height-xl: 40px;
+  --line-height-1xl: 50px;
 
   /* border radius */
+  --border-radius-tiny: 5px;
   --border-radius-round: 50%;
+  --border-radius-sm: 8px;
   --border-radius-md: 9px;
+
+  /* z-index */
+  --z-index-base: 1;
+  --z-index-md: 2;
+
+  /* opacity */
+  --opacity-base: 0;
+  --opacity-md: 1;
 }
