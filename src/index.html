@@ -15,7 +15,7 @@
           <a class="header-logo" href="/src/index.html">
             <img src="./assets/images/logo.png" alt="Furniture">
           </a>
-          <div class="header-navbar">
+          <div class="d-flex header-navbar">
             <div class="header-nav-list d-flex">
               <a class="header-nav-item" href="#">Space Builder<span class="header-nav-active">(Coming soon)</span><i class="dropdown"></i></a></li>
               <a class="header-nav-item" href="#">Products<i class="dropdown"></i></a></li>
@@ -27,7 +27,7 @@
               </form>
             </div>
             <div class="d-flex nav-group">
-              <button class="c-pointer btn-list-favorites">
+              <button class="c-pointer btn btn-list-favorites d-block">
                 <img src="./assets/images/icon-heart.svg" alt="Heart">
               </button>
               <buton class="c-pointer btn-cart">
@@ -44,7 +44,41 @@
     </header>
     <!-- Header end -->
 
+    <!-- Modal show Favorites List start -->
+    <div id="Favorite-modal" class="modal-dialog">
+      <div class="modal-content">
+        <div class="container-modal">
+          <div class="d-flex modal-header">
+            <p class="favorite-heading">Favorite</p>
+            <button class="btn-close-modal">X</button>
+          </div>
+          <div class="d-grid favorites-list"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal show Favorites List end -->
+
     <!-- List Furniture start -->
+    <section class="furniture">
+      <div class="container">
+        <div class="d-grid furniture-list">
+          <!-- <div class="d-flex p-relative furniture-item">
+            <div class="d-flex p-relative card-header">
+              <img class="furniture-thumbnail" src="./assets/images/furniture.png" alt="furniture">
+              <button class="d-flex p-absolute btn-add-favorite">
+                <img class="icon-favorite" src="./assets/images/icon-heart.svg" alt="favorite">
+              </button>
+            </div>
+            <div class="d-flex p-absolute card-body">
+              <div class="furniture-description">
+                <p class="furniture-name">Sverom chair</p>
+                <p class="furniture-price">N65,000</p>
+              </div>
+            </div>
+          <!-- </div> -->
+        </div>
+      </div>
+    </section>
     <!-- List Furniture end -->
 
     <!-- Footer start -->
@@ -92,5 +126,5 @@
     </footer>
     <!-- Footer end -->
   </body>
-  <script src="./scripts/main.js"></script>
+  <script type="module" src="./scripts/main.js"></script>
 </html>

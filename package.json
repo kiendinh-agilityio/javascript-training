@@ -7,8 +7,11 @@
     "build": "parcel build"
   },
   "devDependencies": {
-    "parcel": "^2.8.0",
     "@commitlint/cli": "^17.3.0",
-    "@commitlint/config-conventional": "^17.3.0"
+    "@commitlint/config-conventional": "^17.3.0",
+    "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
   }
 }
