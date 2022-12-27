@@ -2,13 +2,13 @@
 const createElement = (furniture) => {
   const favoriteButton =
     `
-      <button class="btn-favorite btn-add-favorite d-flex p-absolute" data-id=${furniture.id}>
+      <button class="btn-favorite d-flex p-absolute" data-id=${furniture.id}>
         <img class="icon-favorite" src="https://i.imgur.com/UnnmWMl.png" alt="Heart">
       </button>
     `
   const trashButton =
     `
-      <button class="btn-favorite btn-remove-favorite d-flex p-absolute" data-id=${furniture.id}>
+      <button class="btn-favorite d-flex p-absolute" data-id=${furniture.id}>
         <img class="icon-trash" src="https://i.imgur.com/m4xuLMv.png" alt="Trash">
       </button>
     `
@@ -16,10 +16,10 @@ const createElement = (furniture) => {
   const furnitureTemplate =
     `
       <div class="furniture-item d-flex p-relative" data-id=${furniture.id}>
-        <div class="card-header d-flex p-relative">
+        <a class="card-header d-flex p-relative">
           <img class="furniture-thumbnail" src=${furniture.image} alt="Furniture Thumbnail">
           ${renderButton}
-        </div>
+        </a>
         <div class="card-body d-flex p-absolute">
           <div class="furniture-description">
             <p class="furniture-name">${furniture.name}</p>

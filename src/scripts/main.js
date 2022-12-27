@@ -51,7 +51,7 @@ const filterFavoriteItems = (favoriteItemsTemp) => {
     });
 };
 
-// Favorites Modal
+// Favorites List
 const handleShowFavoritesList = () => {
   btnFavoriteList.addEventListener('click', () => {
     const showModal = document.getElementById('Favorite-modal');
@@ -69,7 +69,7 @@ const handleCloseFavoritesList = () => {
   });
 };
 
-// list favorites
+// Render favorites list
 const renderListFavoriteFurniture = (filterFavoriteList) => {
   while (favoritesList.hasChildNodes()) {
     favoritesList.removeChild(favoritesList.firstChild);
@@ -84,7 +84,7 @@ const renderListFavoriteFurniture = (filterFavoriteList) => {
 // User click button favorite
 // Listen click favorite button event => addEventListener ('click')
 const btnAddFavoriteFunc = (btn) => {
-  if (btn.classList.contains('btn-add-favorite')) {
+  if (btn.classList.contains('btn-favorite')) {
     changeIcon(btn);
     const favoriteId = btn.parentElement.parentElement.getAttribute('data-id');
     favoriteItems.push(favoriteId);
@@ -110,21 +110,15 @@ const changeIcon = (node, type = 'add') => {
     typeObj = {
       classNameIcon: '.icon-favorite',
       img: '<img class="icon-trash" src="https://i.imgur.com/m4xuLMv.png" alt="Trash">',
-      addClassName: 'btn-remove-favorite',
-      removeClassName: 'btn-add-favorite'
     };
   } else {
     typeObj = {
       classNameIcon: '.icon-trash',
       img: '<img class="icon-favorite" src="https://i.imgur.com/UnnmWMl.png" alt="Favorite">',
-      addClassName: 'btn-add-favorite',
-      removeClassName: 'btn-remove-favorite'
     };
   };
   node.removeChild(node.querySelector(typeObj.classNameIcon));
   node.insertAdjacentHTML('beforeend', typeObj.img);
-  node.classList.add(typeObj.addClassName);
-  node.classList.remove(typeObj.removeClassName);
 };
 
 // Remove furniture item from favorites list
@@ -146,7 +140,7 @@ const btnRemoveFunc = (btn) => {
 };
 
 const removeFavorite = (favoriteItems) => {
-  const btnRemoveFavorite = document.querySelectorAll('.favorites-list .btn-remove-favorite');
+  const btnRemoveFavorite = document.querySelectorAll('.favorites-list .btn-favorite');
   btnRemoveFavorite.forEach(btn => {
     btn.addEventListener('click', () => {
       btnRemoveFunc(btn, favoriteItems);
