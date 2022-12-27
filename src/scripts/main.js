@@ -86,7 +86,7 @@ const renderListFavoriteFurniture = (filterFavoriteList) => {
 const btnAddFavoriteFunc = (btn) => {
   if (btn.classList.contains('btn-favorite')) {
     changeIcon(btn);
-    const favoriteId = btn.parentElement.parentElement.getAttribute('data-id');
+    const favoriteId = btn.getAttribute('data-id');
     favoriteItems.push(favoriteId);
     setFavoriteFurnitureToLocalStorage(favoriteItems);
   } else {
