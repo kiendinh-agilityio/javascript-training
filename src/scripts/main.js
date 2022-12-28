@@ -1,42 +1,10 @@
 import { defaultFurniture } from './furniture-data.js';
+import { createElement } from './template';
 import {
   getFavoriteFurnitureFromLocalStorage,
   setFavoriteFurnitureToLocalStorage,
 } from './helper.js';
 import { handleAddEventListenerNavMenu } from './navbar.js';
-
-// render furniture
-const renderFurniture = (furniture) => {
-  const favoriteButton =
-    `
-      <button class="btn-favorite btn-add-favorite d-flex p-absolute" data-id=${furniture.id}>
-        <img class="icon-favorite" src="https://i.imgur.com/UnnmWMl.png" alt="Heart">
-      </button>
-    `
-  const trashButton =
-    `
-      <button class="btn-favorite btn-remove-favorite d-flex p-absolute" data-id=${furniture.id}>
-        <img class="icon-trash" src="https://i.imgur.com/m4xuLMv.png" alt="Trash">
-      </button>
-    `
-  const renderButton = furniture.isFavorite ? trashButton : favoriteButton;
-  const furnitureTemplate =
-    `
-      <div class="furniture-item d-flex p-relative" data-id=${furniture.id}>
-        <div class="card-header d-flex p-relative">
-          <img class="furniture-thumbnail" src=${furniture.image} alt="Furniture Thumbnail">
-          ${renderButton}
-        </div>
-        <div class="card-body d-flex p-absolute">
-          <div class="furniture-description">
-            <p class="furniture-name">${furniture.name}</p>
-            <p class="furniture-price">${furniture.price}</p>
-          </div>
-        </div>
-      </div>
-    `
-  return furnitureTemplate;
-};
 
 const btnFavoriteList = document.querySelector('.btn-list-favorites');
 const domFurniture = document.querySelector('.furniture-list');
@@ -47,7 +15,7 @@ let favoriteItems = getFavoriteFurnitureFromLocalStorage();
 const renderListFurnitures = (items) => {
   domFurniture.innerHTML = '';
   items.forEach((furniture) => {
-    domFurniture.insertAdjacentHTML('beforeend', renderFurniture(furniture));
+    domFurniture.insertAdjacentHTML('beforeend', createElement(furniture));
   });
 };
 
@@ -70,10 +38,10 @@ const loadData = () => {
 
 const filterFavoriteItems = (favoriteItemsTemp) => {
   return defaultFurniture
-    .reduce((accumulator, currentValue) => {
+    .reduce((favoriteValue, currentValue) => {
       const findFavorite = favoriteItemsTemp.indexOf(currentValue.id);
-      if (findFavorite >= 0) accumulator.push(currentValue);
-      return accumulator;
+      if (findFavorite >= 0) favoriteValue.push(currentValue);
+      return favoriteValue;
     }, [])
     .map(item => {
       return {
@@ -83,8 +51,8 @@ const filterFavoriteItems = (favoriteItemsTemp) => {
     });
 };
 
-// Show modal
-const openModal = () => {
+// Favorites Modal
+const handleShowFavoritesList = () => {
   btnFavoriteList.addEventListener('click', () => {
     const showModal = document.getElementById('Favorite-modal');
     showModal.classList.add('modal-open');
@@ -94,7 +62,7 @@ const openModal = () => {
   });
 };
 
-const closeModal = () => {
+const handleCloseFavoritesList = () => {
   modalClose.addEventListener('click', () => {
     const showModal = document.getElementById('Favorite-modal');
     showModal.classList.remove('modal-open');
@@ -108,7 +76,7 @@ const renderListFavoriteFurniture = (filterFavoriteList) => {
   };
   const listFavorite = filterFavoriteList;
   listFavorite.forEach((furniture) => {
-    favoritesList.insertAdjacentHTML('beforeend', renderFurniture(furniture));
+    favoritesList.insertAdjacentHTML('beforeend', createElement(furniture));
   });
 };
 
@@ -116,10 +84,9 @@ const renderListFavoriteFurniture = (filterFavoriteList) => {
 // User click button favorite
 // Listen click favorite button event => addEventListener ('click')
 const btnAddFavoriteFunc = (btn) => {
-  let parentElement = btn.parentElement.parentElement;
   if (btn.classList.contains('btn-add-favorite')) {
     changeIcon(btn);
-    const favoriteId = parentElement.getAttribute('data-id');
+    const favoriteId = btn.parentElement.parentElement.getAttribute('data-id');
     favoriteItems.push(favoriteId);
     setFavoriteFurnitureToLocalStorage(favoriteItems);
   } else {
@@ -163,7 +130,7 @@ const changeIcon = (node, type = 'add') => {
 // Remove furniture item from favorites list
 const btnRemoveFunc = (btn) => {
   if (confirm("Are you sure you want to remove it from favorites list?")) {
-    let parentElement = btn.parentElement.parentElement;
+    const parentElement = btn.parentElement.parentElement;
     const checkParentList = parentElement.parentElement;
     const favoriteId = parentElement.getAttribute('data-id');
     favoriteItems = favoriteItems.filter(item => item !== favoriteId);
@@ -191,9 +158,9 @@ window.addEventListener('DOMContentLoaded', () => {
   loadData();
   // Add favorite
   addFavorite();
-  // Show modal
-  openModal();
-  closeModal();
+  // Favorites modal
+  handleShowFavoritesList();
+  handleCloseFavoritesList();
   // Navigation bar
   handleAddEventListenerNavMenu();
 });
