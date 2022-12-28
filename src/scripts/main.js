@@ -52,9 +52,9 @@ const filterFavoriteItems = (favoriteItemsTemp) => {
 };
 
 // Favorites List
-const handleShowFavoritesList = () => {
+const handleAddEventListenerForFavoriteButton = () => {
   btnFavoriteList.addEventListener('click', () => {
-    const showModal = document.getElementById('Favorite-modal');
+    const showModal = document.getElementById('favorite-modal');
     showModal.classList.add('modal-open');
     const favoriteItemsTemp = getFavoriteFurnitureFromLocalStorage();
     renderListFavoriteFurniture(filterFavoriteItems(favoriteItemsTemp));
@@ -62,9 +62,9 @@ const handleShowFavoritesList = () => {
   });
 };
 
-const handleCloseFavoritesList = () => {
+const handleAddEventListenerForCloseButton = () => {
   modalClose.addEventListener('click', () => {
-    const showModal = document.getElementById('Favorite-modal');
+    const showModal = document.getElementById('favorite-modal');
     showModal.classList.remove('modal-open');
   });
 };
@@ -153,8 +153,8 @@ window.addEventListener('DOMContentLoaded', () => {
   // Add favorite
   addFavorite();
   // Favorites modal
-  handleShowFavoritesList();
-  handleCloseFavoritesList();
+  handleAddEventListenerForFavoriteButton();
+  handleAddEventListenerForCloseButton();
   // Navigation bar
   handleAddEventListenerNavMenu();
 });
