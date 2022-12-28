@@ -152,7 +152,7 @@ window.addEventListener('DOMContentLoaded', () => {
   loadData();
   // Add favorite
   addFavorite();
-  // Favorites modal
+  // Favorites List
   handleAddEventListenerForFavoriteButton();
   handleAddEventListenerForCloseButton();
   // Navigation bar
