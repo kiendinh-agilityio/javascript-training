@@ -3,6 +3,7 @@ import {
   getFavoriteFurnitureFromLocalStorage,
   setFavoriteFurnitureToLocalStorage,
 } from './helper.js';
+import { handleAddEventListenerNavMenu } from './navbar.js';
 
 // render furniture
 const renderFurniture = (furniture) => {
@@ -193,4 +194,6 @@ window.addEventListener('DOMContentLoaded', () => {
   // Show modal
   openModal();
   closeModal();
+  // Navigation bar
+  handleAddEventListenerNavMenu();
 });
