@@ -124,13 +124,13 @@ const changeIcon = (node, type = 'add') => {
 // Remove furniture item from favorites list
 const btnRemoveFunc = (btn) => {
   if (confirm("Are you sure you want to remove it from favorites list?")) {
-    const parentElement = btn.parentElement.parentElement;
-    const checkParentList = parentElement.parentElement;
-    const favoriteId = parentElement.getAttribute('data-id');
+    const furnitureItem = btn.parentElement.parentElement;
+    const furnitureList = furnitureItem.parentElement;
+    const favoriteId = furnitureItem.getAttribute('data-id');
     favoriteItems = favoriteItems.filter(item => item !== favoriteId);
     setFavoriteFurnitureToLocalStorage(favoriteItems);
-    if (checkParentList.classList.contains('favorites-list')) {
-      parentElement.remove();
+    if (furnitureList.classList.contains('favorites-list')) {
+      furnitureItem.remove();
       const selectedFurniture = document.querySelector(`[data-id='${favoriteId}'] button`);
       changeIcon(selectedFurniture, 'remove');
     } else {
