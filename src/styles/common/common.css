@@ -31,6 +31,10 @@
   padding-right: 5px;
 }
 
+.o-hidden {
+  overflow: hidden;
+}
+
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .border-left {
