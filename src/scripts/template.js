@@ -31,4 +31,32 @@ const createElement = (furniture) => {
   return furnitureTemplate;
 };
 
-export { createElement };
+// Create Product
+const createProduct = (product) => {
+  const productTemplate =
+    `
+      <div class="d-flex product-item" data-id=${product.id}>
+        <div class="d-flex product-detail">
+          <a href="#modal-detail-product"><img class="product-img" src=${product.image} alt="Product"></a>
+          <ul class="d-flex product-content">
+            <li class="product-name"><a href="#modal-detail-product">${product.name}</a></li>
+            <li class="product-description">${product.description}</li>
+            <li class="product-size">
+              <p>Size:</p>
+              <p>${product.length}, <span class="active">${product.width}</span></p>
+            </li>
+            <li class="product-price">${product.price}</li>
+          </ul>
+        </div>
+        <button class="btn-remove-product" data-id=${product.id}>
+          <img class="icon-remove" src="https://i.imgur.com/YfFcjgm.png" alt="Trash">
+        </button>
+      </div>
+    `
+  return productTemplate;
+}
+
+export {
+  createElement,
+  createProduct
+};

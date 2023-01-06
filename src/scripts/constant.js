@@ -1,3 +1,7 @@
-const PRODUCT_LOCAL_STORAGE_KEY =  'favorite-furniture';
+const FURNITURE_LOCAL_STORAGE_KEY =  'favorite-furniture';
+const PRODUCT_LOCAL_STORAGE_KEY =  'product-furniture';
 
-export { PRODUCT_LOCAL_STORAGE_KEY }
+export {
+  FURNITURE_LOCAL_STORAGE_KEY,
+  PRODUCT_LOCAL_STORAGE_KEY
+};
