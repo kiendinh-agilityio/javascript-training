@@ -1,14 +1,16 @@
 .modal-dialog {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: var(--z-index-md); /* Sit on top */
-  padding-top: 30px; /* Location of the box */
-  left: 0;
+  position: fixed;
+  background: var(--bg-color-modal);
   top: 0;
-  width: var(--size-full); /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: var(--bg-color-modal);
+  left: 0;
+  z-index: var(--z-index-md);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  width: var(--size-full);
+  height: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .modal-open {
@@ -26,7 +28,7 @@
   min-height: 80vh;
   overflow-y: auto;
   margin: auto;
-  background: var(--bg-furniture);
+  background: var(--color-primary);
 }
 
 .modal-header {
@@ -40,6 +42,5 @@
 @media (min-width: 992px) {
   .modal-content {
     width: calc(100% - 110px);
-    min-height: 110vh;
   }
 }

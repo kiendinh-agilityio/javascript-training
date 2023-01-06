@@ -1,13 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/main.css">
-    <title>Furniture</title>
+    <title>Products</title>
   </head>
-  <body>
     <!-- Header start -->
     <header class="header">
       <div class="container">
@@ -27,7 +26,7 @@
               </form>
             </ul>
             <div class="d-flex nav-group">
-              <a id="favorite-list" href="favorites.html" class="c-pointer btn btn-list-favorites d-block">
+              <a href="./favorites.html" class="c-pointer btn btn-list-favorites d-block">
                 <img src="./assets/images/icon-heart.svg" alt="Heart">
               </a>
               <buton class="c-pointer btn-cart">
@@ -44,42 +43,87 @@
     </header>
     <!-- Header end -->
 
-    <!-- Modal show Favorites List start -->
-    <!-- <div id="favorite-modal" class="modal-dialog">
-      <div class="modal-content">
-        <div class="container-modal">
-          <div class="d-flex modal-header">
-            <p class="favorite-heading">Favorite</p>
-            <button class="btn-close-modal">X</button>
-          </div>
-          <div class="d-grid favorites-list"></div>
-        </div>
-      </div>
-    </div> -->
-    <!-- Modal show Favorites List end -->
+    <!-- Product heading start -->
+    <h1 class="d-flex product-heading">Products</h1>
+    <!-- Product heading end -->
 
-    <!-- List Furniture start -->
-    <section class="furniture">
+    <!-- Product list start-->
+    <section class="product">
       <div class="container">
-        <div class="d-grid furniture-list">
-          <!-- <div class="d-flex p-relative furniture-item">
-            <div class="d-flex p-relative card-header">
-              <img class="furniture-thumbnail" src="./assets/images/furniture.png" alt="furniture">
-              <button class="d-flex p-absolute btn-add-favorite">
-                <img class="icon-favorite" src="./assets/images/icon-heart.svg" alt="favorite">
-              </button>
+        <div class="d-flex product-header horizontal-rule">
+          <p class="description">Products</p>
+          <a class="btn btn-add-product d-block" href="#modal-add-product">Add</a>
+        </div>
+        <div class="d-flex product-list">
+          <!-- <div class="d-flex product-item">
+            <div class="d-flex product-detail">
+              <a href="#"><img class="product-img" src="./assets/images/desktop/product-one.png" alt="Product"></a>
+              <ul class="d-flex product-content">
+                  <li class="product-name"><a href="#">Mini Blue Chair</a></li>
+                  <li class="product-description">Find a bright ideal to suit your taste with our great selection of suspension, wall, floor and table lights. breathable Walking</li>
+                  <li class="product-size">
+                    <p>Size:</p>
+                    <p>Length-34cm, <span class="active">Width-56cm</span></p>
+                  </li>
+                <li class="product-price">N6,250</li>
+              </ul>
             </div>
-            <div class="d-flex p-absolute card-body">
-              <div class="furniture-description">
-                <p class="furniture-name">Sverom chair</p>
-                <p class="furniture-price">N65,000</p>
-              </div>
+            <button class="btn-remove-product">
+              <img class="icon-remove" src="./assets/images/btn-remove.svg" alt="Trash">
+            </button>
+          </div>
+          <div class="d-flex product-item">
+            <div class="d-flex product-detail">
+              <a href="#"><img class="product-img" src="./assets/images/desktop/product-one.png" alt="Product"></a>
+              <ul class="d-flex product-content">
+                  <li class="product-name"><a href="#">Mini Blue Chair</a></li>
+                  <li class="product-description">Find a bright ideal to suit your taste with our great selection of suspension, wall, floor and table lights. breathable Walking</li>
+                  <li class="product-size">
+                    <p>Size:</p>
+                    <p>Length-34cm, <span class="active">Width-56cm</span></p>
+                  </li>
+                <li class="product-price">N6,250</li>
+              </ul>
             </div>
-          <!-- </div> -->
+            <button class="btn-remove-product">
+              <img class="icon-remove" src="./assets/images/btn-remove.svg" alt="Trash">
+            </button>
+          </div> -->
         </div>
       </div>
     </section>
-    <!-- List Furniture end -->
+    <!-- product list end-->
+
+    <!-- Modal Add New Product start-->
+    <div id="modal-add-product" class="modal-dialog">
+      <div class="modal-content">
+        <div class="container-modal">
+          <a href="#" title="close" class="btn-close-modal">X</a>
+          <form action="" class="d-flex form-add-product">
+            <label for="image">Image URL:</label>
+            <input class="input-item" type="text" id="image" name="image">
+            <label for="title">Name:</label>
+            <input class="input-item" type="text" id="name" name="name">
+            <label for="price">Price:</label>
+            <input class="input-item" type="text" id="price" name="price">
+            <button class="btn btn-submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--implement add modal end-->
+
+    <!-- Modal detail product start-->
+    <div id="modal-detail-product" class="modal-dialog">
+      <div class="modal-content modal-detail-product">
+        <div class="container-modal">
+          <a href="#" id="btn-close" title="close" class="btn-close-modal">X</a>
+          <div class="product-detail-content"></div>
+          <button class="d-flex btn btn-save">Save</button>
+        </div>
+      </div>
+    </div>
+    <!-- Modal detail product end-->
 
     <!-- Footer start -->
     <footer class="footer">
@@ -126,5 +170,5 @@
     </footer>
     <!-- Footer end -->
   </body>
-  <script type="module" src="./scripts/main.js"></script>
+  <script type="module" src="./scripts/product.js"></script>
 </html>

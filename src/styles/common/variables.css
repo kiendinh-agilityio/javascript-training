@@ -11,6 +11,11 @@
   --color-placeholder: #616161;
   --color-furniture-name: #aaa;
   --color-favorite-heading: #284f49;
+  --color-text-product: #284f49;
+  --color-hover: #e68314;
+  --color-border: #dee5ef;
+  --color-text-description: #808080;
+  --color-active: #e68314;
 
   --bg-card: #fff;
   --bg-footer: #4f553d;
@@ -21,6 +26,7 @@
   --bg-shadow: rgba(32, 32, 32, 0.1);
   --bg-color-modal: #000c;
   --bg-nav-menu: rgba(255,255,255, 0.96);
+  --bg-button: #284f49;
 
 
   /* width */
@@ -51,6 +57,8 @@
   --font-size-md: 18px;
   --font-size-lg: 22px;
   --font-size-xl: 24px;
+  --font-size-1xl: 30px;
+  --font-size-2xl: 50px;
 
   /* line height */
   --line-height-super-small: 12px;
@@ -67,6 +75,7 @@
   --border-radius-round: 50%;
   --border-radius-sm: 8px;
   --border-radius-md: 9px;
+  --border-radius-lg: 16px;
 
   /* z-index */
   --z-index-base: 1;
