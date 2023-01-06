@@ -35,6 +35,19 @@
   overflow: hidden;
 }
 
+.horizontal-rule {
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 20px;
+}
+
+.active {
+  color: var(--color-active);
+}
+
+.d-block {
+  display: block;
+}
+
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .border-left {

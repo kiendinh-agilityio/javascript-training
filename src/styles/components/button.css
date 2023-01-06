@@ -1,3 +1,14 @@
+.btn {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-tiny);
+  color: var(--color-primary);
+  border-radius: var(--border-radius-lg);
+  border: 1px solid var(--bg-button);
+  background-color: var(--bg-button);
+  cursor: pointer;
+}
+
+.btn-remove-product,
 .btn-search {
   border: none;
   background: none;
@@ -32,14 +43,62 @@
   padding: 0;
   background: var(--color-primary);
   cursor: pointer;
+  position: absolute;
+  top: 50px;
+  right: 45px;
+}
+
+.btn-submit,
+.btn-add-product {
+  padding: 12px 50px;
+}
+
+.btn-add-product:hover {
+  color: var(--color-hover);
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-hover);
+}
+
+.btn-submit:hover {
+  color: var(--color-hover);
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-hover);
+}
+
+.btn-save {
+  padding: 12px 30px;
+  margin: 0 auto;
+}
+
+.btn-save:hover {
+  color: var(--color-hover);
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-hover);
+}
+
+.btn-remove-product {
+  padding: 0;
 }
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+  .btn {
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-md);
+  }
+
   .btn-favorite {
     width: 50px;
     height: 45px;
     padding: 15px;
     left: 210px;
+  }
+
+  .btn-add-product {
+    padding: 12px 77px;
+  }
+
+  .btn-close-modal {
+    right: 80px;
   }
 }

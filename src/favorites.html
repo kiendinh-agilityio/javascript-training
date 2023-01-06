@@ -1,13 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/main.css">
-    <title>Furniture</title>
+    <title>Favorites</title>
   </head>
-  <body>
     <!-- Header start -->
     <header class="header">
       <div class="container">
@@ -27,7 +26,7 @@
               </form>
             </ul>
             <div class="d-flex nav-group">
-              <a id="favorite-list" href="favorites.html" class="c-pointer btn btn-list-favorites d-block">
+              <a href="./favorites.html" class="c-pointer btn btn-list-favorites d-block">
                 <img src="./assets/images/icon-heart.svg" alt="Heart">
               </a>
               <buton class="c-pointer btn-cart">
@@ -44,42 +43,18 @@
     </header>
     <!-- Header end -->
 
-    <!-- Modal show Favorites List start -->
-    <!-- <div id="favorite-modal" class="modal-dialog">
-      <div class="modal-content">
-        <div class="container-modal">
-          <div class="d-flex modal-header">
-            <p class="favorite-heading">Favorite</p>
-            <button class="btn-close-modal">X</button>
-          </div>
-          <div class="d-grid favorites-list"></div>
-        </div>
-      </div>
-    </div> -->
-    <!-- Modal show Favorites List end -->
+    <!--Favorite heading start -->
+    <h1 class="d-flex favorite-heading">Favorites</h1>
+    <!--Favorite heading end -->
 
-    <!-- List Furniture start -->
-    <section class="furniture">
+    <!-- Favorites list start-->
+    <section class="favorite">
       <div class="container">
-        <div class="d-grid furniture-list">
-          <!-- <div class="d-flex p-relative furniture-item">
-            <div class="d-flex p-relative card-header">
-              <img class="furniture-thumbnail" src="./assets/images/furniture.png" alt="furniture">
-              <button class="d-flex p-absolute btn-add-favorite">
-                <img class="icon-favorite" src="./assets/images/icon-heart.svg" alt="favorite">
-              </button>
-            </div>
-            <div class="d-flex p-absolute card-body">
-              <div class="furniture-description">
-                <p class="furniture-name">Sverom chair</p>
-                <p class="furniture-price">N65,000</p>
-              </div>
-            </div>
-          <!-- </div> -->
+        <div class="d-grid favorites-list">
         </div>
       </div>
     </section>
-    <!-- List Furniture end -->
+    <!-- Favorites list start-->
 
     <!-- Footer start -->
     <footer class="footer">
@@ -126,5 +101,5 @@
     </footer>
     <!-- Footer end -->
   </body>
-  <script type="module" src="./scripts/main.js"></script>
+  <script type="module" src="./scripts/favorite.js"></script>
 </html>

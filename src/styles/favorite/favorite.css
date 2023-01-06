@@ -3,15 +3,24 @@
   font-weight: var(--font-weight-bold);
   font-size: var(--font-size-lg);
   line-height: var(--line-height-lg);
-  color: var(--color-favorite-heading);
+  color: var(--color-primary);
+  justify-content: center;
+  padding: 20px 0;
+  background-image: url(/src/assets/images/banner-mobile.png);
 }
 
 .favorites-list {
   grid-template-columns: repeat(2, 50%);
+  padding-bottom: 40px;
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
+  .favorite-heading {
+    padding: 44px 0;
+    background-image: url(/src/assets/images/banner-tablet.png);
+  }
+
   .favorites-list {
     grid-template-columns: repeat(3, 25%);
     justify-content: center;
@@ -20,23 +29,26 @@
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+  .favorite {
+    padding-bottom: 50px;
+  }
+
+  .favorite-heading {
+    font-size: var(--font-size-1xl);
+    line-height: var(--line-height-1xl);
+  }
+
   .favorites-list {
-    grid-template-columns: repeat(2, 50%);
+    padding-bottom: 60px;
     grid-gap: 80px;
   }
 }
 
-/* Medium devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-  .favorites-list {
-    grid-template-columns: repeat(3, 25%);
-  }
-}
-
-/* Medium devices (large desktops, 1500px and up) */
-@media (min-width: 1500px) {
+/* Medium devices (large desktops, 1400px and up) */
+@media (min-width: 1400px) {
   .favorites-list {
     grid-template-columns: repeat(4, 25%);
     grid-gap: 0;
+    padding-bottom: 20px;
   }
 }
