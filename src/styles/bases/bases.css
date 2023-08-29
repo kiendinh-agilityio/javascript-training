@@ -1,0 +1,43 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+body {
+  background-color: var(--color-primary);
+  font-family: var(--font-family-primary);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  height: 100vh;
+}
+
+.container {
+  padding-left: var(--container-padding-sm);
+  padding-right: var(--container-padding-sm);
+  padding-top: var(--container-padding-lg);
+  width: var(--size-Full);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+  .container {
+    max-width: var(--container-width-sm);
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .container {
+    max-width: var(--container-width-md);
+    padding-left: var(--container-padding-md);
+    padding-right: var(--container-padding-md);
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .container {
+    max-width: var(--container-width-2xl)
+  }
+}

@@ -1,0 +1,16 @@
+.dot {
+  border: 1px solid var(--color-dot);
+  background-color: var(--color-dot);
+  width: 35px;
+  height: 35px;
+  cursor: pointer;
+  border-radius: var(--border-radius-round);
+}
+
+.dot:not(:last-child) {
+  margin-right: 12px;
+}
+
+.dot-active {
+  background-color: var(--bg-dot-active);
+}

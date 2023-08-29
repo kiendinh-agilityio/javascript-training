@@ -1,0 +1,46 @@
+.modal-dialog {
+  position: fixed;
+  background: var(--bg-color-modal);
+  top: 0;
+  left: 0;
+  z-index: var(--z-index-md);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  width: var(--size-full);
+  height: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.modal-open {
+  display: block;
+}
+
+.modal-dialog:target {
+  visibility: visible;
+  opacity: var(--opacity-md);
+  pointer-events: auto;
+}
+
+.modal-content {
+  width: calc(100% - 30px);
+  min-height: 80vh;
+  overflow-y: auto;
+  margin: auto;
+  background: var(--color-primary);
+}
+
+.modal-header {
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  margin-bottom: 50px;
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .modal-content {
+    width: calc(100% - 110px);
+  }
+}

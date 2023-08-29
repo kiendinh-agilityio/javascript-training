@@ -1,0 +1,17 @@
+{
+  "name": "javascript-practice",
+  "version": "1.0.0",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
+}

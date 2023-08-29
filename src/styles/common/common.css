@@ -1,0 +1,74 @@
+.d-flex {
+  display: flex;
+}
+
+.p-relative {
+  position: relative;
+}
+
+.p-absolute {
+  position: absolute;
+}
+
+.c-pointer {
+  cursor: pointer;
+}
+
+.d-grid {
+  display: grid;
+}
+
+.d-grid {
+  display: grid;
+}
+
+.d-grid {
+  display: grid;
+}
+
+.container-modal {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.o-hidden {
+  overflow: hidden;
+}
+
+.horizontal-rule {
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 20px;
+}
+
+.active {
+  color: var(--color-active);
+}
+
+.d-block {
+  display: block;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .border-left {
+    border-left: 2px solid var(--color-blur);
+    padding-left: 90px;
+  }
+
+  .container-modal {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .border-left {
+    padding-left: 120px;
+  }
+
+  .container-modal {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}

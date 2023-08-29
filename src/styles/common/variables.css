@@ -1,0 +1,87 @@
+:root {
+  /* color */
+  --color-primary: #fff;
+  --color-text: #121212;
+  --color-descripton: #b6c197;
+  --color-dot: #444a34;
+  --color-blur: #5d6544;
+  --color-copyright: #b5c096;
+  --color-nav-text: #3a3a3a;
+  --color-active: #e68314;
+  --color-placeholder: #616161;
+  --color-furniture-name: #aaa;
+  --color-favorite-heading: #284f49;
+  --color-text-product: #284f49;
+  --color-hover: #e68314;
+  --color-border: #dee5ef;
+  --color-text-description: #808080;
+  --color-active: #e68314;
+
+  --bg-card: #fff;
+  --bg-footer: #4f553d;
+  --bg-dot-active: #e68314;
+  --bg-border-search: #bdbdbd;
+  --bg-dark: #000;
+  --bg-furniture: #fafafa;
+  --bg-shadow: rgba(32, 32, 32, 0.1);
+  --bg-color-modal: #000c;
+  --bg-nav-menu: rgba(255,255,255, 0.96);
+  --bg-button: #284f49;
+
+
+  /* width */
+  --size-full: 100%;
+  --width-nav-group: calc(188 * 100% / 1512); /* equals width of 3 items multiplied by 100% divided by total width of header */
+
+  /* container */
+  --container-width-sm: 540px;
+  --container-width-md: 768px;
+  --container-width-lg: 960px;
+  --container-width-xl: 1140px;
+  --container-width-2xl: 1320px;
+  --container-padding-sm: 16px;
+  --container-padding-md: 30px;
+  --container-padding-lg: 39px;
+
+  /* font family */
+  --font-family-primary: 'Poppins';
+  --font-family-secondary: 'Lufga';
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* font size */
+  --font-size-tiny: 13px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 22px;
+  --font-size-xl: 24px;
+  --font-size-1xl: 30px;
+  --font-size-2xl: 50px;
+
+  /* line height */
+  --line-height-super-small: 12px;
+  --line-height-tiny: 19px;
+  --line-height-sm: 21px;
+  --line-height-md: 24px;
+  --line-height-lg: 28px;
+  --line-height-base: 38px;
+  --line-height-xl: 40px;
+  --line-height-1xl: 50px;
+
+  /* border radius */
+  --border-radius-tiny: 5px;
+  --border-radius-round: 50%;
+  --border-radius-sm: 8px;
+  --border-radius-md: 9px;
+  --border-radius-lg: 16px;
+
+  /* z-index */
+  --z-index-base: 1;
+  --z-index-md: 2;
+
+  /* opacity */
+  --opacity-base: 0;
+  --opacity-md: 1;
+}
