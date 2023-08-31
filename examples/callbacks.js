@@ -17,3 +17,16 @@ const printEnd = () => {
   console.log('End'); // End
 };
 asyncFunction(printEnd);
+
+// Example Callbacks
+const fetchDataWithCallback = (callback) => {
+  // Simulating an API call
+  setTimeout(() => {
+    const data = { message: 'Data fetched with callbacks' };
+    callback(data);
+  }, 1000);
+};
+
+fetchDataWithCallback((data) => {
+  console.log(data.message); // Data fetched with callbacks
+});
