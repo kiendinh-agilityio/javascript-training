@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        max-width: 600px;
+        margin: 0 auto;
+        font-family: sans-serif;
+      }
+      .active {
+        border: 2px solid blue;
+      }
+
+      .warning {
+        border: 2px solid red;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      div {
+        border: 2px dashed lightgray;
+        padding: 15px;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>Div 1</div>
+    <div class="active">Div 2</div>
+
+    <script>
+      // Select the first div
+      const div = document.querySelector('div');
+
+      // Assign the warning class to the first div
+      div.className = 'warning';
+
+      // Select the second div by class name
+      const activeDiv = document.querySelector('.active');
+
+      //   activeDiv.classList.add("hidden"); // Add the hidden class
+      //   activeDiv.classList.remove("hidden"); // Remove the hidden class
+      //   activeDiv.classList.toggle("hidden"); // Switch between hidden true and false
+      //   activeDiv.classList.replace('active', 'warning'); // Replace active class with warning class
+    </script>
+  </body>
+</html>
