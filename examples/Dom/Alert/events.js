@@ -9,6 +9,6 @@ const alertText = () => {
   alert('Will I alert?');
 };
 
-// Events can be overwritten
-button.onclick = changeText;
-button.onclick = alertText;
+// Multiple listeners can be added to the same event and element
+button.addEventListener('click', changeText);
+button.addEventListener('click', alertText);
