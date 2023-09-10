@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <style>
+    .element {
+      height: 100px;
+      width: 100px;
+      border: 2px solid black;
+    }
+  </style>
+  <body>
+    <div class="element">Div</div>
+  </body>
+  <script>
+    const myElement = document.querySelector('div');
+    myElement.setAttribute('style', 'display: flex');
+    myElement.style.height = '100px';
+    myElement.style.width = '100px';
+    myElement.style.border = '2px solid black';
+    myElement.style.justifyContent = 'center';
+    myElement.style.alignItems = 'center';
+    myElement.style.borderRadius = '50%';
+  </script>
+</html>
