@@ -56,10 +56,10 @@
 
 ## GUIDELINE
 
-| Syntax                                                                      | Description                               |
-| --------------------------------------------------------------------------- | ----------------------------------------- |
-| `git clone git@gitlab.asoft-python.com:khue.nguyen/javascript-training.git` | Clone repository from GitLab              |
-| `feature/implement-javascript-practice`                                     | Checkout branch                           |
-| `cd practices/dashboard`                                                    | Change directory                          |
-| `pnpm install`                                                              | Install dependencies                      |
-| `pnpm start`                                                                | Starts local dev server at localhost:1234 |
+| Syntax                                                                    | Description                               |
+| ------------------------------------------------------------------------- | ----------------------------------------- |
+| `git clone git@gitlab.asoft-python.com:kien.dinh/javascript-training.git` | Clone repository from GitLab              |
+| `feature/implement-javascript-practice`                                   | Checkout branch                           |
+| `cd practices/dashboard`                                                  | Change directory                          |
+| `pnpm install`                                                            | Install dependencies                      |
+| `pnpm start`                                                              | Starts local dev server at localhost:1234 |
