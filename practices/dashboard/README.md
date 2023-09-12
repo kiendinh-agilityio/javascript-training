@@ -19,15 +19,15 @@
 
 - 7 day (Sep 12, 2023 - Sep 20, 2023)
 
-## TECH STACK
+## TECH STACKS
 
 - HTML5/CSS3
 - JavaScript
 - Husky v8.0.0
-- Eslint v8.15.0
-- Prettier v2.6.2
-- Commitlint v17.4.4
-- Parcel
+- Eslint v8.0.1
+- Prettier v3.0.3
+- Commitlint v17.7.1
+- Parcel v2.9.3
 
 ## DEVELOPMENT ENVIRONMENT
 
