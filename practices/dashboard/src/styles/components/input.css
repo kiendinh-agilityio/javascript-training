@@ -1,0 +1,13 @@
+.input {
+  width: 100%;
+  padding: 9px 12px;
+  color: var(--color-tertiary);
+  font-size: var(--font-size-sm);
+  border-radius: var(--rounded-sm);
+  border: 1px solid var(--color-secondary);
+}
+
+.input::placeholder {
+  color: var(--color-tertiary);
+  font-size: var(--font-size-sm);
+}
