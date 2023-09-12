@@ -1,0 +1,40 @@
+:root {
+  /* color */
+  --color-primary: #4a85f6;
+  --color-secondary: #eff4fa;
+  --color-tertiary: #222b45;
+  --color-dark: #0a0a0a;
+  --color-light: #fff;
+
+  /* font family */
+  --font-primary: OpenSans, san-serif;
+
+  /* font weight */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* font size */
+  --font-size-xs: 12px;
+  --font-size-sm: 13px;
+  --font-size-md: 14px;
+  --font-size-lg: 15px;
+  --font-size-xl: 16px;
+  --font-size-2xl: 17px;
+  --font-size-3xl: 20px;
+  --font-size-4xl: 24px;
+
+  /* line height */
+  --line-height-xs: 15px;
+  --line-height-sm: 16px;
+  --line-height-md: 18px;
+  --line-height-lg: 21px;
+  --line-height-xl: 24px;
+  --line-height-2xl: 30px;
+
+  /* border radius */
+  --rounded-xs: 4px;
+  --rounded-sm: 8px;
+  --rounded-md: 16px;
+  --rounded-circle: 50%;
+}
