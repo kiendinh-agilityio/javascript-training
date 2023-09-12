@@ -1,0 +1,23 @@
+.logo {
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-3xl);
+  line-height: var(--line-height-2xl);
+  color: var(--color-dark);
+  letter-spacing: 0.15px;
+}
+
+.username {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.email {
+  font-size: var(--font-size-xs);
+  color: var(--color-email);
+}
+
+.phone-number,
+.create-date {
+  font-size: var(--font-size-xs);
+  color: var(--color-tertiary);
+}
