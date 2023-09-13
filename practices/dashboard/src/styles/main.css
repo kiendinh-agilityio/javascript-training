@@ -2,3 +2,6 @@
 @import url(base/fonts.css);
 @import url(base/variables.css);
 @import url(base/global.css);
+
+@import url(components/common.css);
+@import url(components/button.css);
