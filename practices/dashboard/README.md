@@ -30,6 +30,8 @@
 ## DESIGN
 - **[Figma](<https://www.figma.com/file/XkW4jCFD16W5SvKUT0uqVG/User-Management-CMS-(Community)?node-id=0%3A1&mode=dev>)**
 
+## Workflow
+![Flowchart](./Flowcharts.png)
 ## REQUIREMENT
 - Make the application match with the design
 - Understand & apply knowledge HTML/CSS/JavaScript (with ES6 syntax).
