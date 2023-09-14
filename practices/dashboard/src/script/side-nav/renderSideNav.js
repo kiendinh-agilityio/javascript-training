@@ -18,7 +18,6 @@ const generateSideNav = NAV_ITEMS.map((nav) => {
 
 const renderSideNav = () => {
   const navigationList = document.getElementById('side-nav')
-  console.log(navigationList)
   navigationList.innerHTML = generateSideNav
 }
 
