@@ -18,3 +18,14 @@
 .nav-item:not(:last-child) {
   margin-bottom: 32px;
 }
+
+.nav-vertically {
+  width: 4px;
+  height: 48px;
+  background: var(--color-primary);
+  right: -33px;
+}
+
+.nav-item-active {
+  margin-bottom: 32px;
+}
