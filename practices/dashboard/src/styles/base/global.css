@@ -57,3 +57,11 @@ body {
   color: var(--color-primary);
   font-family: var(--font-primary-semibold);
 }
+
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
