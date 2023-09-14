@@ -11,13 +11,13 @@
   font-family: var(--font-primary-semibold);
   font-size: var(--font-size-xl);
   line-height: var(--line-height-xl);
-  letter-spacing: 0.4px;
+  letter-spacing: var(--spacing-md);
 }
 
 .admin {
   font-size: var(--font-size-xs);
   line-height: var(--line-height-md);
-  letter-spacing: 0,4px;
+  letter-spacing: var(--spacing-md);
   margin-right: 18px;
 }
 
@@ -25,4 +25,11 @@
   border: 1px solid var(--color-vertically);
   margin: 0 24px;
   height: 48px;
+}
+
+.header-description {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-lg);
+  letter-spacing: var(--spacing-sm);
+  color: var(--color-text);
 }

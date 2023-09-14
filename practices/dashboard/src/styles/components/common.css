@@ -3,7 +3,7 @@
   font-size: var(--font-size-3xl);
   line-height: var(--line-height-2xl);
   color: var(--color-dark);
-  letter-spacing: 0.15px;
+  letter-spacing: var(--spacing-xs);
 }
 
 .username {
