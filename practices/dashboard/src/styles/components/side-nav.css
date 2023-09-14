@@ -1,0 +1,20 @@
+.sidebar-menu {
+  background: var(--color-light);
+  min-height: 100vh;
+}
+
+.nav-list {
+  margin: 56px 0 64px;
+}
+
+.nav-item {
+  gap: 16px;
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-xl);
+  letter-spacing: 0.5px;
+  color: var(--color-text);
+}
+
+.nav-item:not(:last-child) {
+  margin-bottom: 32px;
+}
