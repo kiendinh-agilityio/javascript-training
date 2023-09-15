@@ -59,6 +59,7 @@
                 alt="search icon"
               />
               <input
+                id="search-input"
                 class="input input-search"
                 placeholder="Search"
                 type="text"
@@ -66,7 +67,7 @@
               />
             </div>
             <div class="flex-row">
-              <button class="d-flex items-center btn btn-add">
+              <button id="btn-add" class="d-flex items-center btn btn-add">
                 <span>Add user</span>
                 <img
                   loading="lazy"
@@ -116,17 +117,17 @@
           <div class="dashboard-list-users">
             <h2 class="dasboard-title">List Users</h2>
             <!-- Dashboard Tablet List Users -->
-            <table class="dashboard-table-user">
+            <table class="dashboard-content">
               <tbody>
                 <tr class="table-row">
-                  <th class="dashboard-tablet-heading">Name</th>
-                  <th class="dashboard-tablet-heading">Role</th>
-                  <th class="dashboard-tablet-heading">Create Date</th>
-                  <th class="dashboard-tablet-heading">Phone Number</th>
-                  <th class="dashboard-tablet-heading">Action</th>
+                  <th class="dashboard-description">Name</th>
+                  <th class="dashboard-description">Role</th>
+                  <th class="dashboard-description">Create Date</th>
+                  <th class="dashboard-description">Phone Number</th>
+                  <th class="dashboard-description">Action</th>
                 </tr>
                 <tr class="table-row">
-                  <td class="dasboard-tablet-item">
+                  <td class="dasboard-item">
                     <p class="user-name">David Wagner</p>
                     <p class="user-email">david_wagner@example.com</p>
                   </td>
@@ -136,7 +137,7 @@
                   <td class="table-cell create-date">24 Otc, 2015</td>
                   <td class="table-cell phone-number">2052055555</td>
                   <td class="table-cell">
-                    <button class="btn-edit">
+                    <button id="btn-edit" class="btn-edit">
                       <img
                         loading="lazy"
                         width="20px"
@@ -145,7 +146,7 @@
                         alt="Edit icon"
                       />
                     </button>
-                    <button class="btn-remove">
+                    <button id="btn-remove" class="btn-remove">
                       <img
                         loading="lazy"
                         width="20px"
@@ -157,7 +158,7 @@
                   </td>
                 </tr>
                 <tr class="table-row">
-                  <td class="dasboard-tablet-item">
+                  <td class="dasboard-item">
                     <p class="user-name">Ina Hogan</p>
                     <p class="user-email">windler.warren@runte.net</p>
                   </td>
@@ -167,7 +168,7 @@
                   <td class="table-cell create-date">24 Otc, 2015</td>
                   <td class="table-cell phone-number">2052055555</td>
                   <td class="table-cell">
-                    <button class="btn-edit">
+                    <button id="btn-edit" class="btn-edit">
                       <img
                         loading="lazy"
                         width="20px"
@@ -176,7 +177,7 @@
                         alt="Edit icon"
                       />
                     </button>
-                    <button class="btn-remove">
+                    <button id="btn-remove" class="btn-remove">
                       <img
                         loading="lazy"
                         width="20px"
@@ -188,7 +189,7 @@
                   </td>
                 </tr>
                 <tr class="table-row">
-                  <td class="dasboard-tablet-item">
+                  <td class="dasboard-item">
                     <p class="user-name">Devin Harmon</p>
                     <p class="user-email">wintheiser_enos@yahoo.com</p>
                   </td>
@@ -198,7 +199,7 @@
                   <td class="table-cell create-date">18 Dec, 2015</td>
                   <td class="table-cell phone-number">2052055555</td>
                   <td class="table-cell">
-                    <button class="btn-edit">
+                    <button id="btn-edit" class="btn-edit">
                       <img
                         loading="lazy"
                         width="20px"
@@ -207,7 +208,7 @@
                         alt="Edit icon"
                       />
                     </button>
-                    <button class="btn-remove">
+                    <button id="btn-remove" class="btn-remove">
                       <img
                         loading="lazy"
                         width="20px"
@@ -219,7 +220,7 @@
                   </td>
                 </tr>
                 <tr class="table-row">
-                  <td class="dasboard-tablet-item">
+                  <td class="dasboard-item">
                     <p class="user-name">Lena Page</p>
                     <p class="user-email">camila_ledner@gmail.com</p>
                   </td>
@@ -229,7 +230,7 @@
                   <td class="table-cell create-date">8 Otc, 2016</td>
                   <td class="table-cell phone-number">2052055555</td>
                   <td class="table-cell">
-                    <button class="btn-edit">
+                    <button id="btn-edit" class="btn-edit">
                       <img
                         loading="lazy"
                         width="20px"
@@ -238,7 +239,7 @@
                         alt="Edit icon"
                       />
                     </button>
-                    <button class="btn-remove">
+                    <button id="btn-remove" class="btn-remove">
                       <img
                         loading="lazy"
                         width="20px"
@@ -250,7 +251,7 @@
                   </td>
                 </tr>
                 <tr class="table-row">
-                  <td class="dasboard-tablet-item">
+                  <td class="dasboard-item">
                     <p class="user-name">Eula Horton</p>
                     <p class="user-email">edula_dorton1221@gmail.com</p>
                   </td>
@@ -260,7 +261,7 @@
                   <td class="table-cell create-date">15 Jun, 2017</td>
                   <td class="table-cell phone-number">2052055555</td>
                   <td class="table-cell">
-                    <button class="btn-edit">
+                    <button id="btn-edit" class="btn-edit">
                       <img
                         loading="lazy"
                         width="20px"
@@ -269,7 +270,7 @@
                         alt="Edit icon"
                       />
                     </button>
-                    <button class="btn-remove">
+                    <button id="btn-remove" class="btn-remove">
                       <img
                         loading="lazy"
                         width="20px"
@@ -281,7 +282,7 @@
                   </td>
                 </tr>
                 <tr class="table-row">
-                  <td class="dasboard-tablet-item">
+                  <td class="dasboard-item">
                     <p class="user-name">Victoria Perez</p>
                     <p class="user-email">terrill.wiza@hotmail.com</p>
                   </td>
@@ -291,7 +292,7 @@
                   <td class="table-cell create-date">12 Jan, 2019</td>
                   <td class="table-cell phone-number">2052055555</td>
                   <td class="table-cell">
-                    <button class="btn-edit">
+                    <button id="btn-edit" class="btn-edit">
                       <img
                         loading="lazy"
                         width="20px"
@@ -300,7 +301,7 @@
                         alt="Edit icon"
                       />
                     </button>
-                    <button class="btn-remove">
+                    <button id="btn-remove" class="btn-remove">
                       <img
                         loading="lazy"
                         width="20px"
@@ -312,7 +313,7 @@
                   </td>
                 </tr>
                 <tr class="table-row">
-                  <td class="dasboard-tablet-item">
+                  <td class="dasboard-item">
                     <p class="user-name">Cora Medina</p>
                     <p class="user-email">hagenes.isai@hotmail.com</p>
                   </td>
@@ -322,7 +323,7 @@
                   <td class="table-cell create-date">21 July, 2020</td>
                   <td class="table-cell phone-number">2052055555</td>
                   <td class="table-cell">
-                    <button class="btn-edit">
+                    <button id="btn-edit" class="btn-edit">
                       <img
                         loading="lazy"
                         width="20px"
@@ -331,7 +332,7 @@
                         alt="Edit icon"
                       />
                     </button>
-                    <button class="btn-remove">
+                    <button id="btn-remove" class="btn-remove">
                       <img
                         loading="lazy"
                         width="20px"

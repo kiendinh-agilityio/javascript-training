@@ -37,11 +37,11 @@
 .dasboard-title {
   font-family: var(--font-primary-semibold);
   font-size: var(--font-size-2xl);
-  color: var(--color-text-dashboard);
+  color: var(--color-dashboard-content);
   padding: 20px;
 }
 
-.dashboard-tablet-heading {
+.dashboard-description {
   padding: 22px 32px;
   background: var(--color-dashboard-list);
   font-size: var(--font-size-lg);
@@ -50,12 +50,12 @@
   text-align: start;
 }
 
-.dashboard-table-user {
+.dashboard-content {
   border-collapse: collapse;
   width: 100%;
 }
 
-.dasboard-tablet-item {
+.dasboard-item {
   padding: 22px 32px;
 }
 
