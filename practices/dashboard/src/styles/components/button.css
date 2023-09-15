@@ -1,7 +1,22 @@
 .btn {
+  font-family: var(--font-primary-semibold);
   background-color: var(--color-primary);
   color: var(--color-light);
   font-weight: var(--font-weight-semibold);
   border-radius: var(--rounded-sm);
   padding: 5px 15px;
+  cursor: pointer;
+}
+
+.btn-add {
+  height: 53px;
+  font-size: var(--font-size-2xl);
+  padding: 17px 23px 20px;
+  gap: 5px;
+}
+
+.btn-edit,
+.btn-remove {
+  background: var(--color-light);
+  cursor: pointer;
 }
