@@ -12,15 +12,11 @@ specifiers:
   husky: ^8.0.0
   lint-staged: ^14.0.1
   parcel: ^2.9.3
-  parcel-plugin-static-files-copy: ^2.6.0
-  parcel-reporter-static-files-copy: ^1.5.2
   prettier: ^3.0.3
 
 dependencies:
   '@parcel/config-default': 2.9.3
   parcel: 2.9.3
-  parcel-plugin-static-files-copy: 2.6.0
-  parcel-reporter-static-files-copy: 1.5.2
 
 devDependencies:
   '@commitlint/cli': 17.7.1
@@ -1746,6 +1742,7 @@ packages:
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
+    dev: true
 
   /base-x/3.0.9:
     resolution: {integrity: sha512-H7JU6iBHTal1gp56aKoaa//YUxEaAOUiydvrV/pILqIHXTtqxSkATOnDA2u+jZ/61sD+L/412+7kzXRtWukhpQ==}
@@ -1762,6 +1759,7 @@ packages:
     dependencies:
       balanced-match: 1.0.2
       concat-map: 0.0.1
+    dev: true
 
   /braces/3.0.2:
     resolution: {integrity: sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==}
@@ -1909,6 +1907,7 @@ packages:
 
   /concat-map/0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+    dev: true
 
   /conventional-changelog-angular/6.0.0:
     resolution: {integrity: sha512-6qLgrBF4gueoC7AFVHu51nHL9pF9FRjXrH+ceVf7WmAfH3gs+gEYOkvxhjMPjZu57I4AGUGoNTY8V7Hrgf1uqg==}
@@ -2856,10 +2855,6 @@ packages:
       wrappy: 1.0.2
     dev: true
 
-  /inherits/2.0.3:
-    resolution: {integrity: sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw==}
-    dev: false
-
   /inherits/2.0.4:
     resolution: {integrity: sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==}
     dev: true
@@ -3412,12 +3407,6 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /minimatch/3.0.4:
-    resolution: {integrity: sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==}
-    dependencies:
-      brace-expansion: 1.1.11
-    dev: false
-
   /minimatch/3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
     dependencies:
@@ -3654,22 +3643,6 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /parcel-plugin-static-files-copy/2.6.0:
-    resolution: {integrity: sha512-k3YxdnEQWo1aMfCeBfxgUNJWuUE0O730EGiGBcmWEUOto7f1jM/8oxBKXkVZsXDCO1o00dw5X7CsT+yF0JY4qA==}
-    dependencies:
-      minimatch: 3.0.4
-      path: 0.12.7
-    dev: false
-
-  /parcel-reporter-static-files-copy/1.5.2:
-    resolution: {integrity: sha512-NyIP8dOBj4WiZYAfKKTFWrMh8/kjrP72673G3hs7TOoT/30QWwUQpRA7oW4IxbjY2ICOo2sV06Z1lzPKCDbrGA==}
-    engines: {parcel: ^2.0.0-beta.1}
-    dependencies:
-      '@parcel/plugin': 2.9.3
-    transitivePeerDependencies:
-      - '@parcel/core'
-    dev: false
-
   /parcel/2.9.3:
     resolution: {integrity: sha512-2GTVocFkwblV/TIg9AmT7TI2fO4xdWkyN8aFUEVtiVNWt96GTR3FgQyHFValfCbcj1k9Xf962Ws2hYXYUr9k1Q==}
     engines: {node: '>= 12.0.0'}
@@ -3747,13 +3720,6 @@ packages:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
 
-  /path/0.12.7:
-    resolution: {integrity: sha512-aXXC6s+1w7otVF9UletFkFcDsJeO7lSZBPUQhtb5O0xJe8LtYhj/GxldoL09bBj9+ZmE2hNoHqQSFMN5fikh4Q==}
-    dependencies:
-      process: 0.11.10
-      util: 0.10.4
-    dev: false
-
   /picocolors/1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
     dev: false
@@ -3811,11 +3777,6 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
     dev: true
-
-  /process/0.11.10:
-    resolution: {integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==}
-    engines: {node: '>= 0.6.0'}
-    dev: false
 
   /punycode/2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
@@ -4389,12 +4350,6 @@ packages:
   /util-deprecate/1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
-
-  /util/0.10.4:
-    resolution: {integrity: sha512-0Pm9hTQ3se5ll1XihRic3FDIku70C+iHUdT/W926rSgHV5QgXsYbKZN8MSC3tJtSkhuROzvsQjAaFENRXr+19A==}
-    dependencies:
-      inherits: 2.0.3
-    dev: false
 
   /utility-types/3.10.0:
     resolution: {integrity: sha512-O11mqxmi7wMKCo6HKFt5AhO4BwY3VV68YU07tgxfz8zJTIxr4BpsezN49Ffwy9j3ZpwwJp4fkRwjRzq3uWE6Rg==}
