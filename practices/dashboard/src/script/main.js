@@ -1,5 +1,5 @@
 import { renderSideNav } from './side-nav/renderSideNav'
-import { renderListUsers } from './templates/renderListUsers'
+import { generateUsersTable } from './templates/renderListUsers'
 
 renderSideNav()
-renderListUsers()
+generateUsersTable()
