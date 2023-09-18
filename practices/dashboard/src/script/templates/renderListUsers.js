@@ -1,20 +1,28 @@
 /**
- * Get user to local storage
+ * Get user from local storage
  */
-const getUserToLocalStorage = JSON.parse(localStorage.getItem('listUsers')) || []
+const getUserFromLocalStorage = JSON.parse(localStorage.getItem('listUsers')) || []
 
-const renderUserItems = getUserToLocalStorage.map((user) => {
+const renderUserItems = getUserFromLocalStorage.map((user) => {
+  const {
+    id,
+    lastName,
+    firstName,
+    email,
+    date,
+    phone
+  } = user
   return `
-    <tr class="table-row" data-id=${user.id}>
+    <tr class="table-row" data-id=${id}>
       <td class="dasboard-item">
-        <p class="user-name">${user.firstName + ' ' + user.lastName}</p>
-        <p class="user-email">${user.email}</p>
+        <p class="user-name">${firstName} ${lastName}</p>
+        <p class="user-email">${email}</p>
       </td>
       <td class="table-cell">
         <div class="d-flex justify-center items-center user-role-tag user-role-${user.roleId}">${user.role}</div>
       </td>
-      <td class="table-cell create-date">${user.date}</td>
-      <td class="table-cell phone-number">${user.phone}</td>
+      <td class="table-cell create-date">${date}</td>
+      <td class="table-cell phone-number">${phone}</td>
       <td class="table-cell">
         <button id="btn-edit" class="btn-edit">
           <img
@@ -54,9 +62,9 @@ const generateListUsers = () => {
   `
 }
 
-const renderListUsers = () => {
+const generateUsersTable = () => {
   const listUsers = document.getElementById('list-users')
   listUsers.innerHTML = generateListUsers()
 }
 
-export { renderListUsers }
+export { generateUsersTable }
