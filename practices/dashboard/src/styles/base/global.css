@@ -60,3 +60,7 @@ body {
 .relative {
   position: relative;
 }
+
+.justify-center {
+  justify-content: center;
+}
