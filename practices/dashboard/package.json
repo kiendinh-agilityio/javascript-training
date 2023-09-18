@@ -22,11 +22,16 @@
     "prettier": "^3.0.3"
   },
   "dependencies": {
+    "@parcel/config-default": "^2.9.3",
     "parcel": "^2.9.3"
   },
   "lint-staged": {
     "*.js": [
       "eslint --fix"
     ]
+  },
+  "staticFiles": {
+    "staticPath": "src/assets",
+    "outputPath": "dist/assets"
   }
 }

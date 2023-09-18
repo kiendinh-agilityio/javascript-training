@@ -1,5 +1,5 @@
 .logo {
-  font-weight: var(--font-weight-bold);
+  font-family: var(--font-primary-bold);
   font-size: var(--font-size-3xl);
   line-height: var(--line-height-2xl);
   color: var(--color-dark);
