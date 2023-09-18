@@ -10,7 +10,9 @@ const renderUserItems = getUserFromLocalStorage.map((user) => {
     firstName,
     email,
     date,
-    phone
+    phone,
+    role,
+    roleId
   } = user
   return `
     <tr class="table-row" data-id=${id}>
@@ -19,7 +21,7 @@ const renderUserItems = getUserFromLocalStorage.map((user) => {
         <p class="user-email">${email}</p>
       </td>
       <td class="table-cell">
-        <div class="d-flex justify-center items-center user-role-tag user-role-${user.roleId}">${user.role}</div>
+        <div class="d-flex justify-center items-center user-role-tag user-role-${roleId}">${role}</div>
       </td>
       <td class="table-cell create-date">${date}</td>
       <td class="table-cell phone-number">${phone}</td>
