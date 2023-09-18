@@ -32,7 +32,6 @@
     ]
   },
   "staticFiles": {
-    "staticPath": "src/assets",
-    "outputPath": "dist/assets"
+    "staticPath": "src/assets"
   }
 }
