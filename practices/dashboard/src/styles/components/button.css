@@ -9,9 +9,8 @@
 }
 
 .btn-add {
-  height: 50px;
   font-size: var(--font-size-2xl);
-  padding: 17px 23px 20px;
+  padding: 13px 23px 14px;
   gap: 5px;
 }
 
