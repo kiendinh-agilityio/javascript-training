@@ -30,13 +30,13 @@ export const userItem = (user) => {
             alt="Edit icon"
           />
         </button>
-        <button id="btn-remove" class="btn-remove">
+        <button id="btn-delete" class="btn-delete" data-id=${id}>
           <img
             loading="lazy"
             width="20px"
             height="20px"
             src="./images/svg/remove.svg"
-            alt="Remove icon"
+            alt="Delete icon"
           />
         </button>
       </td>
