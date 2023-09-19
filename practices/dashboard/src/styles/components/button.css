@@ -15,7 +15,8 @@
 }
 
 .btn-edit,
-.btn-remove {
+.btn-remove,
+.btn-search {
   background: var(--color-light);
   cursor: pointer;
 }
