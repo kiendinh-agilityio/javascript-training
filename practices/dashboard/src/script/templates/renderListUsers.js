@@ -27,7 +27,6 @@ const generateUsersTable = (users) => {
   if (!renderUsers?.length) {
     renderUsers = getUserFromLocalStorage
   }
-  console.log(users)
   const listUsers = document.getElementById('list-users')
   listUsers.innerHTML = generateListUsers(renderUsers)
 }
