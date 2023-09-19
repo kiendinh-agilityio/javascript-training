@@ -1,7 +1,4 @@
-/**
- * Get user from local storage
- */
-const getUserFromLocalStorage = JSON.parse(localStorage.getItem('listUsers')) || []
+import { getUserFromLocalStorage } from '../mocks/list-users'
 
 const renderUserItems = getUserFromLocalStorage.map((user) => {
   const {
