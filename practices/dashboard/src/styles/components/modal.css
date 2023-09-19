@@ -1,0 +1,28 @@
+.modal-confirm-delete {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-modal);
+  z-index: var(--z-index-sm);
+}
+
+.modal-confirm-content {
+  background-color: var(--color-light);
+  width: 600px;
+  padding: 60px;
+  margin: auto;
+  border-radius: var(--rounded-sm);
+  text-align: center;
+  z-index: var(--z-index-md);
+  position: relative;
+}
+
+.heading-confirm {
+  font-family: var(--font-primary-semibold);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-2xl);
+  margin-bottom: 24px;
+}
