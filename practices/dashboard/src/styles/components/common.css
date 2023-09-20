@@ -40,3 +40,10 @@
   background: var(--color-primary);
   border: 1px solid var(--color-primary);
 }
+
+.error-message {
+  color: var(--color-error-message);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-xs);
+  padding: 5px 0;
+}
