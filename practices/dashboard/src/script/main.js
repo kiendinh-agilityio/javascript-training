@@ -78,6 +78,7 @@ window.addEventListener('click', event => {
   }
 })
 
+// Modal Delete
 const showDeleteModal = () => {
   deleteModal.style.display = 'flex'
 }
