@@ -3,6 +3,8 @@ import { generateUsersTable } from './templates/renderListUsers'
 import { getUserFromLocalStorage } from './mocks/list-users'
 import { isStringMatched } from './utils'
 import { generateModalUser } from './templates/generateModalUser'
+import { validateUserForm } from './validate'
+import { camelCaseToHyphenCase } from './constants'
 
 // Variables scope
 const searchInput = document.getElementById('search-input')
@@ -92,7 +94,10 @@ const hideDeleteModal = () => {
   deleteModal.style.display = 'none'
 }
 
-// Click button add user show modal add user
+/**
+ * Handle add new users for list users
+ * Click button add user show modal add user
+*/
 btnAddUser.addEventListener('click', () => {
   const modalElement = document.getElementById('modal')
   modalElement.style.display = 'flex'
@@ -102,9 +107,8 @@ btnAddUser.addEventListener('click', () => {
   const firstNameInput = document.getElementById('first-name')
   const lastNameInput = document.getElementById('last-name')
   const emailInput = document.getElementById('email')
-  const phoneNumberInput = document.getElementById('phone-number')
+  const phoneInput = document.getElementById('phone')
   const roleInput = document.getElementById('role-type')
-  const addUserError = document.getElementById('add-user-error')
   const addUserCancelButton = document.getElementById('add-user-cancel')
 
   addUserCancelButton.addEventListener('click', () => {
@@ -115,98 +119,60 @@ btnAddUser.addEventListener('click', () => {
     const firstName = firstNameInput.value.trim()
     const lastName = lastNameInput.value.trim()
     const email = emailInput.value.trim()
-    const phoneNumber = phoneNumberInput.value.trim()
-    const role = roleInput.value
+    const phone = phoneInput.value.trim()
+    const role = roleInput.options[roleInput.selectedIndex].value
 
-    // Check if any fields are empty
-    if (!firstName) {
-      displayErrorMessage(firstNameInput, 'Please enter First Name.')
-    } else {
-      clearErrorMessage(firstNameInput)
-    }
-
-    if (!lastName) {
-      displayErrorMessage(lastNameInput, 'Please enter Last Name.')
-    } else {
-      clearErrorMessage(lastNameInput)
-    }
-
-    if (!email) {
-      displayErrorMessage(emailInput, 'Please enter Email.')
-    } else {
-      clearErrorMessage(emailInput)
-    }
-
-    if (!phoneNumber) {
-      displayErrorMessage(phoneNumberInput, 'Please enter Phone Number')
-      return
-    } else {
-      clearErrorMessage(phoneNumberInput)
-    }
-
-    //  Check email have @ symbol, a string precedes it and the following string needs to contain a period, followed by 2-3 characters.
-    const emailRegex = /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/
-
-    // Check the character must match the phone number format. Example: +205-205-5555
-    const mobileNoRegex = /^\+\d{3,}-\d{3}-\d{4}$/
-
-    if (!emailRegex.test(email)) {
-      addUserError.textContent = 'Invalid email. Please enter email in correct format.'
-    }
-
-    if (!mobileNoRegex.test(phoneNumber)) {
-      addUserError.textContent = 'Invalid phone number. Please enter a 10-digit phone number and start +.'
-    }
-
-    // Create a new user
-    const newUser = {
-      id: currentUserId,
+    const errors = validateUserForm({
       firstName,
       lastName,
       email,
-      phoneNumber,
-      role,
-      roleId: role.includes('Admin') ? 'admin' : 'employee',
-      date: '21 July, 2020'
+      phone,
+      role
+    })
+
+    if (Object.entries(errors).length > 0) {
+      Object.entries(errors).forEach(([key, value]) => {
+        const newKey = camelCaseToHyphenCase(key)
+        errors[newKey] = value
+      })
+
+      const showFormErrors = (errors) => {
+        Object.entries(errors).forEach(([key, value]) => {
+          const target = document.getElementById(`${key}-error`)
+          if (target) {
+            target.innerText = value
+          }
+        })
+      }
+      showFormErrors(errors)
+    } else {
+      const newUser = {
+        id: currentUserId,
+        firstName,
+        lastName,
+        email,
+        phone,
+        role,
+        roleId: role.includes('Admin') ? 'admin' : 'employee',
+        date: '1 January, 2023'
+      }
+
+      // Increases the current user ID value by one unit
+      currentUserId++
+
+      // Add user to list users
+      getUserFromLocalStorage.push(newUser)
+
+      // Update user list in Local Storage
+      localStorage.setItem('listUsers', JSON.stringify(getUserFromLocalStorage))
+
+      // Close modal
+      modalElement.style.display = 'none'
+
+      generateUsersTable(getUserFromLocalStorage)
     }
-
-    // Increases the current user ID value by one unit
-    currentUserId++
-
-    // Add user to list users
-    getUserFromLocalStorage.push(newUser)
-
-    // Update user list in Local Storage
-    localStorage.setItem('listUsers', JSON.stringify(getUserFromLocalStorage))
-
-    // Close modal
-    modalElement.style.display = 'none'
-    // resetForm()
-    generateUsersTable(getUserFromLocalStorage)
   })
 })
 
-// The function displays an error message for input
-const displayErrorMessage = (inputElement, message) => {
-  const errorElement = document.createElement('div')
-  errorElement.classList.add('error-message')
-  errorElement.textContent = message
-
-  // If there is a previous error message, remove it before adding a new one
-  const existingError = inputElement.nextElementSibling
-  if (existingError && existingError.classList.contains('error-message')) {
-    inputElement.parentElement.removeChild(existingError)
-  }
-  inputElement.parentElement.appendChild(errorElement)
-}
-
-// Function to clear error messages for input
-const clearErrorMessage = (inputElement) => {
-  const existingError = inputElement.nextElementSibling
-  if (existingError && existingError.classList.contains('error-message')) {
-    inputElement.parentElement.removeChild(existingError)
-  }
-}
-
 renderSideNav()
-generateUsersTable()
+generateUsersTable(getUserFromLocalStorage)

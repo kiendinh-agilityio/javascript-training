@@ -21,7 +21,7 @@ export const generateModalUser = (user) => {
             placeholder="First Name *"
             value="${firstName || ''}"
           />
-          <div id="add-user-error" class="error-message"></div>
+          <div id="first-name-error" class="error-message"></div>
         </div>
         <div class="flex-column">
           <input
@@ -31,7 +31,7 @@ export const generateModalUser = (user) => {
             placeholder="Last Name *"
             value="${lastName || ''}"
           />
-          <div id="add-user-error" class="error-message"></div>
+          <div id="last-name-error" class="error-message"></div>
         </div>
         <div class="flex-column">
           <input
@@ -41,28 +41,28 @@ export const generateModalUser = (user) => {
             placeholder="Email ID *"
             value="${email || ''}"
           />
-          <div id="add-user-error" class="error-message"></div>
+          <div id="email-error" class="error-message"></div>
         </div>
         <div class="d-flex justify-between form-group">
           <div class="phone-number-input flex-column">
             <input
-              id="phone-number"
+              id="phone"
               class="form-input"
               placeholder="Mobile No"
               type="text"
               value="${phone || ''}"
             />
-            <div id="add-user-error" class="error-message"></div>
+            <div id="phone-error" class="error-message"></div>
           </div>
           <div class="form-select flex-column">
-            <select id="role-type" name="role" class="form-input-select">
-              <option value="0">Select Role Type</option>
+            <select id="role-type" name="role-type" class="form-input-select">
+              <option value="">Select Role Type</option>
               <option value="Super Admin" ${role === 'Admin' ? 'selected' : ''}>Super Admin</option>
               <option value="Admin" ${role === 'Admin' ? 'selected' : ''}>Admin</option>
               <option value="HR Admin" ${role === 'Admin' ? 'selected' : ''}>HR Admin</option>
               <option value="Employee" ${role === 'Employee' ? 'selected' : ''}>Employee</option>
             </select>
-            <div id="add-user-error" class="error-message"></div>
+            <div id="role-error" class="error-message"></div>
           </div>
         </div>
         <div class="d-flex justify-end btn-group">
