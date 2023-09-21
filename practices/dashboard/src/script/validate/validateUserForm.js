@@ -16,13 +16,13 @@ export const validateUserForm = (user) => {
   if (!firstName) {
     errors.firstName = `${requiredError.replace('{field}', 'First Name')}`
   } else if (!REGEX_NAME(firstName)) {
-    errors.firstName = `${inValidUsername}`
+    errors.firstName = `${inValidUsername.replace('{field}', 'First Name')}`
   }
 
   if (!lastName) {
     errors.lastName = `${requiredError.replace('{field}', 'Last Name')}`
   } else if (!REGEX_NAME(lastName)) {
-    errors.lastName = `${inValidUsername}`
+    errors.lastName = `${inValidUsername.replace('{field}', 'Last Name')}`
   }
 
   if (!email) {
