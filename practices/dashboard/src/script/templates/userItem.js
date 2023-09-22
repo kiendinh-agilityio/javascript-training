@@ -22,7 +22,7 @@ export const userItem = (user) => {
       <td class="table-cell create-date">${date}</td>
       <td class="table-cell phone-number">${phone}</td>
       <td class="table-cell">
-        <button id="btn-edit" class="btn-edit">
+        <button id="btn-edit" class="btn-edit" data-id=${id}>
           <img
             loading="lazy"
             width="20px"
