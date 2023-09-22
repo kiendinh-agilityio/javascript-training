@@ -1,4 +1,4 @@
-export const generateModalUser = (user) => {
+export const generateModalUser = (user, title) => {
   const {
     id = '',
     firstName = '',
@@ -11,7 +11,7 @@ export const generateModalUser = (user) => {
   return `
     <div class="modal-content">
       <div class="modal-header flex-row justify-between items-center">
-        <h2 class="modal-heading">${!id ? 'Add User' : 'Edit User'}</h2>
+        <h2 class="modal-heading">${title || (!id ? 'Add User' : 'Edit User')}</h2>
       </div>
       <div id="user-form" class="flex-column form-modal">
         <div class="flex-column">
@@ -68,7 +68,7 @@ export const generateModalUser = (user) => {
         </div>
         <div class="d-flex justify-end btn-group">
           <button class="btn btn-submit" id="add-user-submit">
-            Add User
+            ${!id ? 'Add User' : 'Save User'}
           </button>
           <button id="add-user-cancel" class="btn-close-modal">
             Cancel
