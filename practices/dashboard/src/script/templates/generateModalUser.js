@@ -1,25 +1,26 @@
 export const generateModalUser = (user) => {
   const {
-    id,
-    firstName,
-    lastName,
-    email,
-    phone,
-    role
+    id = '',
+    firstName = '',
+    lastName = '',
+    email = '',
+    phone = '',
+    role = ''
   } = user || {}
+
   return `
     <div class="modal-content">
       <div class="modal-header flex-row justify-between items-center">
         <h2 class="modal-heading">${!id ? 'Add User' : 'Edit User'}</h2>
       </div>
-      <div class="flex-column form-modal">
+      <div id="user-form" class="flex-column form-modal">
         <div class="flex-column">
           <input
             id="first-name"
             class="form-input"
             type="text"
             placeholder="First Name *"
-            value="${firstName || ''}"
+            value="${firstName}"
           />
           <div id="first-name-error" class="error-message"></div>
         </div>
@@ -29,7 +30,7 @@ export const generateModalUser = (user) => {
             class="form-input"
             type="text"
             placeholder="Last Name *"
-            value="${lastName || ''}"
+            value="${lastName}"
           />
           <div id="last-name-error" class="error-message"></div>
         </div>
@@ -39,7 +40,7 @@ export const generateModalUser = (user) => {
             class="form-input"
             type="email"
             placeholder="Email ID *"
-            value="${email || ''}"
+            value="${email}"
           />
           <div id="email-error" class="error-message"></div>
         </div>
@@ -50,7 +51,7 @@ export const generateModalUser = (user) => {
               class="form-input"
               placeholder="Mobile No"
               type="text"
-              value="${phone || ''}"
+              value="${phone}"
             />
             <div id="phone-error" class="error-message"></div>
           </div>
