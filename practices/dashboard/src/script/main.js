@@ -15,7 +15,6 @@ const confirmDeleteButton = document.getElementById('confirm-delete')
 const cancelDeleteButton = document.getElementById('cancel-delete')
 const closeDeleteModalButton = document.getElementById('close-modal')
 const btnAddUser = document.getElementById('btn-add')
-let userToDelete
 
 // Variable to store the current user ID
 let currentUserId = getUserFromLocalStorage.length > 0 ? getUserFromLocalStorage[getUserFromLocalStorage.length - 1].id + 1 : 1
@@ -44,11 +43,15 @@ searchInput.addEventListener('keypress', event => {
 /**
  * Handle the Delete User event
  */
+let userDelete
+
 listUsers.addEventListener('click', event => {
   if (event.target.classList.contains('btn-delete')) {
     const userId = parseInt(event.target.getAttribute('data-id'))
+
     // Get user information to delete
-    userToDelete = getUserFromLocalStorage.find(user => user.id === userId)
+    userDelete = getUserFromLocalStorage.find(user => user.id === userId)
+
     // Display modal
     showDeleteModal()
   }
@@ -56,12 +59,14 @@ listUsers.addEventListener('click', event => {
 
 // Handle the event when the user clicks "Yes"
 confirmDeleteButton.addEventListener('click', () => {
-  const userIndex = getUserFromLocalStorage.findIndex(user => user.id === userToDelete.id)
+  const userIndex = getUserFromLocalStorage.findIndex(user => user.id === userDelete.id)
+
   if (userIndex !== -1) {
     getUserFromLocalStorage.splice(userIndex, 1)
     localStorage.setItem('listUsers', JSON.stringify(getUserFromLocalStorage))
     generateUsersTable(getUserFromLocalStorage)
   }
+
   // Close the modal
   hideDeleteModal()
 })
