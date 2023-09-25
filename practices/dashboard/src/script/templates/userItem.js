@@ -24,7 +24,6 @@ export const userItem = (user) => {
       <td class="table-cell">
         <button id="btn-edit" class="btn-edit" data-id=${id}>
           <img
-            loading="lazy"
             width="20px"
             height="20px"
             src="./images/svg/edit.svg"
@@ -33,7 +32,6 @@ export const userItem = (user) => {
         </button>
         <button id="btn-delete" class="btn-delete" data-id=${id}>
           <img
-            loading="lazy"
             width="20px"
             height="20px"
             src="./images/svg/remove.svg"

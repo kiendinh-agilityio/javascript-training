@@ -46,8 +46,9 @@ searchInput.addEventListener('keypress', event => {
 let userDelete
 
 listUsers.addEventListener('click', event => {
-  if (event.target.classList.contains('btn-delete')) {
-    const userId = parseInt(event.target.getAttribute('data-id'))
+  const deleteButton = event.target.closest('.btn-delete')
+  if (deleteButton) {
+    const userId = parseInt(deleteButton.getAttribute('data-id'))
 
     // Get user information to delete
     userDelete = getUserFromLocalStorage.find(user => user.id === userId)
@@ -175,9 +176,11 @@ btnAddUser.addEventListener('click', () => {
  * Click button add user show modal edit user
  */
 listUsers.addEventListener('click', event => {
-  if (event.target.classList.contains('btn-edit')) {
+  const editButton = event.target.closest('.btn-edit')
+
+  if (editButton) {
     // Get user ID from data-id attribute
-    const userId = parseInt(event.target.getAttribute('data-id'))
+    const userId = parseInt(editButton.getAttribute('data-id'))
 
     // Get the user to edit from Local Storage by user ID
     const editedUser = getUserFromLocalStorage.find(user => user.id === userId)
