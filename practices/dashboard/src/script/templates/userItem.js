@@ -9,6 +9,7 @@ export const userItem = (user) => {
     role,
     roleId
   } = user
+
   return `
     <tr class="table-row" data-id=${id}>
       <td class="dasboard-item">
