@@ -1,6 +1,12 @@
-import { REGEX_EMAIL, REGEX_PHONE, REGEX_NAME, VALIDATE_MESSAGE } from '../constants'
+import { VALIDATE_MESSAGE } from '../constants'
+import {
+  displayWarningName,
+  displayWarningEmail,
+  displayWarningPhone,
+  requiredMessage
+} from './validations'
 
-const { inValidEmail, invalidPhone, inValidUsername, requiredError } = VALIDATE_MESSAGE
+const { REQUIRED_ERROR } = VALIDATE_MESSAGE
 
 export const validateUserForm = (user) => {
   const {
@@ -13,32 +19,28 @@ export const validateUserForm = (user) => {
 
   const errors = {}
 
-  if (!firstName) {
-    errors.firstName = `${requiredError.replace('{field}', 'First Name')}`
-  } else if (!REGEX_NAME(firstName)) {
-    errors.firstName = `${inValidUsername.replace('{field}', 'First Name')}`
+  const firstNameError = requiredMessage(firstName, 'First Name') || displayWarningName(firstName, 'First Name')
+  if (firstNameError) {
+    errors.firstName = firstNameError
   }
 
-  if (!lastName) {
-    errors.lastName = `${requiredError.replace('{field}', 'Last Name')}`
-  } else if (!REGEX_NAME(lastName)) {
-    errors.lastName = `${inValidUsername.replace('{field}', 'Last Name')}`
+  const lastNameError = requiredMessage(lastName, 'Last Name') || displayWarningName(lastName, 'Last Name')
+  if (lastNameError) {
+    errors.lastName = lastNameError
   }
 
-  if (!email) {
-    errors.email = `${requiredError.replace('{field}', 'Email')}`
-  } else if (!REGEX_EMAIL(email)) {
-    errors.email = `${inValidEmail}`
+  const emailError = requiredMessage(email, 'Email') || displayWarningEmail(email)
+  if (emailError) {
+    errors.email = emailError
   }
 
-  if (!phone) {
-    errors.phone = `${requiredError.replace('{field}', 'Phone Number')}`
-  } else if (!REGEX_PHONE(phone)) {
-    errors.phone = `${invalidPhone}`
+  const phoneError = requiredMessage(phone, 'Phone') || displayWarningPhone(phone)
+  if (phoneError) {
+    errors.phone = phoneError
   }
 
   if (!role) {
-    errors.role = `${requiredError.replace('{field}', 'Role Type')}`
+    errors.role = `${REQUIRED_ERROR.replace('{field}', 'Role Type')}`
   }
 
   return errors
