@@ -4,7 +4,7 @@ import { getUserFromLocalStorage } from './mocks/list-users'
 import { isStringMatched } from './utils'
 import { generateModalUser } from './templates/generateModalUser'
 import { validateUserForm } from './validate'
-import { camelCaseToHyphenCase } from './constants'
+import { showFormErrors } from './templates/showFormErrors'
 
 // Variables scope
 const searchInput = document.getElementById('search-input')
@@ -88,6 +88,10 @@ window.addEventListener('click', event => {
   if (event.target === deleteModal) {
     hideDeleteModal()
   }
+  if (event.target === document.getElementById('modal')) {
+    const modalElement = document.getElementById('modal')
+    modalElement.style.display = 'none'
+  }
 })
 
 // Modal Delete
@@ -136,19 +140,6 @@ btnAddUser.addEventListener('click', () => {
     })
 
     if (Object.entries(errors).length > 0) {
-      Object.entries(errors).forEach(([key, value]) => {
-        const newKey = camelCaseToHyphenCase(key)
-        errors[newKey] = value
-      })
-
-      const showFormErrors = (errors) => {
-        Object.entries(errors).forEach(([key, value]) => {
-          const target = document.getElementById(`${key}-error`)
-          if (target) {
-            target.innerText = value
-          }
-        })
-      }
       showFormErrors(errors)
     } else {
       const newUser = {
@@ -177,6 +168,79 @@ btnAddUser.addEventListener('click', () => {
       generateUsersTable(getUserFromLocalStorage)
     }
   })
+})
+
+/**
+ * Handle the feature for edit user
+ * Click button add user show modal edit user
+ */
+listUsers.addEventListener('click', event => {
+  if (event.target.classList.contains('btn-edit')) {
+    // Get user ID from data-id attribute
+    const userId = parseInt(event.target.getAttribute('data-id'))
+
+    // Get the user to edit from Local Storage by user ID
+    const editedUser = getUserFromLocalStorage.find(user => user.id === userId)
+
+    if (editedUser) {
+      // Show the edit user modal with the user's data
+      const modalElement = document.getElementById('modal')
+
+      // Pass 'Edit User' as the title
+      modalElement.innerHTML = generateModalUser(editedUser, 'Edit User')
+
+      // Set the data-user-id attribute to store the user ID
+      modalElement.setAttribute('data-user-id', userId)
+      modalElement.style.display = 'flex'
+
+      const editUserSubmitButton = document.getElementById('add-user-submit')
+      const editUserCancelButton = document.getElementById('add-user-cancel')
+
+      // Handles button cancel edit user
+      editUserCancelButton.addEventListener('click', () => {
+        modalElement.style.display = 'none'
+      })
+
+      // Handles button submit edit user
+      editUserSubmitButton.addEventListener('click', () => {
+        const editedFirstName = document.getElementById('first-name').value.trim()
+        const editedLastName = document.getElementById('last-name').value.trim()
+        const editedEmail = document.getElementById('email').value.trim()
+        const editedPhone = document.getElementById('phone').value.trim()
+        const editedRole = document.getElementById('role-type').options[document.getElementById('role-type').selectedIndex].value
+
+        const errors = validateUserForm({
+          firstName: editedFirstName,
+          lastName: editedLastName,
+          email: editedEmail,
+          phone: editedPhone,
+          role: editedRole
+        })
+
+        if (Object.entries(errors).length > 0) {
+          showFormErrors(errors)
+        } else {
+          editedUser.firstName = editedFirstName
+          editedUser.lastName = editedLastName
+          editedUser.email = editedEmail
+          editedUser.phone = editedPhone
+          editedUser.role = editedRole
+          editedUser.roleId = editedRole.includes('Admin') ? 'admin' : 'employee'
+
+          const updatedUsers = getUserFromLocalStorage.map(user => {
+            if (user.id === editedUser.id) {
+              return editedUser
+            }
+            return user
+          })
+
+          localStorage.setItem('listUsers', JSON.stringify(updatedUsers))
+          modalElement.style.display = 'none'
+          generateUsersTable(updatedUsers)
+        }
+      })
+    }
+  }
 })
 
 renderSideNav()
