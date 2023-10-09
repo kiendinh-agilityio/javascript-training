@@ -58,16 +58,13 @@ let userDelete
 
 listUsers.addEventListener('click', event => {
   const deleteButton = event.target.closest('.btn-delete')
+  const userId = parseInt(deleteButton.getAttribute('data-id'))
 
-  if (deleteButton) {
-    const userId = parseInt(deleteButton.getAttribute('data-id'))
+  // Get user information to delete
+  userDelete = getUserFromLocalStorage.find(user => user.id === userId)
 
-    // Get user information to delete
-    userDelete = getUserFromLocalStorage.find(user => user.id === userId)
-
-    // Display modal
-    showDeleteModal()
-  }
+  // Display modal
+  showDeleteModal()
 })
 
 // Handle the event when the user clicks "Yes"
@@ -128,6 +125,7 @@ btnAddUser.addEventListener('click', () => {
   const addUserSubmitButton = document.getElementById('add-user-submit')
   const formUsers = document.getElementById('user-form')
   const addUserCancelButton = document.getElementById('add-user-cancel')
+  const btnCloseModal = document.getElementById('close-modal-user')
   const firstNameInput = formUsers.querySelector(firstNameUser)
   const lastNameInput = formUsers.querySelector(lastNameUser)
   const emailInput = formUsers.querySelector(emailUser)
@@ -182,6 +180,11 @@ btnAddUser.addEventListener('click', () => {
       generateUsersTable(getUserFromLocalStorage)
     }
   })
+
+  // Handle Button Close Modal User
+  btnCloseModal.addEventListener('click', () => {
+    modalElement.style.display = hiddenClass
+  })
 })
 
 /**
@@ -212,6 +215,7 @@ listUsers.addEventListener('click', event => {
       const editUserSubmitButton = document.getElementById('add-user-submit')
       const editUserCancelButton = document.getElementById('add-user-cancel')
       const formUsers = document.getElementById('user-form')
+      const btnCloseModal = document.getElementById('close-modal-user')
 
       // Handles button cancel edit user
       editUserCancelButton.addEventListener('click', () => {
@@ -256,6 +260,11 @@ listUsers.addEventListener('click', event => {
           modalElement.style.display = hiddenClass
           generateUsersTable(updatedUsers)
         }
+      })
+
+      // Handle Button Close Modal User
+      btnCloseModal.addEventListener('click', () => {
+        modalElement.style.display = hiddenClass
       })
     }
   }

@@ -12,6 +12,9 @@ export const generateModalUser = (user, title) => {
     <div class="modal-content">
       <div class="modal-header flex-row justify-between items-center">
         <h2 class="modal-heading">${title || (id ? 'Edit User ' : 'Add User')}</h2>
+        <button class="btn-close-modal" id="close-modal-user">
+          <span>X</span>
+        </button>
       </div>
       <div id="user-form" class="flex-column form-modal">
         <div class="flex-column">
