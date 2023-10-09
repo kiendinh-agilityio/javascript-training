@@ -100,3 +100,9 @@
 .pagination-prev {
   margin-right: 32px;
 }
+
+.cell-action {
+  align-items: center;
+  gap: 20px;
+  display: flex;
+}

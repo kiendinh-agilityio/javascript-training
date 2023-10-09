@@ -14,6 +14,8 @@
   --color-dashboard-content: #222b45;
   --color-dashboard-description: #8f9bb3;
   --color-dashboard-pagination: #717171;
+  --color-modal: rgba(0, 0, 0, 0.5);
+  --color-error-message: #ff0000;
 
   /* font family */
   --font-primary: OpenSans, san-serif;
@@ -62,4 +64,8 @@
   --width-dashboard-content: calc(
     1186 * 100% / 1440
   ); /* 1186px is the width of the right content according to the design */
+
+  /* Z Index */
+  --z-index-sm: 1;
+  --z-index-md: 10;
 }
