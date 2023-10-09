@@ -5,6 +5,7 @@ import { isStringMatched } from './utils'
 import { generateModalUser } from './templates/generateModalUser'
 import { validateUserForm } from './validate'
 import { showFormErrors } from './templates/showFormErrors'
+import { formattedDate } from './constants/index'
 
 // Variables scope
 const firstNameUser = '#first-name'
@@ -28,26 +29,55 @@ const modalElement = document.getElementById('modal')
 // Variable to store the current user ID
 let currentUserId = getUserFromLocalStorage.length > 0 ? getUserFromLocalStorage[getUserFromLocalStorage.length - 1].id + 1 : 1
 
+/**
+ * Handle the feature for search users
+ * Create a debounce function
+ */
+const debounce = (func, delay) => {
+  let timeoutId
+  return function () {
+    const context = this
+    const args = arguments
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => {
+      func.apply(context, args)
+    }, delay)
+  }
+}
+
 // Handle the search when users the search button is pressed
 searchButton.addEventListener('click', () => {
+  performSearch()
+})
+
+// Handle searches as the user types and presses Enter with debounce
+const debouncedSearch = debounce('performSearch', 300) // Debounce timeout is 300 ms
+
+searchInput.addEventListener('input', () => {
+  debouncedSearch()
+})
+
+const performSearch = () => {
   const searchTerm = searchInput.value.toLowerCase().trim()
 
   // Search in the list users
   const searchResults = getUserFromLocalStorage.filter(user => {
     const nameMatch = isStringMatched(user.firstName + ' ' + user.lastName, searchTerm)
     const emailMatch = isStringMatched(user.email, searchTerm)
-    const phoneMatch = isStringMatched(user.phone, searchTerm) // Compare phone numbers without converting to lowercase
+    const phoneMatch = isStringMatched(user.phone, searchTerm)
     return nameMatch || emailMatch || phoneMatch
   })
 
   generateUsersTable(searchResults)
-})
+}
 
 // Handle searches as the user types and presses Enter
 searchInput.addEventListener('keypress', event => {
   if (event.key === 'Enter') {
     event.preventDefault()
-    searchButton.click() // Activate the search button when pressing Enter
+
+    // Perform a search immediately when the user presses Enter
+    performSearch()
   }
 })
 
@@ -162,7 +192,7 @@ btnAddUser.addEventListener('click', () => {
         phone,
         role,
         roleId: role.includes('Admin') ? 'admin' : 'employee',
-        date: '1 January, 2023'
+        date: formattedDate
       }
 
       // Increases the current user ID value by one unit
