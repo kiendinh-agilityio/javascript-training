@@ -71,14 +71,17 @@ const LIST_USERS = [
   }
 ]
 
-/*
- * Save list users to local storage
-*/
-localStorage.setItem('listUsers', JSON.stringify(LIST_USERS))
-
 /**
  * Get user from local storage
  */
-const getUserFromLocalStorage = JSON.parse(localStorage.getItem('listUsers')) || []
+let getUserFromLocalStorage = JSON.parse(localStorage.getItem('listUsers')) || []
+
+/*
+ * Save list users to local storage
+*/
+if (!getUserFromLocalStorage.length) {
+  localStorage.setItem('listUsers', JSON.stringify(LIST_USERS))
+  getUserFromLocalStorage = LIST_USERS
+}
 
 export { getUserFromLocalStorage }
