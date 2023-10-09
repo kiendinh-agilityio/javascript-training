@@ -19,22 +19,22 @@ export const validateUserForm = (user) => {
 
   const errors = {}
 
-  const firstNameError = requiredMessage(firstName, 'First Name') || displayWarningName(firstName, 'First Name')
+  const firstNameError = requiredMessage(firstName, 'First Name *') || displayWarningName(firstName, 'First Name *')
   if (firstNameError) {
     errors.firstName = firstNameError
   }
 
-  const lastNameError = requiredMessage(lastName, 'Last Name') || displayWarningName(lastName, 'Last Name')
+  const lastNameError = requiredMessage(lastName, 'Last Name *') || displayWarningName(lastName, 'Last Name *')
   if (lastNameError) {
     errors.lastName = lastNameError
   }
 
-  const emailError = requiredMessage(email, 'Email') || displayWarningEmail(email)
+  const emailError = requiredMessage(email, 'Email ID *') || displayWarningEmail(email)
   if (emailError) {
     errors.email = emailError
   }
 
-  const phoneError = requiredMessage(phone, 'Phone') || displayWarningPhone(phone)
+  const phoneError = requiredMessage(phone, 'Mobile No *') || displayWarningPhone(phone)
   if (phoneError) {
     errors.phone = phoneError
   }
