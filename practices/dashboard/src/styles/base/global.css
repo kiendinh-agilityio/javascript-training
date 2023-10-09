@@ -5,6 +5,11 @@ body {
   color: var(--color-dark);
 }
 
+.main-page {
+  max-width: 1440px;
+  margin: auto;
+}
+
 .d-flex {
   display: flex;
 }

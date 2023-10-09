@@ -33,6 +33,7 @@
   background: var(--color-secondary);
   border-radius: var(--rounded-sm);
   padding: 5px 15px;
+  max-width: 111px;
 }
 
 .user-role-admin {
