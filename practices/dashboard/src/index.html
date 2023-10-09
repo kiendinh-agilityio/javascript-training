@@ -8,7 +8,8 @@
     <title>DashBoard Page</title>
   </head>
   <body>
-    <div class="flex-row">
+    <div class="flex-row" id="main-page">
+      <div class="modal" id="modal"></div>
       <!-- Implement side navigation -->
       <div class="container-side-nav sidebar-menu">
         <a class="logo" href="#" alt="Logo">YOURLOGO</a>
@@ -51,7 +52,7 @@
         <!-- Imlement dashboard section -->
         <section class="dashboard-users">
           <h1 class="dashboard-heading">Users Dashboard</h1>
-          <div class="flex-row items-center">
+          <div class="flex-row items-center justify-between">
             <div class="d-flex items-center dashboard-search">
               <button id="search-button" class="btn-search">
                 <img
@@ -76,8 +77,8 @@
                 <span>Add user</span>
                 <img
                   loading="lazy"
-                  width="16px"
-                  height="16px"
+                  width="13px"
+                  height="13x"
                   class="add-icon"
                   src="./assets/images/svg/add.svg"
                   alt="Add Icon"

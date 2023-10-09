@@ -15,6 +15,7 @@
   --color-dashboard-description: #8f9bb3;
   --color-dashboard-pagination: #717171;
   --color-modal: rgba(0, 0, 0, 0.5);
+  --color-error-message: #ff0000;
 
   /* font family */
   --font-primary: OpenSans, san-serif;

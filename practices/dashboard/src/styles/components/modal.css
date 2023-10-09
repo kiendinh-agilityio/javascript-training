@@ -26,3 +26,96 @@
   font-size: var(--font-size-2xl);
   margin-bottom: 24px;
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-modal);
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-index-sm);
+}
+
+.modal-content {
+  background-color: var(--color-light);
+  padding: 20px;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--rounded-sm);
+  width: 533px;
+  min-height: 325px;
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--color-secondary);
+  padding-bottom: 16px;
+}
+
+.modal-heading {
+  font-family: var(--font-primary-semibold);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-tertiary);
+}
+
+/* CSS btn close modal */
+.btn-close-modal {
+  background: var(--color-light);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  color: var(--color-btn-close);
+}
+
+.form-modal {
+  margin-top: 14px;
+  gap: 16px;
+}
+
+.form-input {
+  width: 100%;
+  color: var(--color-tertiary);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  padding: 11px 0 9px 12px;
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--rounded-sm);
+}
+
+.form-input::placeholder {
+  color: var(--color-tertiary);
+}
+
+.phone-number-input {
+  width: 50%;
+  margin-right: 19px;
+}
+
+.form-input-select {
+  color: var(--color-tertiary);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--rounded-sm);
+  width: 100%;
+  padding: 9px 12px;
+}
+
+.form-input-select:focus-visible {
+  outline: none;
+}
+
+.btn-group {
+  margin-top: 24px;
+  gap: 20px;
+}
+
+.form-select {
+  width: 50%;
+}
+
+.form-group {
+  gap: 20px;
+}

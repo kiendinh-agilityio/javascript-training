@@ -9,6 +9,7 @@ export const userItem = (user) => {
     role,
     roleId
   } = user
+
   return `
     <tr class="table-row" data-id=${id}>
       <td class="dasboard-item">
@@ -21,9 +22,8 @@ export const userItem = (user) => {
       <td class="table-cell create-date">${date}</td>
       <td class="table-cell phone-number">${phone}</td>
       <td class="table-cell">
-        <button id="btn-edit" class="btn-edit">
+        <button id="btn-edit" class="btn-edit" data-id=${id}>
           <img
-            loading="lazy"
             width="20px"
             height="20px"
             src="./images/svg/edit.svg"
@@ -32,7 +32,6 @@ export const userItem = (user) => {
         </button>
         <button id="btn-delete" class="btn-delete" data-id=${id}>
           <img
-            loading="lazy"
             width="20px"
             height="20px"
             src="./images/svg/remove.svg"
