@@ -52,7 +52,7 @@ export const generateModalUser = (user, title) => {
             <input
               id="phone"
               class="form-input"
-              placeholder="Mobile No"
+              placeholder="Mobile No *"
               type="text"
               value="${phone}"
             />
