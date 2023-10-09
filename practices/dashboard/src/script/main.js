@@ -7,6 +7,14 @@ import { validateUserForm } from './validate'
 import { showFormErrors } from './templates/showFormErrors'
 
 // Variables scope
+const firstNameUser = '#first-name'
+const lastNameUser = '#last-name'
+const emailUser = '#email'
+const phoneUser = '#phone'
+const roleTypeUser = '#role-type'
+const hiddenClass = 'none'
+const flexClass = 'flex'
+
 const searchInput = document.getElementById('search-input')
 const searchButton = document.getElementById('search-button')
 const listUsers = document.getElementById('list-users')
@@ -15,6 +23,7 @@ const confirmDeleteButton = document.getElementById('confirm-delete')
 const cancelDeleteButton = document.getElementById('cancel-delete')
 const closeDeleteModalButton = document.getElementById('close-modal')
 const btnAddUser = document.getElementById('btn-add')
+const modalElement = document.getElementById('modal')
 
 // Variable to store the current user ID
 let currentUserId = getUserFromLocalStorage.length > 0 ? getUserFromLocalStorage[getUserFromLocalStorage.length - 1].id + 1 : 1
@@ -22,6 +31,7 @@ let currentUserId = getUserFromLocalStorage.length > 0 ? getUserFromLocalStorage
 // Handle the search when users the search button is pressed
 searchButton.addEventListener('click', () => {
   const searchTerm = searchInput.value.toLowerCase().trim()
+
   // Search in the list users
   const searchResults = getUserFromLocalStorage.filter(user => {
     const nameMatch = isStringMatched(user.firstName + ' ' + user.lastName, searchTerm)
@@ -29,6 +39,7 @@ searchButton.addEventListener('click', () => {
     const phoneMatch = isStringMatched(user.phone, searchTerm) // Compare phone numbers without converting to lowercase
     return nameMatch || emailMatch || phoneMatch
   })
+
   generateUsersTable(searchResults)
 })
 
@@ -47,6 +58,7 @@ let userDelete
 
 listUsers.addEventListener('click', event => {
   const deleteButton = event.target.closest('.btn-delete')
+
   if (deleteButton) {
     const userId = parseInt(deleteButton.getAttribute('data-id'))
 
@@ -89,19 +101,19 @@ window.addEventListener('click', event => {
   if (event.target === deleteModal) {
     hideDeleteModal()
   }
-  if (event.target === document.getElementById('modal')) {
-    const modalElement = document.getElementById('modal')
-    modalElement.style.display = 'none'
+
+  if (event.target === modalElement) {
+    modalElement.style.display = hiddenClass
   }
 })
 
 // Modal Delete
 const showDeleteModal = () => {
-  deleteModal.style.display = 'flex'
+  deleteModal.style.display = flexClass
 }
 
 const hideDeleteModal = () => {
-  deleteModal.style.display = 'none'
+  deleteModal.style.display = hiddenClass
 }
 
 /**
@@ -110,19 +122,20 @@ const hideDeleteModal = () => {
 */
 btnAddUser.addEventListener('click', () => {
   const modalElement = document.getElementById('modal')
-  modalElement.style.display = 'flex'
+  modalElement.style.display = flexClass
   modalElement.innerHTML = generateModalUser()
 
   const addUserSubmitButton = document.getElementById('add-user-submit')
-  const firstNameInput = document.getElementById('first-name')
-  const lastNameInput = document.getElementById('last-name')
-  const emailInput = document.getElementById('email')
-  const phoneInput = document.getElementById('phone')
-  const roleInput = document.getElementById('role-type')
+  const formUsers = document.getElementById('user-form')
   const addUserCancelButton = document.getElementById('add-user-cancel')
+  const firstNameInput = formUsers.querySelector(firstNameUser)
+  const lastNameInput = formUsers.querySelector(lastNameUser)
+  const emailInput = formUsers.querySelector(emailUser)
+  const phoneInput = formUsers.querySelector(phoneUser)
+  const roleInput = formUsers.querySelector(roleTypeUser)
 
   addUserCancelButton.addEventListener('click', () => {
-    modalElement.style.display = 'none'
+    modalElement.style.display = hiddenClass
   })
 
   addUserSubmitButton.addEventListener('click', () => {
@@ -164,7 +177,7 @@ btnAddUser.addEventListener('click', () => {
       localStorage.setItem('listUsers', JSON.stringify(getUserFromLocalStorage))
 
       // Close modal
-      modalElement.style.display = 'none'
+      modalElement.style.display = hiddenClass
 
       generateUsersTable(getUserFromLocalStorage)
     }
@@ -194,23 +207,24 @@ listUsers.addEventListener('click', event => {
 
       // Set the data-user-id attribute to store the user ID
       modalElement.setAttribute('data-user-id', userId)
-      modalElement.style.display = 'flex'
+      modalElement.style.display = flexClass
 
       const editUserSubmitButton = document.getElementById('add-user-submit')
       const editUserCancelButton = document.getElementById('add-user-cancel')
+      const formUsers = document.getElementById('user-form')
 
       // Handles button cancel edit user
       editUserCancelButton.addEventListener('click', () => {
-        modalElement.style.display = 'none'
+        modalElement.style.display = hiddenClass
       })
 
       // Handles button submit edit user
       editUserSubmitButton.addEventListener('click', () => {
-        const editedFirstName = document.getElementById('first-name').value.trim()
-        const editedLastName = document.getElementById('last-name').value.trim()
-        const editedEmail = document.getElementById('email').value.trim()
-        const editedPhone = document.getElementById('phone').value.trim()
-        const editedRole = document.getElementById('role-type').options[document.getElementById('role-type').selectedIndex].value
+        const editedFirstName = formUsers.querySelector(firstNameUser).value.trim()
+        const editedLastName = formUsers.querySelector(lastNameUser).value.trim()
+        const editedEmail = formUsers.querySelector(emailUser).value.trim()
+        const editedPhone = formUsers.querySelector(phoneUser).value.trim()
+        const editedRole = formUsers.querySelector(roleTypeUser).value
 
         const errors = validateUserForm({
           firstName: editedFirstName,
@@ -234,11 +248,12 @@ listUsers.addEventListener('click', event => {
             if (user.id === editedUser.id) {
               return editedUser
             }
+
             return user
           })
 
           localStorage.setItem('listUsers', JSON.stringify(updatedUsers))
-          modalElement.style.display = 'none'
+          modalElement.style.display = hiddenClass
           generateUsersTable(updatedUsers)
         }
       })
