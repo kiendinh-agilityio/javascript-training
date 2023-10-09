@@ -11,7 +11,7 @@ export const generateModalUser = (user, title) => {
   return `
     <div class="modal-content">
       <div class="modal-header flex-row justify-between items-center">
-        <h2 class="modal-heading">${title || (!id ? 'Add User' : 'Edit User')}</h2>
+        <h2 class="modal-heading">${title || (id ? 'Edit User ' : 'Add User')}</h2>
       </div>
       <div id="user-form" class="flex-column form-modal">
         <div class="flex-column">
@@ -58,9 +58,9 @@ export const generateModalUser = (user, title) => {
           <div class="form-select flex-column">
             <select id="role-type" name="role-type" class="form-input-select">
               <option value="">Select Role Type</option>
-              <option value="Super Admin" ${role === 'Admin' ? 'selected' : ''}>Super Admin</option>
+              <option value="Super Admin" ${role === 'Super Admin' ? 'selected' : ''}>Super Admin</option>
               <option value="Admin" ${role === 'Admin' ? 'selected' : ''}>Admin</option>
-              <option value="HR Admin" ${role === 'Admin' ? 'selected' : ''}>HR Admin</option>
+              <option value="HR Admin" ${role === 'HR Admin' ? 'selected' : ''}>HR Admin</option>
               <option value="Employee" ${role === 'Employee' ? 'selected' : ''}>Employee</option>
             </select>
             <div id="role-error" class="error-message"></div>
@@ -68,7 +68,7 @@ export const generateModalUser = (user, title) => {
         </div>
         <div class="d-flex justify-end btn-group">
           <button class="btn btn-submit" id="add-user-submit">
-            ${!id ? 'Add User' : 'Save User'}
+            ${id ? 'Save User ' : 'Add User'}
           </button>
           <button id="add-user-cancel" class="btn-close-modal">
             Cancel
