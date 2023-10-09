@@ -7,6 +7,7 @@
 @import url(components/button.css);
 @import url(components/side-nav.css);
 @import url(components/input.css);
+@import url(components/modal.css);
 
 @import url(layouts/header.css);
 @import url(dashboard/dashboard.css);
