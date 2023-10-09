@@ -1,7 +1,51 @@
 .btn {
+  font-family: var(--font-primary-semibold);
   background-color: var(--color-primary);
   color: var(--color-light);
   font-weight: var(--font-weight-semibold);
   border-radius: var(--rounded-sm);
   padding: 5px 15px;
+  cursor: pointer;
+}
+
+.btn-add {
+  font-size: var(--font-size-2xl);
+  padding: 13px 22px 12px;
+  gap: 5px;
+}
+
+.btn-edit,
+.btn-delete,
+.btn-search {
+  background: var(--color-light);
+  cursor: pointer;
+}
+
+.btn-close {
+  position: absolute;
+  cursor: pointer;
+  background: var(--color-light);
+  top: 0;
+  right: 0;
+  padding: 10px;
+  border-radius: var(--rounded-sm)
+}
+
+.btn-confirm {
+  padding: 10px 40px;
+}
+
+.btn-confirm:not(:last-child) {
+  margin-right: 10px;
+}
+
+.btn-confirm-no {
+  background: transparent;
+  color: var(--color-dark);
+  border: 1px solid var(--color-dark);
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 5px
 }

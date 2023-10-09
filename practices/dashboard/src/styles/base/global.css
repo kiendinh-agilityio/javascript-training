@@ -60,3 +60,11 @@ body {
 .relative {
   position: relative;
 }
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-end {
+  justify-content: end;
+}
