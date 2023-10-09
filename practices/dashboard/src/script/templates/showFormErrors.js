@@ -1,18 +1,15 @@
 import { camelCaseToHyphenCase } from '../constants'
 
-export const showFormErrors = (errors) => {
+const updateErrorMessages = (errors) => {
   Object.entries(errors).forEach(([key, value]) => {
     const newKey = camelCaseToHyphenCase(key)
-    errors[newKey] = value
+    const target = document.getElementById(`${newKey}-error`)
+    if (target) {
+      target.innerText = value
+    }
   })
+}
 
-  const showMessageErrors = (errors) => {
-    Object.entries(errors).forEach(([key, value]) => {
-      const target = document.getElementById(`${key}-error`)
-      if (target) {
-        target.innerText = value
-      }
-    })
-  }
-  showMessageErrors(errors)
+export const showFormErrors = (errors) => {
+  updateErrorMessages(errors)
 }
