@@ -4,9 +4,17 @@ import { getUserFromLocalStorage } from './mocks/list-users'
 import { isStringMatched } from './utils'
 import { generateModalUser } from './templates/generateModalUser'
 import { validateUserForm } from './validate'
-import { camelCaseToHyphenCase } from './constants'
+import { showFormErrors } from './templates/showFormErrors'
 
 // Variables scope
+const firstNameUser = '#first-name'
+const lastNameUser = '#last-name'
+const emailUser = '#email'
+const phoneUser = '#phone'
+const roleTypeUser = '#role-type'
+const hiddenClass = 'none'
+const flexClass = 'flex'
+
 const searchInput = document.getElementById('search-input')
 const searchButton = document.getElementById('search-button')
 const listUsers = document.getElementById('list-users')
@@ -15,6 +23,7 @@ const confirmDeleteButton = document.getElementById('confirm-delete')
 const cancelDeleteButton = document.getElementById('cancel-delete')
 const closeDeleteModalButton = document.getElementById('close-modal')
 const btnAddUser = document.getElementById('btn-add')
+const modalElement = document.getElementById('modal')
 
 // Variable to store the current user ID
 let currentUserId = getUserFromLocalStorage.length > 0 ? getUserFromLocalStorage[getUserFromLocalStorage.length - 1].id + 1 : 1
@@ -22,6 +31,7 @@ let currentUserId = getUserFromLocalStorage.length > 0 ? getUserFromLocalStorage
 // Handle the search when users the search button is pressed
 searchButton.addEventListener('click', () => {
   const searchTerm = searchInput.value.toLowerCase().trim()
+
   // Search in the list users
   const searchResults = getUserFromLocalStorage.filter(user => {
     const nameMatch = isStringMatched(user.firstName + ' ' + user.lastName, searchTerm)
@@ -29,6 +39,7 @@ searchButton.addEventListener('click', () => {
     const phoneMatch = isStringMatched(user.phone, searchTerm) // Compare phone numbers without converting to lowercase
     return nameMatch || emailMatch || phoneMatch
   })
+
   generateUsersTable(searchResults)
 })
 
@@ -46,15 +57,14 @@ searchInput.addEventListener('keypress', event => {
 let userDelete
 
 listUsers.addEventListener('click', event => {
-  if (event.target.classList.contains('btn-delete')) {
-    const userId = parseInt(event.target.getAttribute('data-id'))
+  const deleteButton = event.target.closest('.btn-delete')
+  const userId = parseInt(deleteButton.getAttribute('data-id'))
 
-    // Get user information to delete
-    userDelete = getUserFromLocalStorage.find(user => user.id === userId)
+  // Get user information to delete
+  userDelete = getUserFromLocalStorage.find(user => user.id === userId)
 
-    // Display modal
-    showDeleteModal()
-  }
+  // Display modal
+  showDeleteModal()
 })
 
 // Handle the event when the user clicks "Yes"
@@ -88,15 +98,19 @@ window.addEventListener('click', event => {
   if (event.target === deleteModal) {
     hideDeleteModal()
   }
+
+  if (event.target === modalElement) {
+    modalElement.style.display = hiddenClass
+  }
 })
 
 // Modal Delete
 const showDeleteModal = () => {
-  deleteModal.style.display = 'flex'
+  deleteModal.style.display = flexClass
 }
 
 const hideDeleteModal = () => {
-  deleteModal.style.display = 'none'
+  deleteModal.style.display = hiddenClass
 }
 
 /**
@@ -105,19 +119,21 @@ const hideDeleteModal = () => {
 */
 btnAddUser.addEventListener('click', () => {
   const modalElement = document.getElementById('modal')
-  modalElement.style.display = 'flex'
+  modalElement.style.display = flexClass
   modalElement.innerHTML = generateModalUser()
 
   const addUserSubmitButton = document.getElementById('add-user-submit')
-  const firstNameInput = document.getElementById('first-name')
-  const lastNameInput = document.getElementById('last-name')
-  const emailInput = document.getElementById('email')
-  const phoneInput = document.getElementById('phone')
-  const roleInput = document.getElementById('role-type')
+  const formUsers = document.getElementById('user-form')
   const addUserCancelButton = document.getElementById('add-user-cancel')
+  const btnCloseModal = document.getElementById('close-modal-user')
+  const firstNameInput = formUsers.querySelector(firstNameUser)
+  const lastNameInput = formUsers.querySelector(lastNameUser)
+  const emailInput = formUsers.querySelector(emailUser)
+  const phoneInput = formUsers.querySelector(phoneUser)
+  const roleInput = formUsers.querySelector(roleTypeUser)
 
   addUserCancelButton.addEventListener('click', () => {
-    modalElement.style.display = 'none'
+    modalElement.style.display = hiddenClass
   })
 
   addUserSubmitButton.addEventListener('click', () => {
@@ -136,19 +152,6 @@ btnAddUser.addEventListener('click', () => {
     })
 
     if (Object.entries(errors).length > 0) {
-      Object.entries(errors).forEach(([key, value]) => {
-        const newKey = camelCaseToHyphenCase(key)
-        errors[newKey] = value
-      })
-
-      const showFormErrors = (errors) => {
-        Object.entries(errors).forEach(([key, value]) => {
-          const target = document.getElementById(`${key}-error`)
-          if (target) {
-            target.innerText = value
-          }
-        })
-      }
       showFormErrors(errors)
     } else {
       const newUser = {
@@ -172,11 +175,99 @@ btnAddUser.addEventListener('click', () => {
       localStorage.setItem('listUsers', JSON.stringify(getUserFromLocalStorage))
 
       // Close modal
-      modalElement.style.display = 'none'
+      modalElement.style.display = hiddenClass
 
       generateUsersTable(getUserFromLocalStorage)
     }
   })
+
+  // Handle Button Close Modal User
+  btnCloseModal.addEventListener('click', () => {
+    modalElement.style.display = hiddenClass
+  })
+})
+
+/**
+ * Handle the feature for edit user
+ * Click button add user show modal edit user
+ */
+listUsers.addEventListener('click', event => {
+  const editButton = event.target.closest('.btn-edit')
+
+  if (editButton) {
+    // Get user ID from data-id attribute
+    const userId = parseInt(editButton.getAttribute('data-id'))
+
+    // Get the user to edit from Local Storage by user ID
+    const editedUser = getUserFromLocalStorage.find(user => user.id === userId)
+
+    if (editedUser) {
+      // Show the edit user modal with the user's data
+      const modalElement = document.getElementById('modal')
+
+      // Pass 'Edit User' as the title
+      modalElement.innerHTML = generateModalUser(editedUser, 'Edit User')
+
+      // Set the data-user-id attribute to store the user ID
+      modalElement.setAttribute('data-user-id', userId)
+      modalElement.style.display = flexClass
+
+      const editUserSubmitButton = document.getElementById('add-user-submit')
+      const editUserCancelButton = document.getElementById('add-user-cancel')
+      const formUsers = document.getElementById('user-form')
+      const btnCloseModal = document.getElementById('close-modal-user')
+
+      // Handles button cancel edit user
+      editUserCancelButton.addEventListener('click', () => {
+        modalElement.style.display = hiddenClass
+      })
+
+      // Handles button submit edit user
+      editUserSubmitButton.addEventListener('click', () => {
+        const editedFirstName = formUsers.querySelector(firstNameUser).value.trim()
+        const editedLastName = formUsers.querySelector(lastNameUser).value.trim()
+        const editedEmail = formUsers.querySelector(emailUser).value.trim()
+        const editedPhone = formUsers.querySelector(phoneUser).value.trim()
+        const editedRole = formUsers.querySelector(roleTypeUser).value
+
+        const errors = validateUserForm({
+          firstName: editedFirstName,
+          lastName: editedLastName,
+          email: editedEmail,
+          phone: editedPhone,
+          role: editedRole
+        })
+
+        if (Object.entries(errors).length > 0) {
+          showFormErrors(errors)
+        } else {
+          editedUser.firstName = editedFirstName
+          editedUser.lastName = editedLastName
+          editedUser.email = editedEmail
+          editedUser.phone = editedPhone
+          editedUser.role = editedRole
+          editedUser.roleId = editedRole.includes('Admin') ? 'admin' : 'employee'
+
+          const updatedUsers = getUserFromLocalStorage.map(user => {
+            if (user.id === editedUser.id) {
+              return editedUser
+            }
+
+            return user
+          })
+
+          localStorage.setItem('listUsers', JSON.stringify(updatedUsers))
+          modalElement.style.display = hiddenClass
+          generateUsersTable(updatedUsers)
+        }
+      })
+
+      // Handle Button Close Modal User
+      btnCloseModal.addEventListener('click', () => {
+        modalElement.style.display = hiddenClass
+      })
+    }
+  }
 })
 
 renderSideNav()
