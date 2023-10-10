@@ -1,14 +1,5 @@
 export const userItem = (user) => {
-  const {
-    id,
-    lastName,
-    firstName,
-    email,
-    date,
-    phone,
-    role,
-    roleId
-  } = user
+  const { id, lastName, firstName, email, date, phone, role, roleId } = user;
 
   return `
     <tr class="table-row" data-id=${id}>
@@ -40,5 +31,5 @@ export const userItem = (user) => {
         </button>
       </td>
     </tr>
-  `
-}
+  `;
+};
