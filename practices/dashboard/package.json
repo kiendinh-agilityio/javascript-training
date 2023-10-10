@@ -5,7 +5,8 @@
   "scripts": {
     "start": "parcel",
     "build": "parcel build",
-    "prepare": "cd ../../ && husky install dashboard/.husky","pre-push-lint": "pnpm build"
+    "prepare": "cd ../../ && husky install dashboard/.husky",
+    "pre-push-lint": "pnpm build"
   },
   "author": "Kien Dinh",
   "license": "ISC",
@@ -25,7 +26,9 @@
     "prettier": "^3.0.3"
   },
   "lint-staged": {
-
+    "*.js": [
+      "eslint --fix"
+    ]
   },
   "staticFiles": {
     "staticPath": "src/assets"
