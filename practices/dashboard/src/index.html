@@ -18,10 +18,10 @@
       <div class="container-lg">
         <!-- Implement Header -->
         <header class="d-flex justify-between items-start">
-          <ul>
-            <li class="sub-heading">Hello, Lekan</li>
-            <li class="header-description">Have a nice day</li>
-          </ul>
+          <div>
+            <p class="sub-heading">Hello, Lekan</p>
+            <p class="header-description">Have a nice day</p>
+          </div>
           <div class="flex-row items-center">
             <img
               loading="lazy"
@@ -34,10 +34,10 @@
             <p class="hr-vertically"></p>
             <div class="flex-row items-center">
               <p class="avatar-adm"></p>
-              <ul>
-                <li class="username-adm">Lekan Okeowo</li>
-                <li class="admin">Admin</li>
-              </ul>
+              <p class="flex-column">
+                <span class="username-adm">Lekan Okeowo</span>
+                <span class="admin">Admin</span>
+              </p>
               <img
                 loading="lazy"
                 width="24px"
@@ -84,8 +84,8 @@
                   alt="Add Icon"
                 />
               </button>
-              <ul class="dashboard-group flex-row items-center">
-                <li class="flex-row items-center">
+              <div class="dashboard-group flex-row items-center">
+                <div class="flex-row items-center cursor-pointer">
                   <span>Sort by</span>
                   <img
                     loading="lazy"
@@ -95,8 +95,8 @@
                     alt="Arrow Down Icon"
                     class="cursor-pointer"
                   />
-                </li>
-                <li class="flex-row items-center">
+                </div>
+                <div class="flex-row items-center cursor-pointer">
                   <span>Saved search</span>
                   <img
                     loading="lazy"
@@ -106,18 +106,16 @@
                     alt="Arrow Down Icon"
                     class="cursor-pointer"
                   />
-                </li>
-                <li>
-                  <img
-                    loading="lazy"
-                    width="16px"
-                    height="16px"
-                    src="./assets/images/svg/frame.svg"
-                    alt="Frame Icon"
-                    class="cursor-pointer"
-                  />
-                </li>
-              </ul>
+                </div>
+                <img
+                  loading="lazy"
+                  width="16px"
+                  height="16px"
+                  src="./assets/images/svg/frame.svg"
+                  alt="Frame Icon"
+                  class="cursor-pointer"
+                />
+              </div>
             </div>
           </div>
           <div class="dashboard-list-users">
@@ -126,9 +124,9 @@
             <table id="list-users" class="dashboard-content">
             </table>
           </div>
-          <ul class="dashboard-pagination d-flex">
-            <li class="dashboard-pagination-item">Items per page:</li>
-            <li class="d-flex items-center cursor-pointer dashboard-select">
+          <div class="dashboard-pagination d-flex">
+            <p class="dashboard-pagination-item">Items per page:</p>
+            <div class="d-flex items-center cursor-pointer dashboard-select">
               <p class="dashboard-pagination-item">6</p>
               <img
                 loading="lazy"
@@ -137,9 +135,9 @@
                 src="./assets/images/svg/polygon.svg"
                 alt="Polygon Icon"
               />
-            </li>
-            <li class="dashboard-pagination-item">1-4 of 10</li>
-            <li>
+            </div>
+            <p class="dashboard-pagination-item">1-4 of 10</p>
+            <div>
               <img
                 loading="lazy"
                 width="10px"
@@ -156,8 +154,8 @@
                 alt="Arrow Next Icon"
                 class="cursor-pointer"
               />
-            </li>
-          </ul>
+            </div>
+          </div>
           <!-- Modal confirm remove users -->
           <div id="delete-modal" class="modal-confirm-delete">
             <div class="modal-confirm-content">
