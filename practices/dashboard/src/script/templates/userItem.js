@@ -8,7 +8,9 @@ export const userItem = (user) => {
         <p class="user-email">${email}</p>
       </td>
       <td class="table-cell">
-        <div class="d-flex justify-center items-center user-role-tag user-role-${roleId}">${role}</div>
+        <div class="d-flex justify-center items-center user-role-tag user-role-${roleId}">
+          <span class="user-role-text">${role}</span>
+        </div>
       </td>
       <td class="table-cell create-date">${date}</td>
       <td class="table-cell phone-number">${phone}</td>

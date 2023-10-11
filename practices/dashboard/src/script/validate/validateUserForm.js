@@ -28,7 +28,7 @@ export const validateUserForm = (user) => {
   }
 
   const emailError =
-    requiredMessage(email, 'Email ID *') || displayWarningEmail(email);
+    requiredMessage(email, 'Email *') || displayWarningEmail(email);
   if (emailError) {
     errors.email = emailError;
   }

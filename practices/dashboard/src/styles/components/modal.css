@@ -11,7 +11,6 @@
 
 .modal-confirm-content {
   background-color: var(--color-light);
-  width: 600px;
   padding: 60px;
   margin: auto;
   border-radius: var(--rounded-sm);
@@ -24,7 +23,7 @@
   font-family: var(--font-primary-semibold);
   font-weight: var(--font-weight-semibold);
   font-size: var(--font-size-2xl);
-  margin-bottom: 24px;
+  margin-bottom: 45px;
 }
 
 .modal {
@@ -45,7 +44,7 @@
   padding: 20px;
   border: 1px solid var(--color-secondary);
   border-radius: var(--rounded-sm);
-  width: 533px;
+  width: var(--width-modal-content);
   min-height: 325px;
 }
 
@@ -75,7 +74,6 @@
 }
 
 .form-input {
-  width: 100%;
   color: var(--color-tertiary);
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
@@ -118,4 +116,11 @@
 
 .form-group {
   gap: 20px;
+}
+
+/* Medium devices (desktops, 1500px and up) */
+@media (min-width: 1500px) {
+  .modal-content {
+    max-width: 533px;
+  }
 }

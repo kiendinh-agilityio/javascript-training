@@ -36,6 +36,13 @@
   max-width: 111px;
 }
 
+.user-role-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 81px;
+}
+
 .user-role-admin {
   color: var(--color-light);
   background: var(--color-primary);
