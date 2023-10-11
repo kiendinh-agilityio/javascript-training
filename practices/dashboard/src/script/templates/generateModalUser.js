@@ -44,7 +44,7 @@ export const generateModalUser = (user, title) => {
             id="email"
             class="form-input"
             type="email"
-            placeholder="Email ID *"
+            placeholder="Email *"
             value="${email}"
           />
           <div id="email-error" class="error-message"></div>
