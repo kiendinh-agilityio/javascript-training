@@ -4,5 +4,5 @@ export const VALIDATE_MESSAGE = {
   INVALID_NAME:
     'Please enter a minimum of 4 and a maximum of 20 characters for the {field}',
   INVALID_PHONE:
-    'Invalid phone number. Please enter a valid phone number. Example: 2025550192',
+    'Invalid phone number. Please enter a valid phone number. Example: (205)-205-5555',
 };
