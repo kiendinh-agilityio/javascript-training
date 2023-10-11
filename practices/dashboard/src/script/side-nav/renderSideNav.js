@@ -1,9 +1,11 @@
-import { NAV_ITEMS } from '../constants/index'
+import { NAV_ITEMS } from '../constants/index';
 
 const generateSideNav = NAV_ITEMS.map((nav) => {
   return `
     <li>
-      <a href="${nav.href}" class="d-flex items-center nav-item ${nav.href === window.location.pathname ? 'nav-active' : ''}">
+      <a href="${nav.href}" class="d-flex items-center nav-item ${
+        nav.href === window.location.pathname ? 'nav-active' : ''
+      }">
         <img
           loading="lazy"
           width="24px"
@@ -13,12 +15,12 @@ const generateSideNav = NAV_ITEMS.map((nav) => {
         />
         <span>${nav.name}</span>
       </a>
-    </li>`
-}).join('')
+    </li>`;
+}).join('');
 
 const renderSideNav = () => {
-  const navigationList = document.getElementById('side-nav')
-  navigationList.innerHTML = generateSideNav
-}
+  const navigationList = document.getElementById('side-nav');
+  navigationList.innerHTML = generateSideNav;
+};
 
-export { renderSideNav }
+export { renderSideNav };

@@ -1,1 +1,1 @@
-export * from './validateUserForm'
+export * from './validateUserForm';

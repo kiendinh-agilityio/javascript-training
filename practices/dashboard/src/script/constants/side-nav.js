@@ -2,43 +2,43 @@ const NAV_ITEMS = [
   {
     name: 'Dashboard',
     img: './images/svg/keyboard-command.svg',
-    href: '/'
+    href: '/',
   },
   {
     name: 'Users',
     img: './images/svg/poll.svg',
-    href: '#'
+    href: '#',
   },
   {
     name: 'Documents',
     img: './images/svg/document-text.svg',
-    href: '#'
+    href: '#',
   },
   {
     name: 'Photos',
     img: './images/svg/gallery.svg',
-    href: '#'
+    href: '#',
   },
   {
     name: 'Hierarchy',
     img: './images/svg/hand-coin.svg',
-    href: '#'
+    href: '#',
   },
   {
     name: 'Message',
     img: './images/svg/message.svg',
-    href: '#'
+    href: '#',
   },
   {
     name: 'Help',
     img: './images/svg/help.svg',
-    href: '#'
+    href: '#',
   },
   {
     name: 'Setting',
     img: './images/svg/setting.svg',
-    href: '#'
-  }
-]
+    href: '#',
+  },
+];
 
-export { NAV_ITEMS }
+export { NAV_ITEMS };

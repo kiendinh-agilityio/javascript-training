@@ -1,5 +1,5 @@
-import { getUserFromLocalStorage } from '../mocks/list-users'
-import { userItem } from './userItem'
+import { getUserFromLocalStorage } from '../mocks/list-users';
+import { userItem } from './userItem';
 
 const generateListUsers = (users) => {
   return `
@@ -13,22 +13,22 @@ const generateListUsers = (users) => {
       </tr>
     </thead>
     <tbody>
-      ${
-        users.map((user) => {
-          return userItem(user)
-        }).join('')
-      }
+      ${users
+        .map((user) => {
+          return userItem(user);
+        })
+        .join('')}
     </tbody>
-  `
-}
+  `;
+};
 
 const generateUsersTable = (users) => {
-  let renderUsers = users
+  let renderUsers = users;
   if (!renderUsers?.length) {
-    renderUsers = getUserFromLocalStorage
+    renderUsers = getUserFromLocalStorage;
   }
-  const listUsers = document.getElementById('list-users')
-  listUsers.innerHTML = generateListUsers(renderUsers)
-}
+  const listUsers = document.getElementById('list-users');
+  listUsers.innerHTML = generateListUsers(renderUsers);
+};
 
-export { generateUsersTable }
+export { generateUsersTable };

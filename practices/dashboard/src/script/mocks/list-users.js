@@ -7,7 +7,7 @@ const LIST_USERS = [
     email: 'david_wagner@example.com',
     date: '24 Otc, 2015',
     phone: '2052055555',
-    roleId: 'admin'
+    roleId: 'admin',
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const LIST_USERS = [
     email: 'windler.warren@runte.net',
     date: '24 Otc, 2015',
     phone: '2052055555',
-    roleId: 'admin'
+    roleId: 'admin',
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const LIST_USERS = [
     email: 'wintheiser_enos@yahoo.com',
     date: '18 Dec, 2015',
     phone: '2052055555',
-    roleId: 'admin'
+    roleId: 'admin',
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ const LIST_USERS = [
     email: 'camila_ledner@gmail.com',
     date: '8 Otc, 2016',
     phone: '2052055555',
-    roleId: 'employee'
+    roleId: 'employee',
   },
   {
     id: 5,
@@ -47,7 +47,7 @@ const LIST_USERS = [
     email: 'edula_dorton1221@gmail.com',
     date: '15 Jun, 2017',
     phone: '2052055555',
-    roleId: 'admin'
+    roleId: 'admin',
   },
   {
     id: 6,
@@ -57,7 +57,7 @@ const LIST_USERS = [
     email: 'terrill.wiza@hotmail.com',
     date: '12 Jan, 2019',
     phone: '2052055555',
-    roleId: 'admin'
+    roleId: 'admin',
   },
   {
     id: 7,
@@ -67,21 +67,22 @@ const LIST_USERS = [
     email: 'hagenes.isai@hotmail.com',
     date: '21 July, 2020',
     phone: '2052055555',
-    roleId: 'employee'
-  }
-]
+    roleId: 'employee',
+  },
+];
 
 /**
  * Get user from local storage
  */
-let getUserFromLocalStorage = JSON.parse(localStorage.getItem('listUsers')) || []
+let getUserFromLocalStorage =
+  JSON.parse(localStorage.getItem('listUsers')) || [];
 
 /*
  * Save list users to local storage
-*/
+ */
 if (!getUserFromLocalStorage.length) {
-  localStorage.setItem('listUsers', JSON.stringify(LIST_USERS))
-  getUserFromLocalStorage = LIST_USERS
+  localStorage.setItem('listUsers', JSON.stringify(LIST_USERS));
+  getUserFromLocalStorage = LIST_USERS;
 }
 
-export { getUserFromLocalStorage }
+export { getUserFromLocalStorage };

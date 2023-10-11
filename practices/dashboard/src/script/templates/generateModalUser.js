@@ -5,13 +5,15 @@ export const generateModalUser = (user, title) => {
     lastName = '',
     email = '',
     phone = '',
-    role = ''
-  } = user || {}
+    role = '',
+  } = user || {};
 
   return `
     <div class="modal-content">
       <div class="modal-header flex-row justify-between items-center">
-        <h2 class="modal-heading">${title || (id ? 'Edit User ' : 'Add User')}</h2>
+        <h2 class="modal-heading">${
+          title || (id ? 'Edit User ' : 'Add User')
+        }</h2>
         <button class="btn-close-modal" id="close-modal-user">
           <span>X</span>
         </button>
@@ -61,10 +63,18 @@ export const generateModalUser = (user, title) => {
           <div class="form-select flex-column">
             <select id="role-type" name="role-type" class="form-input-select">
               <option value="">Select Role Type</option>
-              <option value="Super Admin" ${role === 'Super Admin' ? 'selected' : ''}>Super Admin</option>
-              <option value="Admin" ${role === 'Admin' ? 'selected' : ''}>Admin</option>
-              <option value="HR Admin" ${role === 'HR Admin' ? 'selected' : ''}>HR Admin</option>
-              <option value="Employee" ${role === 'Employee' ? 'selected' : ''}>Employee</option>
+              <option value="Super Admin" ${
+                role === 'Super Admin' ? 'selected' : ''
+              }>Super Admin</option>
+              <option value="Admin" ${
+                role === 'Admin' ? 'selected' : ''
+              }>Admin</option>
+              <option value="HR Admin" ${
+                role === 'HR Admin' ? 'selected' : ''
+              }>HR Admin</option>
+              <option value="Employee" ${
+                role === 'Employee' ? 'selected' : ''
+              }>Employee</option>
             </select>
             <div id="role-error" class="error-message"></div>
           </div>
@@ -79,5 +89,5 @@ export const generateModalUser = (user, title) => {
         </div>
       </div>
     </div>
-  `
-}
+  `;
+};
