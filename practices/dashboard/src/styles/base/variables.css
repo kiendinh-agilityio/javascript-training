@@ -64,6 +64,9 @@
   --width-dashboard-content: calc(
     1186 * 100% / 1440
   ); /* 1186px is the width of the right content according to the design */
+  --width-modal-content: calc(
+    533 * 100% / 1440
+  ); /* 533px is the width of the modal according to the design */
 
   /* Z Index */
   --z-index-sm: 1;
