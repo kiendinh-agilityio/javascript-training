@@ -5,7 +5,7 @@ import { isStringMatched } from './utils';
 import { generateModalUser } from './templates/generateModalUser';
 import { validateUserForm } from './validate';
 import { showFormErrors } from './templates/showFormErrors';
-import { formattedDate, loadingSpinner } from './constants/index';
+import { formattedDate, startLoadingSpinner, stopLoadingSpinner } from './constants/index';
 
 // Variables scope
 const firstNameUser = '#first-name';
@@ -25,12 +25,6 @@ const cancelDeleteButton = document.getElementById('cancel-delete');
 const closeDeleteModalButton = document.getElementById('close-modal');
 const btnAddUser = document.getElementById('btn-add');
 const modalElement = document.getElementById('modal');
-
-// Variable to store the current user ID
-let currentUserId =
-  getUserFromLocalStorage.length > 0
-    ? getUserFromLocalStorage[getUserFromLocalStorage.length - 1].id + 1
-    : 1;
 
 /**
  * Handle the feature for search users
@@ -62,7 +56,7 @@ searchInput.addEventListener('input', () => {
 
 const performSearchWithSpinner = () => {
   // Show the loading spinner when performing the search
-  loadingSpinner.start();
+  startLoadingSpinner();
 
   // Perform the search
   performSearch();
@@ -73,15 +67,16 @@ const performSearch = () => {
 
   // Search in the list users
   const searchResults = getUserFromLocalStorage.filter((user) => {
-    const nameMatch = isStringMatched(user.firstName + ' ' + user.lastName, searchTerm);
-    const emailMatch = isStringMatched(user.email, searchTerm);
-    const phoneMatch = isStringMatched(user.phone, searchTerm);
+    const { lastName, firstName, email, phone } = user;
+    const nameMatch = isStringMatched(`${firstName} ${lastName}`, searchTerm);
+    const emailMatch = isStringMatched(email, searchTerm);
+    const phoneMatch = isStringMatched(phone, searchTerm);
     return nameMatch || emailMatch || phoneMatch;
   });
 
   // Hide the loading spinner after the search is complete
   setTimeout(() => {
-    loadingSpinner.stop();
+    stopLoadingSpinner();
 
     generateUsersTable(searchResults);
   }, 200);
@@ -119,7 +114,7 @@ confirmDeleteButton.addEventListener('click', () => {
   hideDeleteModal();
 
   // Show the loading spinner when the user confirms the deletion
-  loadingSpinner.start();
+  startLoadingSpinner();
 
   // Simulate a delay of 2 seconds for demonstration purposes (you can adjust this)
   setTimeout(() => {
@@ -134,7 +129,7 @@ confirmDeleteButton.addEventListener('click', () => {
     }
 
     // Hide the loading spinner after the deletion is complete
-    loadingSpinner.stop();
+    stopLoadingSpinner();
   }, 300);
 });
 
@@ -212,7 +207,12 @@ btnAddUser.addEventListener('click', () => {
       showFormErrors(errors);
     } else {
       // Show loading spinner
-      loadingSpinner.start();
+      startLoadingSpinner();
+
+      const userLength = getUserFromLocalStorage.length;
+
+      // Calculate the new user ID based on the last user's ID
+      const currentUserId = userLength > 0 ? getUserFromLocalStorage[userLength - 1].id + 1 : 1;
 
       const newUser = {
         id: currentUserId,
@@ -224,9 +224,6 @@ btnAddUser.addEventListener('click', () => {
         roleId: role.includes('Admin') ? 'admin' : 'employee',
         date: formattedDate,
       };
-
-      // Increases the current user ID value by one unit
-      currentUserId++;
 
       // Add user to list users
       getUserFromLocalStorage.push(newUser);
@@ -240,7 +237,7 @@ btnAddUser.addEventListener('click', () => {
       // Set timeout before closing the spinner
       setTimeout(() => {
         // Hide spinner after successfully adding user
-        loadingSpinner.stop();
+        stopLoadingSpinner();
 
         generateUsersTable(getUserFromLocalStorage);
       }, 300);
@@ -314,7 +311,7 @@ listUsers.addEventListener('click', (event) => {
           showFormErrors(errors);
         } else {
           // Show loading spinner
-          loadingSpinner.start();
+          startLoadingSpinner();
 
           editedUser.firstName = editedFirstName;
           editedUser.lastName = editedLastName;
@@ -339,7 +336,7 @@ listUsers.addEventListener('click', (event) => {
           // Set timeout before closing the spinner
           setTimeout(() => {
             // // Hide spinner after successfully adding user
-            loadingSpinner.stop();
+            stopLoadingSpinner();
 
             generateUsersTable(updatedUsers);
           }, 300);
