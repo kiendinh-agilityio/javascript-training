@@ -1,6 +1,6 @@
 const loadingContainer = document.getElementById('loading-container');
 
-export const loadingSpinner = {
+const loadingSpinner = {
   start: function () {
     loadingContainer.style.display = 'flex';
   },
@@ -8,4 +8,12 @@ export const loadingSpinner = {
   stop: function () {
     loadingContainer.style.display = 'none';
   },
+};
+
+export const startLoadingSpinner = () => {
+  loadingSpinner.start();
+};
+
+export const stopLoadingSpinner = () => {
+  loadingSpinner.stop();
 };
