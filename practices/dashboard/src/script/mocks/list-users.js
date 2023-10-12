@@ -1,4 +1,4 @@
-import { loadingSpinner } from '../constants/index';
+import { startLoadingSpinner, stopLoadingSpinner } from '../constants/index';
 import { generateUsersTable } from '../templates/renderListUsers';
 
 const LIST_USERS = [
@@ -82,7 +82,7 @@ let getUserFromLocalStorage = JSON.parse(localStorage.getItem('listUsers')) || [
 async function fetchUsers () {
   if (!getUserFromLocalStorage.length) {
     // Display the loading spinner before loading data
-    loadingSpinner.start();
+    startLoadingSpinner();
 
     // Simulates 2 seconds to load data (use await for actual task)
     await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -92,7 +92,7 @@ async function fetchUsers () {
     getUserFromLocalStorage = LIST_USERS;
 
     // Hidden loading spinner
-    loadingSpinner.stop();
+    stopLoadingSpinner();
 
     generateUsersTable();
   }
