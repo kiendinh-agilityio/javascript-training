@@ -1,3 +1,6 @@
+import { loadingSpinner } from '../constants/index';
+import { generateUsersTable } from '../templates/renderListUsers';
+
 const LIST_USERS = [
   {
     id: 1,
@@ -74,15 +77,27 @@ const LIST_USERS = [
 /**
  * Get user from local storage
  */
-let getUserFromLocalStorage =
-  JSON.parse(localStorage.getItem('listUsers')) || [];
+let getUserFromLocalStorage = JSON.parse(localStorage.getItem('listUsers')) || [];
 
-/*
- * Save list users to local storage
- */
-if (!getUserFromLocalStorage.length) {
-  localStorage.setItem('listUsers', JSON.stringify(LIST_USERS));
-  getUserFromLocalStorage = LIST_USERS;
+async function fetchUsers () {
+  if (!getUserFromLocalStorage.length) {
+    // Display the loading spinner before loading data
+    loadingSpinner.start();
+
+    // Simulates 2 seconds to load data (use await for actual task)
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    // Save the user list to localStorage and update the userLocalStorage variable
+    localStorage.setItem('listUsers', JSON.stringify(LIST_USERS));
+    getUserFromLocalStorage = LIST_USERS;
+
+    // Hidden loading spinner
+    loadingSpinner.stop();
+
+    generateUsersTable();
+  }
 }
+
+fetchUsers();
 
 export { getUserFromLocalStorage };
