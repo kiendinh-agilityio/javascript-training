@@ -98,8 +98,8 @@
   user-select: none;
 }
 
-.pagination-prev {
-  margin-right: 32px;
+.pagination-item {
+  gap: 32px;
 }
 
 .cell-action {

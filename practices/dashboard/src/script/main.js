@@ -5,7 +5,11 @@ import { isStringMatched } from './utils';
 import { generateModalUser } from './templates/generateModalUser';
 import { validateUserForm } from './validate';
 import { showFormErrors } from './templates/showFormErrors';
-import { formattedDate } from './constants/index';
+import {
+  formattedDate,
+  startLoadingSpinner,
+  delayActions,
+} from './constants/index';
 
 // Variables scope
 const firstNameUser = '#first-name';
@@ -26,9 +30,6 @@ const closeDeleteModalButton = document.getElementById('close-modal');
 const btnAddUser = document.getElementById('btn-add');
 const modalElement = document.getElementById('modal');
 
-// Variable to store the current user ID
-let currentUserId = getUserFromLocalStorage.length > 0 ? getUserFromLocalStorage[getUserFromLocalStorage.length - 1].id + 1 : 1;
-
 /**
  * Handle the feature for search users
  * Create a debounce function
@@ -47,7 +48,7 @@ const debounce = (func, delay) => {
 
 // Handle the search when users the search button is pressed
 searchButton.addEventListener('click', () => {
-  performSearch();
+  performSearchWithSpinner();
 });
 
 // Handle searches as the user types and presses Enter with debounce
@@ -57,21 +58,30 @@ searchInput.addEventListener('input', () => {
   debouncedSearch();
 });
 
+const performSearchWithSpinner = () => {
+  // Show the loading spinner when performing the search
+  startLoadingSpinner();
+
+  // Perform the search
+  performSearch();
+};
+
 const performSearch = () => {
   const searchTerm = searchInput.value.toLowerCase().trim();
 
   // Search in the list users
   const searchResults = getUserFromLocalStorage.filter((user) => {
-    const nameMatch = isStringMatched(
-      user.firstName + ' ' + user.lastName,
-      searchTerm,
-    );
-    const emailMatch = isStringMatched(user.email, searchTerm);
-    const phoneMatch = isStringMatched(user.phone, searchTerm);
+    const { lastName, firstName, email, phone } = user;
+    const nameMatch = isStringMatched(`${firstName} ${lastName}`, searchTerm);
+    const emailMatch = isStringMatched(email, searchTerm);
+    const phoneMatch = isStringMatched(phone, searchTerm);
     return nameMatch || emailMatch || phoneMatch;
   });
 
-  generateUsersTable(searchResults);
+  // // Use the delayActions function to perform actions after the delay
+  delayActions(() => {
+    generateUsersTable(searchResults);
+  });
 };
 
 // Handle searches as the user types and presses Enter
@@ -80,7 +90,7 @@ searchInput.addEventListener('keypress', (event) => {
     event.preventDefault();
 
     // Perform a search immediately when the user presses Enter
-    performSearch();
+    performSearchWithSpinner();
   }
 });
 
@@ -102,18 +112,27 @@ listUsers.addEventListener('click', (event) => {
 
 // Handle the event when the user clicks "Yes"
 confirmDeleteButton.addEventListener('click', () => {
-  const userIndex = getUserFromLocalStorage.findIndex(
-    (user) => user.id === userDelete.id,
-  );
-
-  if (userIndex !== -1) {
-    getUserFromLocalStorage.splice(userIndex, 1);
-    localStorage.setItem('listUsers', JSON.stringify(getUserFromLocalStorage));
-    generateUsersTable(getUserFromLocalStorage);
-  }
-
   // Close the modal
   hideDeleteModal();
+
+  // Show the loading spinner when the user confirms the deletion
+  startLoadingSpinner();
+
+  // // Use the delayActions function to perform actions after the delay
+  delayActions(() => {
+    const userIndex = getUserFromLocalStorage.findIndex(
+      (user) => user.id === userDelete.id,
+    );
+
+    if (userIndex !== -1) {
+      getUserFromLocalStorage.splice(userIndex, 1);
+      localStorage.setItem(
+        'listUsers',
+        JSON.stringify(getUserFromLocalStorage),
+      );
+      generateUsersTable(getUserFromLocalStorage);
+    }
+  });
 });
 
 // Handle the event when the user presses "No" or closes the modal
@@ -189,6 +208,15 @@ btnAddUser.addEventListener('click', () => {
     if (Object.entries(errors).length > 0) {
       showFormErrors(errors);
     } else {
+      // Show loading spinner
+      startLoadingSpinner();
+
+      const userLength = getUserFromLocalStorage.length;
+
+      // Calculate the new user ID based on the last user's ID
+      const currentUserId =
+        userLength > 0 ? getUserFromLocalStorage[userLength - 1].id + 1 : 1;
+
       const newUser = {
         id: currentUserId,
         firstName,
@@ -199,9 +227,6 @@ btnAddUser.addEventListener('click', () => {
         roleId: role.includes('Admin') ? 'admin' : 'employee',
         date: formattedDate,
       };
-
-      // Increases the current user ID value by one unit
-      currentUserId++;
 
       // Add user to list users
       getUserFromLocalStorage.push(newUser);
@@ -215,7 +240,10 @@ btnAddUser.addEventListener('click', () => {
       // Close modal
       modalElement.style.display = hiddenClass;
 
-      generateUsersTable(getUserFromLocalStorage);
+      // // Use the delayActions function to perform actions after the delay
+      delayActions(() => {
+        generateUsersTable(getUserFromLocalStorage);
+      });
     }
   });
 
@@ -285,6 +313,9 @@ listUsers.addEventListener('click', (event) => {
         if (Object.entries(errors).length > 0) {
           showFormErrors(errors);
         } else {
+          // Show loading spinner
+          startLoadingSpinner();
+
           editedUser.firstName = editedFirstName;
           editedUser.lastName = editedLastName;
           editedUser.email = editedEmail;
@@ -304,7 +335,11 @@ listUsers.addEventListener('click', (event) => {
 
           localStorage.setItem('listUsers', JSON.stringify(updatedUsers));
           modalElement.style.display = hiddenClass;
-          generateUsersTable(updatedUsers);
+
+          // Use the delayActions function to perform actions after the delay
+          delayActions(() => {
+            generateUsersTable(updatedUsers);
+          }, 300);
         }
       });
 

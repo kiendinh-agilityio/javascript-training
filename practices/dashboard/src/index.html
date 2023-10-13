@@ -9,6 +9,9 @@
   </head>
   <body>
     <div class="flex-row main-page" id="main-page">
+      <div class="loading-container" id="loading-container">
+        <span class="loading-indicator" id="loading-indicator"></span>
+      </div>
       <div class="modal" id="modal"></div>
       <!-- Implement side navigation -->
       <div class="container-side-nav sidebar-menu">
@@ -118,42 +121,43 @@
               </div>
             </div>
           </div>
-          <div class="dashboard-list-users">
-            <h2 class="dasboard-title">List Users</h2>
-            <!-- Dashboard Tablet List Users -->
-            <table id="list-users" class="dashboard-content">
-            </table>
-          </div>
-          <div class="dashboard-pagination d-flex">
-            <p class="dashboard-pagination-item">Items per page:</p>
-            <div class="d-flex items-center cursor-pointer dashboard-select">
-              <p class="dashboard-pagination-item">6</p>
-              <img
-                loading="lazy"
-                width="10px"
-                height="8px"
-                src="./assets/images/svg/polygon.svg"
-                alt="Polygon Icon"
-              />
+          <div class="d-flex flex-column justify-between min-h-screen">
+            <div class="dashboard-list-users">
+              <h2 class="dasboard-title">List Users</h2>
+              <!-- Dashboard Tablet List Users -->
+              <table id="list-users" class="dashboard-content"></table>
             </div>
-            <p class="dashboard-pagination-item">1-4 of 10</p>
-            <div>
-              <img
-                loading="lazy"
-                width="10px"
-                height="10px"
-                src="./assets/images/svg/arrow-prev.svg"
-                alt="Arrow Previous Icon"
-                class="pagination-prev cursor-pointer"
-              />
-              <img
-                loading="lazy"
-                width="10px"
-                height="10px"
-                src="./assets/images/svg/arrow-next.svg"
-                alt="Arrow Next Icon"
-                class="cursor-pointer"
-              />
+            <div class="dashboard-pagination d-flex items-center">
+              <p class="dashboard-pagination-item">Items per page:</p>
+              <div class="d-flex items-center cursor-pointer dashboard-select">
+                <p class="dashboard-pagination-item">6</p>
+                <img
+                  loading="lazy"
+                  width="10px"
+                  height="8px"
+                  src="./assets/images/svg/polygon.svg"
+                  alt="Polygon Icon"
+                />
+              </div>
+              <p class="dashboard-pagination-item">1-4 of 10</p>
+              <div class="flex-row pagination-item">
+                <img
+                  loading="lazy"
+                  width="10px"
+                  height="10px"
+                  src="./assets/images/svg/arrow-prev.svg"
+                  alt="Arrow Previous Icon"
+                  class="cursor-pointer"
+                />
+                <img
+                  loading="lazy"
+                  width="10px"
+                  height="10px"
+                  src="./assets/images/svg/arrow-next.svg"
+                  alt="Arrow Next Icon"
+                  class="cursor-pointer"
+                />
+              </div>
             </div>
           </div>
           <!-- Modal confirm remove users -->
@@ -162,9 +166,13 @@
               <button class="btn-close" id="close-modal">
                 <span>X</span>
               </button>
-              <p class="heading-confirm">Are you sure you want to delete this user?</p>
+              <p class="heading-confirm">
+                Are you sure you want to delete this user?
+              </p>
               <button id="confirm-delete" class="btn btn-confirm">Yes</button>
-              <button id="cancel-delete" class="btn btn-confirm btn-confirm-no">No</button>
+              <button id="cancel-delete" class="btn btn-confirm btn-confirm-no">
+                No
+              </button>
             </div>
           </div>
         </section>
