@@ -1,19 +1,19 @@
 :root {
   /* color */
-  --color-primary: #4a85f6;
+  --color-primary: #094ccd;
   --color-secondary: #eff4fa;
   --color-tertiary: #222b45;
   --color-dark: #0a0a0a;
   --color-light: #fff;
-  --color-email: #8f9bb3;
+  --color-email: #657795;
   --color-background: #f5f5f5;
-  --color-text: #757575;
+  --color-text: #595959;
   --color-avatar: #bfbfbf;
   --color-vertically: #c2c2c2;
   --color-dashboard-list: #eff4fa;
   --color-dashboard-content: #222b45;
-  --color-dashboard-description: #8f9bb3;
-  --color-dashboard-pagination: #717171;
+  --color-dashboard-description: #4e5774;
+  --color-dashboard-pagination: #707070;
   --color-modal: rgba(0, 0, 0, 0.5);
   --color-error-message: #ff0000;
 
