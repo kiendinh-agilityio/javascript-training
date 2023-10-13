@@ -5,7 +5,11 @@ import { isStringMatched } from './utils';
 import { generateModalUser } from './templates/generateModalUser';
 import { validateUserForm } from './validate';
 import { showFormErrors } from './templates/showFormErrors';
-import { formattedDate, startLoadingSpinner, stopLoadingSpinner } from './constants/index';
+import {
+  formattedDate,
+  startLoadingSpinner,
+  delayActions,
+} from './constants/index';
 
 // Variables scope
 const firstNameUser = '#first-name';
@@ -74,12 +78,10 @@ const performSearch = () => {
     return nameMatch || emailMatch || phoneMatch;
   });
 
-  // Hide the loading spinner after the search is complete
-  setTimeout(() => {
-    stopLoadingSpinner();
-
+  // // Use the delayActions function to perform actions after the delay
+  delayActions(() => {
     generateUsersTable(searchResults);
-  }, 200);
+  });
 };
 
 // Handle searches as the user types and presses Enter
@@ -116,21 +118,21 @@ confirmDeleteButton.addEventListener('click', () => {
   // Show the loading spinner when the user confirms the deletion
   startLoadingSpinner();
 
-  // Simulate a delay of 2 seconds for demonstration purposes (you can adjust this)
-  setTimeout(() => {
+  // // Use the delayActions function to perform actions after the delay
+  delayActions(() => {
     const userIndex = getUserFromLocalStorage.findIndex(
       (user) => user.id === userDelete.id,
     );
 
     if (userIndex !== -1) {
       getUserFromLocalStorage.splice(userIndex, 1);
-      localStorage.setItem('listUsers', JSON.stringify(getUserFromLocalStorage));
+      localStorage.setItem(
+        'listUsers',
+        JSON.stringify(getUserFromLocalStorage),
+      );
       generateUsersTable(getUserFromLocalStorage);
     }
-
-    // Hide the loading spinner after the deletion is complete
-    stopLoadingSpinner();
-  }, 300);
+  });
 });
 
 // Handle the event when the user presses "No" or closes the modal
@@ -212,7 +214,8 @@ btnAddUser.addEventListener('click', () => {
       const userLength = getUserFromLocalStorage.length;
 
       // Calculate the new user ID based on the last user's ID
-      const currentUserId = userLength > 0 ? getUserFromLocalStorage[userLength - 1].id + 1 : 1;
+      const currentUserId =
+        userLength > 0 ? getUserFromLocalStorage[userLength - 1].id + 1 : 1;
 
       const newUser = {
         id: currentUserId,
@@ -229,18 +232,18 @@ btnAddUser.addEventListener('click', () => {
       getUserFromLocalStorage.push(newUser);
 
       // Update user list in Local Storage
-      localStorage.setItem('listUsers', JSON.stringify(getUserFromLocalStorage));
+      localStorage.setItem(
+        'listUsers',
+        JSON.stringify(getUserFromLocalStorage),
+      );
 
       // Close modal
       modalElement.style.display = hiddenClass;
 
-      // Set timeout before closing the spinner
-      setTimeout(() => {
-        // Hide spinner after successfully adding user
-        stopLoadingSpinner();
-
+      // // Use the delayActions function to perform actions after the delay
+      delayActions(() => {
         generateUsersTable(getUserFromLocalStorage);
-      }, 300);
+      });
     }
   });
 
@@ -333,11 +336,8 @@ listUsers.addEventListener('click', (event) => {
           localStorage.setItem('listUsers', JSON.stringify(updatedUsers));
           modalElement.style.display = hiddenClass;
 
-          // Set timeout before closing the spinner
-          setTimeout(() => {
-            // // Hide spinner after successfully adding user
-            stopLoadingSpinner();
-
+          // Use the delayActions function to perform actions after the delay
+          delayActions(() => {
             generateUsersTable(updatedUsers);
           }, 300);
         }

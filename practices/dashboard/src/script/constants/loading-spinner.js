@@ -17,3 +17,10 @@ export const startLoadingSpinner = () => {
 export const stopLoadingSpinner = () => {
   loadingSpinner.stop();
 };
+
+export const delayActions = (callback) => {
+  setTimeout(() => {
+    callback();
+    stopLoadingSpinner();
+  }, 300);
+};
