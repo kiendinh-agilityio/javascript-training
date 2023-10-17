@@ -1,5 +1,5 @@
 import { generateUsersTable } from '../templates/renderListUsers';
-import { getUserFromLocalStorage } from '../mocks/list-users';
+import { getUserFromLocalStorage } from '../mocks/listUsers';
 import { generateModalUser } from '../templates/generateModalUser';
 import { validateUserForm } from '../validate/index';
 import { showFormErrors } from '../templates/showFormErrors';
