@@ -85,7 +85,7 @@ async function fetchUsers () {
     startLoadingSpinner();
 
     // Simulates 2 seconds to load data (use await for actual task)
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Save the user list to localStorage and update the userLocalStorage variable
     localStorage.setItem('listUsers', JSON.stringify(LIST_USERS));
