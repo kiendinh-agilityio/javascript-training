@@ -79,12 +79,12 @@ const LIST_USERS = [
  */
 let getUserFromLocalStorage = JSON.parse(localStorage.getItem('listUsers')) || [];
 
-async function fetchUsers () {
+const fetchUsers = async () => {
   if (!getUserFromLocalStorage.length) {
     // Display the loading spinner before loading data
     startLoadingSpinner();
 
-    // Simulates 2 seconds to load data (use await for actual task)
+    // Simulates 1 seconds to load data (use await for actual task)
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Save the user list to localStorage and update the userLocalStorage variable
@@ -96,7 +96,7 @@ async function fetchUsers () {
     // Hidden loading spinner
     stopLoadingSpinner();
   }
-}
+};
 
 fetchUsers();
 
