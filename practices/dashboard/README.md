@@ -35,7 +35,6 @@
 ## REQUIREMENT
 - Make the application match with the design
 - Understand & apply knowledge HTML/CSS/JavaScript (with ES6 syntax).
-- Understanding & use MVC (or any MV model or module concept) (optional)
 - DOM manipulation, form validation.
 - Function can re-useable
 - DOM (render, event, selector)

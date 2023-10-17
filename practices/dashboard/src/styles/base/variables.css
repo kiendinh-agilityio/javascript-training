@@ -16,6 +16,8 @@
   --color-dashboard-pagination: #707070;
   --color-modal: rgba(0, 0, 0, 0.5);
   --color-error-message: #ff0000;
+  --color-btn-confirm-cancel: #e2e8f0;
+  --color-btn-confirm-delete: #c53030;
 
   /* font family */
   --font-primary: OpenSans, san-serif;

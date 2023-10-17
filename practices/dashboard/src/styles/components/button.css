@@ -40,12 +40,16 @@
 }
 
 .btn-confirm-no {
-  background: transparent;
+  background-color: var(--color-btn-confirm-cancel);
   color: var(--color-dark);
-  border: 1px solid var(--color-dark);
+  border: 1px solid var(--color-btn-confirm-cancel);
 }
 
 .btn-edit,
 .btn-delete {
   padding: 5px
+}
+
+.btn-confirm-delete {
+  background-color: var(--color-btn-confirm-delete);
 }

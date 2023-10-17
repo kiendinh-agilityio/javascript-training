@@ -8,7 +8,7 @@ const LIST_USERS = [
     lastName: 'Wagner',
     role: 'Super Admin',
     email: 'david_wagner@example.com',
-    date: 'Otc 24th, 2015',
+    date: 'Oct 24th, 2015',
     phone: '(205)-205-5555',
     roleId: 'admin',
   },
@@ -18,7 +18,7 @@ const LIST_USERS = [
     lastName: 'Hogan',
     role: 'Admin',
     email: 'windler.warren@runte.net',
-    date: 'Otc 24th, 2015',
+    date: 'Oct 24th, 2015',
     phone: '(204)-204-4444',
     roleId: 'admin',
   },
@@ -38,7 +38,7 @@ const LIST_USERS = [
     lastName: 'Page',
     role: 'Employee',
     email: 'camila_ledner@gmail.com',
-    date: 'Otc 8th, 2016',
+    date: 'Oct 8th, 2016',
     phone: '(201)-201-1111',
     roleId: 'employee',
   },
@@ -85,16 +85,16 @@ async function fetchUsers () {
     startLoadingSpinner();
 
     // Simulates 2 seconds to load data (use await for actual task)
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // Save the user list to localStorage and update the userLocalStorage variable
     localStorage.setItem('listUsers', JSON.stringify(LIST_USERS));
     getUserFromLocalStorage = LIST_USERS;
 
+    generateUsersTable();
+
     // Hidden loading spinner
     stopLoadingSpinner();
-
-    generateUsersTable();
   }
 }
 
