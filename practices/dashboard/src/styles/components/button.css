@@ -53,3 +53,12 @@
 .btn-confirm-delete {
   background-color: var(--color-btn-confirm-delete);
 }
+
+.btn:focus-visible {
+  outline: 4px solid var(--color-primary);
+}
+
+.btn-clear-search {
+  background-color: transparent;
+  display: none;
+}

@@ -7,3 +7,4 @@ export const cancelDeleteButton = document.getElementById('cancel-delete');
 export const closeDeleteModalButton = document.getElementById('close-modal');
 export const btnAddUser = document.getElementById('btn-add');
 export const modalElement = document.getElementById('modal');
+export const btnClearSearch = document.getElementById('btn-clear-search');
