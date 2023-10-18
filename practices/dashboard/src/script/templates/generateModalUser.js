@@ -14,7 +14,7 @@ export const generateModalUser = (user, title) => {
         <h2 class="modal-heading">${
           title || (id ? 'Edit User ' : 'Add User')
         }</h2>
-        <button class="btn-close-modal" id="close-modal-user">
+        <button class="btn btn-close-modal" id="close-modal-user">
           <span>X</span>
         </button>
       </div>
@@ -83,7 +83,7 @@ export const generateModalUser = (user, title) => {
           <button class="btn btn-submit" id="add-user-submit">
             ${id ? 'Save User ' : 'Add User'}
           </button>
-          <button id="add-user-cancel" class="btn-close-modal">
+          <button id="add-user-cancel" class="btn btn-close-modal">
             Cancel
           </button>
         </div>

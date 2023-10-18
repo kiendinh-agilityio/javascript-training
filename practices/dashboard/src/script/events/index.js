@@ -6,7 +6,7 @@ import { showFormErrors } from '../templates/showFormErrors';
 import {
   isStringMatched,
   debounce,
-  handlePhoneNumberInput,
+  formatLimitedPhoneNumberInput,
 } from '../utils/index';
 import {
   formattedDate,
@@ -14,6 +14,7 @@ import {
   delayActions,
   DISPLAY_CLASS,
   PROFILE_USER,
+  DEBOUNCE_TIME,
 } from '../constants/index';
 import {
   searchInput,
@@ -25,6 +26,7 @@ import {
   closeDeleteModalButton,
   btnAddUser,
   modalElement,
+  btnClearSearch,
 } from '../dom/index';
 
 const { FIRST_NAME, LAST_NAME, EMAIL, PHONE, ROLE_TYPE } = PROFILE_USER;
@@ -32,31 +34,21 @@ const { FIRST_NAME, LAST_NAME, EMAIL, PHONE, ROLE_TYPE } = PROFILE_USER;
 export const eventLoader = () => {
   /**
    * Handle the feature for search users
-   * Handle the search when users the search button is pressed
+   * Function to handle search
    */
-  searchButton.addEventListener('click', () => {
-    performSearchWithSpinner();
-  });
-
-  // Handle searches as the user types and presses Enter with debounce
-  const debouncedSearch = debounce('performSearch', 300); // Debounce timeout is 300 ms
-
-  searchInput.addEventListener('input', () => {
-    debouncedSearch();
-  });
-
   const performSearchWithSpinner = () => {
-    // Show the loading spinner when performing the search
+    // Show spinner when performing search
     startLoadingSpinner();
 
-    // Perform the search
+    // Perform search
     performSearch();
   };
 
+  // The function performs the search
   const performSearch = () => {
     const searchTerm = searchInput.value.toLowerCase().trim();
 
-    // Search in the list users
+    // Search in the user list
     const searchResults = getUserFromLocalStorage.filter((user) => {
       const { lastName, firstName, email, phone } = user;
       const nameMatch = isStringMatched(`${firstName} ${lastName}`, searchTerm);
@@ -65,13 +57,52 @@ export const eventLoader = () => {
       return nameMatch || emailMatch || phoneMatch;
     });
 
-    // // Use the delayActions function to perform actions after the delay
+    // Use the delayActions function to perform actions after a delay
     delayActions(() => {
       generateUsersTable(searchResults);
     });
   };
 
-  // Handle searches as the user types and presses Enter
+  // Define the clearSearch function
+  const clearSearch = () => {
+    // Clear search field content
+    searchInput.value = '';
+
+    // Hide the clear search button
+    btnClearSearch.style.display = DISPLAY_CLASS.HIDDEN;
+
+    // Call the debounce function to perform a search (in case there is previous content)
+    debouncedSearch();
+  };
+
+  // Handle searches as the user types and presses Enter with debounce
+  const debouncedSearch = debounce(performSearchWithSpinner, DEBOUNCE_TIME); // Debounce timeout is 800 ms
+
+  // Add 'input' event for search field
+  searchInput.addEventListener('input', () => {
+    // If the input field is not empty, show the clear search button, otherwise hide it
+    if (searchInput.value.trim() !== '') {
+      btnClearSearch.style.display = DISPLAY_CLASS.BLOCK;
+    } else {
+      btnClearSearch.style.display = DISPLAY_CLASS.HIDDEN;
+    }
+
+    // Call the debounce function to perform the search
+    debouncedSearch();
+  });
+
+  // Add click event for clear search button
+  btnClearSearch.addEventListener('click', () => {
+    // Call the clearSearch function when the user clicks the clear search button
+    clearSearch();
+  });
+
+  // 'click' event for performing a search when the user clicks the search button
+  searchButton.addEventListener('click', () => {
+    performSearchWithSpinner();
+  });
+
+  // 'keypress' event for performing a search when the user types and presses Enter
   searchInput.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
@@ -174,7 +205,7 @@ export const eventLoader = () => {
     const roleInput = formUsers.querySelector(ROLE_TYPE);
 
     // Handle the event of not being able to enter text into the phone number input
-    phoneInput.addEventListener('input', handlePhoneNumberInput);
+    phoneInput.addEventListener('input', formatLimitedPhoneNumberInput);
 
     addUserCancelButton.addEventListener('click', () => {
       modalElement.style.display = DISPLAY_CLASS.HIDDEN;
@@ -282,7 +313,7 @@ export const eventLoader = () => {
         editedPhoneInput.value = editedUser.phone;
 
         // Handle the event of not being able to enter text into the phone number input
-        editedPhoneInput.addEventListener('input', handlePhoneNumberInput);
+        editedPhoneInput.addEventListener('input', formatLimitedPhoneNumberInput);
 
         // Handles button cancel edit user
         editUserCancelButton.addEventListener('click', () => {
@@ -338,7 +369,7 @@ export const eventLoader = () => {
             // Use the delayActions function to perform actions after the delay
             delayActions(() => {
               generateUsersTable(updatedUsers);
-            }, 300);
+            }, DEBOUNCE_TIME);
           }
         });
 

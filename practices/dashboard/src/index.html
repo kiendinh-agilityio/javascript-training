@@ -63,7 +63,7 @@
           <h1 class="dashboard-heading">Users Dashboard</h1>
           <div class="flex-row items-center justify-between">
             <div class="d-flex items-center dashboard-search">
-              <button id="search-button" class="btn-search">
+              <button id="search-button" class="btn btn-search">
                 <img
                   loading="lazy"
                   width="16px"
@@ -80,6 +80,16 @@
                 type="text"
                 name="search"
               />
+              <buton id="btn-clear-search" class="btn btn-clear-search">
+                <img
+                  loading="lazy"
+                  width="16px"
+                  height="16px"
+                  class="search-icon"
+                  src="./assets/images/svg/btn-clear-search.svg"
+                  alt="clear search icon"
+                />
+              </buton>
             </div>
             <div class="flex-row">
               <button id="btn-add" class="d-flex items-center btn btn-add">
@@ -169,7 +179,7 @@
           <!-- Modal confirm remove users -->
           <div id="delete-modal" class="modal-confirm-delete">
             <div class="modal-confirm-content">
-              <button class="btn-close" id="close-modal">
+              <button class="btn btn-close" id="close-modal">
                 <span>X</span>
               </button>
               <p class="heading-confirm">
