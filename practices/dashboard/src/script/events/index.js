@@ -14,6 +14,7 @@ import {
   delayActions,
   DISPLAY_CLASS,
   PROFILE_USER,
+  DEBOUCE_TIME,
 } from '../constants/index';
 import {
   searchInput,
@@ -68,22 +69,22 @@ export const eventLoader = () => {
     searchInput.value = '';
 
     // Hide the clear search button
-    btnClearSearch.style.display = 'none';
+    btnClearSearch.style.display = DISPLAY_CLASS.HIDDEN;
 
     // Call the debounce function to perform a search (in case there is previous content)
     debouncedSearch();
   };
 
   // Handle searches as the user types and presses Enter with debounce
-  const debouncedSearch = debounce(performSearchWithSpinner, 500); // Debounce timeout is 1000 ms
+  const debouncedSearch = debounce(performSearchWithSpinner, DEBOUCE_TIME); // Debounce timeout is 800 ms
 
   // Add 'input' event for search field
   searchInput.addEventListener('input', () => {
     // If the input field is not empty, show the clear search button, otherwise hide it
     if (searchInput.value.trim() !== '') {
-      btnClearSearch.style.display = 'block';
+      btnClearSearch.style.display = DISPLAY_CLASS.BLOCK;
     } else {
-      btnClearSearch.style.display = 'none';
+      btnClearSearch.style.display = DISPLAY_CLASS.HIDDEN;
     }
 
     // Call the debounce function to perform the search
@@ -368,7 +369,7 @@ export const eventLoader = () => {
             // Use the delayActions function to perform actions after the delay
             delayActions(() => {
               generateUsersTable(updatedUsers);
-            }, 300);
+            }, DEBOUCE_TIME);
           }
         });
 
