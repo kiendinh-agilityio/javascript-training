@@ -15,7 +15,7 @@ export const userItem = (user) => {
       <td class="table-cell create-date">${date}</td>
       <td class="table-cell phone-number">${phone}</td>
       <td class="table-cell">
-        <button class="btn-edit" data-id=${id}>
+        <button class="btn btn-edit" data-id=${id}>
           <img
             width="20px"
             height="20px"
@@ -23,7 +23,7 @@ export const userItem = (user) => {
             alt="Edit icon"
           />
         </button>
-        <button class="btn-delete" data-id=${id}>
+        <button class="btn btn-delete" data-id=${id}>
           <img
             width="20px"
             height="20px"
