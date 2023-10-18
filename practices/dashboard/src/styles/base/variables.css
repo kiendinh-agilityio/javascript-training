@@ -1,6 +1,6 @@
 :root {
   /* color */
-  --color-primary: #094ccd;
+  --color-primary: #09399a;
   --color-secondary: #eff4fa;
   --color-tertiary: #222b45;
   --color-dark: #0a0a0a;
@@ -18,6 +18,7 @@
   --color-error-message: #ff0000;
   --color-btn-confirm-cancel: #e2e8f0;
   --color-btn-confirm-delete: #c53030;
+  --color-role-tag: #1d6bf6;
 
   /* font family */
   --font-primary: OpenSans, san-serif;
