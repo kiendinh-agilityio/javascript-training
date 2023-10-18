@@ -1,4 +1,4 @@
-import { DEBOUCE_TIME } from './variables';
+import { DEBOUNCE_TIME } from './variables';
 
 const loadingContainer = document.getElementById('loading-container');
 
@@ -24,5 +24,5 @@ export const delayActions = (callback) => {
   setTimeout(() => {
     callback();
     stopLoadingSpinner();
-  }, DEBOUCE_TIME);
+  }, DEBOUNCE_TIME);
 };

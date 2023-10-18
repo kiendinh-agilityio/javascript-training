@@ -14,7 +14,7 @@ import {
   delayActions,
   DISPLAY_CLASS,
   PROFILE_USER,
-  DEBOUCE_TIME,
+  DEBOUNCE_TIME,
 } from '../constants/index';
 import {
   searchInput,
@@ -76,7 +76,7 @@ export const eventLoader = () => {
   };
 
   // Handle searches as the user types and presses Enter with debounce
-  const debouncedSearch = debounce(performSearchWithSpinner, DEBOUCE_TIME); // Debounce timeout is 800 ms
+  const debouncedSearch = debounce(performSearchWithSpinner, DEBOUNCE_TIME); // Debounce timeout is 800 ms
 
   // Add 'input' event for search field
   searchInput.addEventListener('input', () => {
@@ -369,7 +369,7 @@ export const eventLoader = () => {
             // Use the delayActions function to perform actions after the delay
             delayActions(() => {
               generateUsersTable(updatedUsers);
-            }, DEBOUCE_TIME);
+            }, DEBOUNCE_TIME);
           }
         });
 
