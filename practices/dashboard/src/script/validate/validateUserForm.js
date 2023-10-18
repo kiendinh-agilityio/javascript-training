@@ -14,27 +14,27 @@ export const validateUserForm = (user) => {
   const errors = {};
 
   const firstNameError =
-    requiredMessage(firstName, 'First Name *') ||
-    displayWarningName(firstName, 'First Name *');
+    requiredMessage(firstName, 'First Name') ||
+    displayWarningName(firstName, 'First Name');
   if (firstNameError) {
     errors.firstName = firstNameError;
   }
 
   const lastNameError =
-    requiredMessage(lastName, 'Last Name *') ||
-    displayWarningName(lastName, 'Last Name *');
+    requiredMessage(lastName, 'Last Name') ||
+    displayWarningName(lastName, 'Last Name');
   if (lastNameError) {
     errors.lastName = lastNameError;
   }
 
   const emailError =
-    requiredMessage(email, 'Email *') || displayWarningEmail(email);
+    requiredMessage(email, 'Email') || displayWarningEmail(email);
   if (emailError) {
     errors.email = emailError;
   }
 
   const phoneError =
-    requiredMessage(phone, 'Mobile No *') || displayWarningPhone(phone);
+    requiredMessage(phone, 'Mobile No') || displayWarningPhone(phone);
   if (phoneError) {
     errors.phone = phoneError;
   }
