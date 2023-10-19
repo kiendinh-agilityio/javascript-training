@@ -18,7 +18,7 @@ export const PROFILE_USER = {
 export const DEBOUNCE_TIME = 800;
 
 // Variables get ID
-export const GET_ID = {
+export const ELEMENT_ID = {
   BTN_SUBMIT: 'add-user-submit',
   BTN_CANCEL: 'add-user-cancel',
   FORM_USER: 'user-form',
@@ -27,7 +27,7 @@ export const GET_ID = {
 };
 
 // Variables get class
-export const GET_CLASS = {
+export const ELEMENT_CLASS = {
   BTN_DELETE: '.btn-delete',
   BTN_EDIT: '.btn-edit',
 };
