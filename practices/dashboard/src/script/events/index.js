@@ -27,14 +27,10 @@ import {
   DISPLAY_CLASS,
   PROFILE_USER,
   DEBOUNCE_TIME,
-  GET_ID,
+  ELEMENT_ID,
+  ELEMENT_CLASS,
   TITLE_MODAL,
-  GET_CLASS,
 } from '../constants/index';
-
-const { FIRST_NAME, LAST_NAME, EMAIL, PHONE, ROLE_TYPE } = PROFILE_USER;
-const { BTN_SUBMIT, BTN_CANCEL, FORM_USER, MODAL, CLOSE_MODAL_USER } = GET_ID;
-const { BTN_DELETE, BTN_EDIT } = GET_CLASS;
 
 export const eventLoader = () => {
   /**
@@ -123,7 +119,7 @@ export const eventLoader = () => {
   let userDelete;
 
   listUsers.addEventListener('click', (event) => {
-    const deleteButton = event.target.closest(BTN_DELETE);
+    const deleteButton = event.target.closest(ELEMENT_CLASS.BTN_DELETE);
     const userId = parseInt(deleteButton.getAttribute('data-id'));
 
     // Get user information to delete
@@ -195,19 +191,19 @@ export const eventLoader = () => {
    * Click button add user show modal add user
    */
   btnAddUser.addEventListener('click', () => {
-    const modalElement = document.getElementById(MODAL);
+    const modalElement = document.getElementById(ELEMENT_ID.MODAL);
     modalElement.style.display = DISPLAY_CLASS.FLEX;
     modalElement.innerHTML = generateModalUser();
 
-    const addUserSubmitButton = document.getElementById(BTN_SUBMIT);
-    const formUsers = document.getElementById(FORM_USER);
-    const addUserCancelButton = document.getElementById(BTN_CANCEL);
-    const btnCloseModal = document.getElementById(CLOSE_MODAL_USER);
-    const firstNameInput = formUsers.querySelector(FIRST_NAME);
-    const lastNameInput = formUsers.querySelector(LAST_NAME);
-    const emailInput = formUsers.querySelector(EMAIL);
-    const phoneInput = formUsers.querySelector(PHONE);
-    const roleInput = formUsers.querySelector(ROLE_TYPE);
+    const addUserSubmitButton = document.getElementById(ELEMENT_ID.BTN_SUBMIT);
+    const formUsers = document.getElementById(ELEMENT_ID.FORM_USER);
+    const addUserCancelButton = document.getElementById(ELEMENT_ID.BTN_CANCEL);
+    const btnCloseModal = document.getElementById(ELEMENT_ID.CLOSE_MODAL_USER);
+    const firstNameInput = formUsers.querySelector(PROFILE_USER.FIRST_NAME);
+    const lastNameInput = formUsers.querySelector(PROFILE_USER.LAST_NAME);
+    const emailInput = formUsers.querySelector(PROFILE_USER.EMAIL);
+    const phoneInput = formUsers.querySelector(PROFILE_USER.PHONE);
+    const roleInput = formUsers.querySelector(PROFILE_USER.ROLE_TYPE);
 
     // Handle the event of not being able to enter text into the phone number input
     phoneInput.addEventListener('input', formatLimitedPhoneNumberInput);
@@ -284,7 +280,7 @@ export const eventLoader = () => {
    * Click button add user show modal edit user
    */
   listUsers.addEventListener('click', (event) => {
-    const editButton = event.target.closest(BTN_EDIT);
+    const editButton = event.target.closest(ELEMENT_CLASS.BTN_EDIT);
 
     if (editButton) {
       // Get user ID from data-id attribute
@@ -297,7 +293,7 @@ export const eventLoader = () => {
 
       if (editedUser) {
         // Show the edit user modal with the user's data
-        const modalElement = document.getElementById(MODAL);
+        const modalElement = document.getElementById(ELEMENT_ID.MODAL);
 
         // Pass 'Edit User' as the title
         modalElement.innerHTML = generateModalUser(editedUser, TITLE_MODAL);
@@ -306,13 +302,13 @@ export const eventLoader = () => {
         modalElement.setAttribute('data-user-id', userId);
         modalElement.style.display = DISPLAY_CLASS.FLEX;
 
-        const editUserSubmitButton = document.getElementById(BTN_SUBMIT);
-        const editUserCancelButton = document.getElementById(BTN_CANCEL);
-        const formUsers = document.getElementById(FORM_USER);
-        const btnCloseModal = document.getElementById(CLOSE_MODAL_USER);
+        const editUserSubmitButton = document.getElementById(ELEMENT_ID.BTN_SUBMIT);
+        const editUserCancelButton = document.getElementById(ELEMENT_ID.BTN_CANCEL);
+        const formUsers = document.getElementById(ELEMENT_ID.FORM_USER);
+        const btnCloseModal = document.getElementById(ELEMENT_ID.CLOSE_MODAL_USER);
 
         // Once you have the phone number field (editedPhone), assign a value and handle the "input" for it
-        const editedPhoneInput = formUsers.querySelector(PHONE);
+        const editedPhoneInput = formUsers.querySelector(PROFILE_USER.PHONE);
 
         // Assign the phone number value to the phone number field
         editedPhoneInput.value = editedUser.phone;
@@ -328,14 +324,14 @@ export const eventLoader = () => {
         // Handles button submit edit user
         editUserSubmitButton.addEventListener('click', () => {
           const editedFirstName = formUsers
-            .querySelector(FIRST_NAME)
+            .querySelector(PROFILE_USER.FIRST_NAME)
             .value.trim();
           const editedLastName = formUsers
-            .querySelector(LAST_NAME)
+            .querySelector(PROFILE_USER.LAST_NAME)
             .value.trim();
-          const editedEmail = formUsers.querySelector(EMAIL).value.trim();
-          const editedPhone = formUsers.querySelector(PHONE).value.trim();
-          const editedRole = formUsers.querySelector(ROLE_TYPE).value;
+          const editedEmail = formUsers.querySelector(PROFILE_USER.EMAIL).value.trim();
+          const editedPhone = formUsers.querySelector(PROFILE_USER.PHONE).value.trim();
+          const editedRole = formUsers.querySelector(PROFILE_USER.ROLE_TYPE).value;
 
           const errors = validateUserForm({
             firstName: editedFirstName,
