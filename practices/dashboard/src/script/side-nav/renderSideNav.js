@@ -1,21 +1,21 @@
 import { NAV_ITEMS } from '../constants/index';
 
 const generateSideNav = NAV_ITEMS.map((nav) => {
-  const { href, img, name, alt } = nav;
+  const { NAME, IMG, HREF, ALT } = nav;
 
   return `
     <li>
-      <a href="${nav.href}" class="d-flex items-center nav-item ${
-        href === window.location.pathname ? 'nav-active' : ''
+      <a href="${HREF}" class="d-flex items-center nav-item ${
+        HREF === window.location.pathname ? 'nav-active' : ''
       }">
         <img
           loading="lazy"
           width="24px"
           height="24px"
-          src="${img}"
-          alt="${alt}"
+          src="${IMG}"
+          alt="${ALT}"
         />
-        <span>${name}</span>
+        <span>${NAME}</span>
       </a>
     </li>`;
 }).join('');

@@ -1,3 +1,4 @@
+// Format Phone Number
 const formatPhoneNumber = (phoneNumber) => {
   if (phoneNumber.length >= 10) {
     return `(${phoneNumber.slice(0, 3)})-${phoneNumber.slice(3, 6)}-${phoneNumber.slice(6, 10)}`;
@@ -16,4 +17,23 @@ export const formatLimitedPhoneNumberInput = (event) => {
   } else {
     event.target.value = formatPhoneNumber(cleanPhoneNumber);
   }
+};
+
+// Format date
+const addDaySuffix = (day) => {
+  const suffixes = ['th', 'st', 'nd', 'rd'];
+  const digit = day % 10;
+
+  return `${day}${suffixes[digit] || 'th'}`;
+};
+
+export const formattedDate = () => {
+  const currentDate = new Date();
+  const options = { month: 'short' };
+  const shortMonth = currentDate.toLocaleString('en-US', options);
+  const day = currentDate.getDate();
+  const formattedDay = addDaySuffix(day);
+  const year = currentDate.getFullYear();
+
+  return `${shortMonth} ${formattedDay}, ${year}`;
 };
