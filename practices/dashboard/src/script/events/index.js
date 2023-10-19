@@ -247,7 +247,7 @@ export const eventLoader = () => {
           phone,
           role,
           roleId: role.includes('Admin') ? 'admin' : 'employee',
-          date: formattedDate,
+          date: formattedDate(),
         };
 
         // Add user to list users

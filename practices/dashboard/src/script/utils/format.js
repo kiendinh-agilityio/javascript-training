@@ -20,11 +20,6 @@ export const formatLimitedPhoneNumberInput = (event) => {
 };
 
 // Format date
-const currentDate = new Date();
-const options = { month: 'short' };
-const shortMonth = currentDate.toLocaleString('en-US', options);
-const day = currentDate.getDate();
-
 const addDaySuffix = (day) => {
   const suffixes = ['th', 'st', 'nd', 'rd'];
   const digit = day % 10;
@@ -32,7 +27,13 @@ const addDaySuffix = (day) => {
   return `${day}${suffixes[digit] || 'th'}`;
 };
 
-const formattedDay = addDaySuffix(day);
-const year = currentDate.getFullYear();
+export const formattedDate = () => {
+  const currentDate = new Date();
+  const options = { month: 'short' };
+  const shortMonth = currentDate.toLocaleString('en-US', options);
+  const day = currentDate.getDate();
+  const formattedDay = addDaySuffix(day);
+  const year = currentDate.getFullYear();
 
-export const formattedDate = `${shortMonth} ${formattedDay}, ${year}`;
+  return `${shortMonth} ${formattedDay}, ${year}`;
+};
