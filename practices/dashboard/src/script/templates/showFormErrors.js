@@ -1,4 +1,4 @@
-import { camelCaseToHyphenCase } from '../constants';
+import { camelCaseToHyphenCase } from '../utils/index';
 
 const updateErrorMessages = (errors) => {
   Object.entries(errors).forEach(([key, value]) => {
