@@ -63,3 +63,20 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+.clear-search-icon {
+	width: 15px;
+	height: 15px;
+	position: absolute;
+	background-color: var(--color-clear-search);
+	right: 20px;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	padding: 2px;
+	border-radius: var(--rounded-circle);
+	text-align: center;
+	font-weight: normal;
+	font-size: 12px;
+	box-shadow: 0 0 2px var(--color-clear-search);
+}
