@@ -1,4 +1,4 @@
-import { DEBOUNCE_TIME } from './variables';
+import { DEBOUNCE_TIME } from '../constants/index';
 
 const loadingContainer = document.getElementById('loading-container');
 
