@@ -1,4 +1,4 @@
-import { getUserFromLocalStorage } from '../mocks/listUsers';
+import { getUserFromLocalStorage } from '../services/index';
 import { userItem } from './userItem';
 
 const generateListUsers = (users) => {
