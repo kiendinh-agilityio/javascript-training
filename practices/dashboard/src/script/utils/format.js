@@ -1,5 +1,3 @@
-import { MONTHS } from '../constants/index';
-
 // Format Phone Number
 const formatPhoneNumber = (phoneNumber) => {
   if (phoneNumber.length >= 10) {
@@ -22,27 +20,19 @@ export const formatLimitedPhoneNumberInput = (event) => {
 };
 
 // Format date
-const getShortMonthName = (date) => {
-  return MONTHS[date.getMonth()];
-};
+const currentDate = new Date();
+const options = { month: 'short' };
+const shortMonth = currentDate.toLocaleString('en-US', options);
+const day = currentDate.getDate();
 
 const addDaySuffix = (day) => {
-  if (day >= 11 && day <= 13) {
-    return day + 'th';
-  }
-  switch (day % 10) {
-    case 1:
-      return day + 'st';
-    case 2:
-      return day + 'nd';
-    case 3:
-      return day + 'rd';
-    default:
-      return day + 'th';
-  }
+  const suffixes = ['th', 'st', 'nd', 'rd'];
+  const digit = day % 10;
+
+  return `${day}${suffixes[digit] || 'th'}`;
 };
 
-const currentDate = new Date();
-const day = addDaySuffix(currentDate.getDate());
+const formattedDay = addDaySuffix(day);
+const year = currentDate.getFullYear();
 
-export const formattedDate = `${getShortMonthName(currentDate)} ${day}, ${currentDate.getFullYear()}`;
+export const formattedDate = `${shortMonth} ${formattedDay}, ${year}`;
