@@ -80,3 +80,17 @@
 	font-size: 12px;
 	box-shadow: 0 0 2px var(--color-clear-search);
 }
+
+.empty-result-message {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+}
+
+.empty-result-text {
+  font-size: var(--font-size-3xl);
+  line-height: var(--line-height-2xl);
+  font-family: var(--font-primary-semibold);
+  letter-spacing: var(--spacing-xs);
+  color: var(--color-text);
+}
