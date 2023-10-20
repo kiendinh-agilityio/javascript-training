@@ -3,6 +3,7 @@ body {
   line-height: var(--line-height-sm);
   background: var(--color-background);
   color: var(--color-dark);
+  position: relative;
 }
 
 .d-flex {
