@@ -10,6 +10,9 @@ import {
   formattedDate,
   startLoadingSpinner,
   delayActions,
+  generateEmptyResultMessage,
+  showToast,
+  trimmingString,
 } from '../utils/index';
 import {
   searchInput,
@@ -30,6 +33,7 @@ import {
   ELEMENT_ID,
   ELEMENT_CLASS,
   TITLE_MODAL,
+  TOAST_MESSAGE,
 } from '../constants/index';
 
 export const eventLoader = () => {
@@ -60,7 +64,14 @@ export const eventLoader = () => {
 
     // Use the delayActions function to perform actions after a delay
     delayActions(() => {
-      generateUsersTable(searchResults);
+      if (searchResults.length === 0) {
+        // If no results, display an empty result message with the image
+        const emptyMessage = generateEmptyResultMessage();
+        listUsers.innerHTML = ''; // Xóa nội dung hiện tại
+        listUsers.appendChild(emptyMessage); // Thêm thông báo rỗng
+      } else {
+        generateUsersTable(searchResults);
+      }
     });
   };
 
@@ -82,7 +93,7 @@ export const eventLoader = () => {
   // Add 'input' event for search field
   searchInput.addEventListener('input', () => {
     // If the input field is not empty, show the clear search button, otherwise hide it
-    if (searchInput.value.trim() !== '') {
+    if (trimmingString(searchInput) !== '') {
       btnClearSearch.style.display = DISPLAY_CLASS.BLOCK;
     } else {
       btnClearSearch.style.display = DISPLAY_CLASS.HIDDEN;
@@ -150,6 +161,8 @@ export const eventLoader = () => {
           JSON.stringify(getUserFromLocalStorage),
         );
         generateUsersTable(getUserFromLocalStorage);
+
+        showToast(TOAST_MESSAGE.DELETE_USER);
       }
     });
   });
@@ -213,10 +226,10 @@ export const eventLoader = () => {
     });
 
     addUserSubmitButton.addEventListener('click', () => {
-      const firstName = firstNameInput.value.trim();
-      const lastName = lastNameInput.value.trim();
-      const email = emailInput.value.trim();
-      const phone = phoneInput.value.trim();
+      const firstName = trimmingString(firstNameInput);
+      const lastName = trimmingString(lastNameInput);
+      const email = trimmingString(emailInput);
+      const phone = trimmingString(phoneInput);
       const role = roleInput.options[roleInput.selectedIndex].value;
 
       const errors = validateUserForm({
@@ -265,6 +278,8 @@ export const eventLoader = () => {
         // // Use the delayActions function to perform actions after the delay
         delayActions(() => {
           generateUsersTable(getUserFromLocalStorage);
+
+          showToast(TOAST_MESSAGE.ADD_USER);
         });
       }
     });
@@ -323,14 +338,10 @@ export const eventLoader = () => {
 
         // Handles button submit edit user
         editUserSubmitButton.addEventListener('click', () => {
-          const editedFirstName = formUsers
-            .querySelector(PROFILE_USER.FIRST_NAME)
-            .value.trim();
-          const editedLastName = formUsers
-            .querySelector(PROFILE_USER.LAST_NAME)
-            .value.trim();
-          const editedEmail = formUsers.querySelector(PROFILE_USER.EMAIL).value.trim();
-          const editedPhone = formUsers.querySelector(PROFILE_USER.PHONE).value.trim();
+          const editedFirstName = trimmingString(formUsers.querySelector(PROFILE_USER.FIRST_NAME));
+          const editedLastName = trimmingString(formUsers.querySelector(PROFILE_USER.LAST_NAME));
+          const editedEmail = trimmingString(formUsers.querySelector(PROFILE_USER.EMAIL));
+          const editedPhone = trimmingString(formUsers.querySelector(PROFILE_USER.PHONE));
           const editedRole = formUsers.querySelector(PROFILE_USER.ROLE_TYPE).value;
 
           const errors = validateUserForm({
@@ -370,6 +381,8 @@ export const eventLoader = () => {
             // Use the delayActions function to perform actions after the delay
             delayActions(() => {
               generateUsersTable(updatedUsers);
+
+              showToast(TOAST_MESSAGE.EDIT_USER);
             }, DEBOUNCE_TIME);
           }
         });
