@@ -64,13 +64,18 @@ export const eventLoader = () => {
 
     // Use the delayActions function to perform actions after a delay
     delayActions(() => {
-      if (searchResults.length === 0) {
-        // If no results, display an empty result message with the image
-        const emptyMessage = generateEmptyResultMessage();
-        listUsers.innerHTML = ''; // Xóa nội dung hiện tại
-        listUsers.appendChild(emptyMessage); // Thêm thông báo rỗng
-      } else {
+      if (searchResults.length) {
+        // If there are results, display the user table
         generateUsersTable(searchResults);
+      } else {
+        // If no results, display an empty result message
+        const emptyMessage = generateEmptyResultMessage();
+
+        // Clear any previous content
+        listUsers.innerHTML = '';
+
+        // Add the empty message
+        listUsers.appendChild(emptyMessage);
       }
     });
   };
@@ -93,7 +98,7 @@ export const eventLoader = () => {
   // Add 'input' event for search field
   searchInput.addEventListener('input', () => {
     // If the input field is not empty, show the clear search button, otherwise hide it
-    if (trimmingString(searchInput) !== '') {
+    if (trimmingString(searchInput.value)) {
       btnClearSearch.style.display = DISPLAY_CLASS.BLOCK;
     } else {
       btnClearSearch.style.display = DISPLAY_CLASS.HIDDEN;
@@ -226,10 +231,10 @@ export const eventLoader = () => {
     });
 
     addUserSubmitButton.addEventListener('click', () => {
-      const firstName = trimmingString(firstNameInput);
-      const lastName = trimmingString(lastNameInput);
-      const email = trimmingString(emailInput);
-      const phone = trimmingString(phoneInput);
+      const firstName = trimmingString(firstNameInput.value);
+      const lastName = trimmingString(lastNameInput.value);
+      const email = trimmingString(emailInput.value);
+      const phone = trimmingString(phoneInput.value);
       const role = roleInput.options[roleInput.selectedIndex].value;
 
       const errors = validateUserForm({
@@ -338,10 +343,10 @@ export const eventLoader = () => {
 
         // Handles button submit edit user
         editUserSubmitButton.addEventListener('click', () => {
-          const editedFirstName = trimmingString(formUsers.querySelector(PROFILE_USER.FIRST_NAME));
-          const editedLastName = trimmingString(formUsers.querySelector(PROFILE_USER.LAST_NAME));
-          const editedEmail = trimmingString(formUsers.querySelector(PROFILE_USER.EMAIL));
-          const editedPhone = trimmingString(formUsers.querySelector(PROFILE_USER.PHONE));
+          const editedFirstName = trimmingString(formUsers.querySelector(PROFILE_USER.FIRST_NAME).value);
+          const editedLastName = trimmingString(formUsers.querySelector(PROFILE_USER.LAST_NAME).value);
+          const editedEmail = trimmingString(formUsers.querySelector(PROFILE_USER.EMAIL).value);
+          const editedPhone = trimmingString(formUsers.querySelector(PROFILE_USER.PHONE).value);
           const editedRole = formUsers.querySelector(PROFILE_USER.ROLE_TYPE).value;
 
           const errors = validateUserForm({
