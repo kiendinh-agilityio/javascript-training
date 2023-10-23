@@ -1,5 +1,5 @@
 import { generateUsersTable } from '../templates/renderListUsers';
-import { getUserFromLocalStorage } from '../services/index';
+import { getUserFromLocalStorage, saveUserListToLocalStorage } from '../services/index';
 import { generateModalUser } from '../templates/generateModalUser';
 import { validateUserForm } from '../validate/index';
 import { showFormErrors } from '../templates/showFormErrors';
@@ -7,12 +7,13 @@ import {
   isStringMatched,
   debounce,
   formatLimitedPhoneNumberInput,
-  formattedDate,
   startLoadingSpinner,
   delayActions,
   generateEmptyResultMessage,
   showToast,
   trimmingString,
+  addNewUser,
+  editUser,
 } from '../utils/index';
 import {
   searchInput,
@@ -23,7 +24,6 @@ import {
   cancelDeleteButton,
   closeDeleteModalButton,
   btnAddUser,
-  modalElement,
   btnClearSearch,
 } from '../dom/index';
 import {
@@ -132,6 +132,9 @@ export const eventLoader = () => {
   /**
    * Handle the Delete User event
    */
+  /**
+ * Handle the Delete User event
+ */
   let userDelete;
 
   listUsers.addEventListener('click', (event) => {
@@ -161,12 +164,10 @@ export const eventLoader = () => {
 
       if (userIndex !== -1) {
         getUserFromLocalStorage.splice(userIndex, 1);
-        localStorage.setItem(
-          'listUsers',
-          JSON.stringify(getUserFromLocalStorage),
-        );
+        saveUserListToLocalStorage();
         generateUsersTable(getUserFromLocalStorage);
 
+        // Show toast message when delete user successfully
         showToast(TOAST_MESSAGE.DELETE_USER);
       }
     });
@@ -184,14 +185,10 @@ export const eventLoader = () => {
     hideDeleteModal();
   });
 
-  // Use the click event to catch when the user clicks on the gray background around the modal
-  window.addEventListener('click', (event) => {
+  // Use deleteModal to catch the click event on the gray background around the modal
+  deleteModal.addEventListener('click', (event) => {
     if (event.target === deleteModal) {
       hideDeleteModal();
-    }
-
-    if (event.target === modalElement) {
-      modalElement.style.display = DISPLAY_CLASS.HIDDEN;
     }
   });
 
@@ -205,45 +202,55 @@ export const eventLoader = () => {
   };
 
   /**
-   * Handle add new users for list users
-   * Click button add user show modal add user
+   * Show the user modal with specified data and title
+   * The user data to display in the modal
+   * The title for the modal
    */
-  btnAddUser.addEventListener('click', () => {
+  const showUserModal = (userData) => {
+    // Get the modal element
     const modalElement = document.getElementById(ELEMENT_ID.MODAL);
+
+    // Determine the title based on userData presence
+    const title = userData ? TITLE_MODAL.EDIT : TITLE_MODAL.ADD;
+
+    // Set the content and display the modal
+    modalElement.innerHTML = generateModalUser(userData, title);
     modalElement.style.display = DISPLAY_CLASS.FLEX;
-    modalElement.innerHTML = generateModalUser();
 
-    const addUserSubmitButton = document.getElementById(ELEMENT_ID.BTN_SUBMIT);
+    // Get form, buttons, and input elements
     const formUsers = document.getElementById(ELEMENT_ID.FORM_USER);
-    const addUserCancelButton = document.getElementById(ELEMENT_ID.BTN_CANCEL);
     const btnCloseModal = document.getElementById(ELEMENT_ID.CLOSE_MODAL_USER);
-    const firstNameInput = formUsers.querySelector(PROFILE_USER.FIRST_NAME);
-    const lastNameInput = formUsers.querySelector(PROFILE_USER.LAST_NAME);
-    const emailInput = formUsers.querySelector(PROFILE_USER.EMAIL);
-    const phoneInput = formUsers.querySelector(PROFILE_USER.PHONE);
-    const roleInput = formUsers.querySelector(PROFILE_USER.ROLE_TYPE);
+    const submitButton = document.getElementById(ELEMENT_ID.BTN_SUBMIT);
+    const cancelButton = document.getElementById(ELEMENT_ID.BTN_CANCEL);
 
-    // Handle the event of not being able to enter text into the phone number input
-    phoneInput.addEventListener('input', formatLimitedPhoneNumberInput);
-
-    addUserCancelButton.addEventListener('click', () => {
+    // Handle Button Close Modal User
+    btnCloseModal.addEventListener('click', () => {
+      // Close the modal when the close button is clicked
       modalElement.style.display = DISPLAY_CLASS.HIDDEN;
     });
 
-    addUserSubmitButton.addEventListener('click', () => {
-      const firstName = trimmingString(firstNameInput.value);
-      const lastName = trimmingString(lastNameInput.value);
-      const email = trimmingString(emailInput.value);
-      const phone = trimmingString(phoneInput.value);
-      const role = roleInput.options[roleInput.selectedIndex].value;
+    // Handle the event of not being able to enter text into the phone number input
+    const phoneInput = formUsers.querySelector(PROFILE_USER.PHONE);
+    phoneInput.addEventListener('input', formatLimitedPhoneNumberInput);
 
-      const errors = validateUserForm({
+    // Handle Button Submit
+    submitButton.addEventListener('click', () => {
+      // Extract user data from the form
+      const firstName = trimmingString(formUsers.querySelector(PROFILE_USER.FIRST_NAME).value);
+      const lastName = trimmingString(formUsers.querySelector(PROFILE_USER.LAST_NAME).value);
+      const email = trimmingString(formUsers.querySelector(PROFILE_USER.EMAIL).value);
+      const phone = trimmingString(phoneInput.value);
+      const role = formUsers.querySelector(PROFILE_USER.ROLE_TYPE).value;
+
+      const user = {
         firstName,
         lastName,
         email,
         phone,
         role,
-      });
+      };
+
+      const errors = validateUserForm(user);
 
       if (Object.entries(errors).length > 0) {
         showFormErrors(errors);
@@ -251,152 +258,34 @@ export const eventLoader = () => {
         // Show loading spinner
         startLoadingSpinner();
 
-        const userLength = getUserFromLocalStorage.length;
-
-        // Calculate the new user ID based on the last user's ID
-        const currentUserId =
-          userLength > 0 ? getUserFromLocalStorage[userLength - 1].id + 1 : 1;
-
-        const newUser = {
-          id: currentUserId,
-          firstName,
-          lastName,
-          email,
-          phone,
-          role,
-          roleId: role.includes('Admin') ? 'admin' : 'employee',
-          date: formattedDate(),
-        };
-
-        // Add user to list users
-        getUserFromLocalStorage.push(newUser);
-
-        // Update user list in Local Storage
-        localStorage.setItem(
-          'listUsers',
-          JSON.stringify(getUserFromLocalStorage),
-        );
+        // Adding new user and Editing an existing user
+        !userData ? addNewUser(user) : editUser(userData, user);
 
         // Close modal
         modalElement.style.display = DISPLAY_CLASS.HIDDEN;
-
-        // // Use the delayActions function to perform actions after the delay
-        delayActions(() => {
-          generateUsersTable(getUserFromLocalStorage);
-
-          showToast(TOAST_MESSAGE.ADD_USER);
-        });
       }
     });
 
-    // Handle Button Close Modal User
-    btnCloseModal.addEventListener('click', () => {
+    // Handle Button Cancel
+    cancelButton.addEventListener('click', () => {
+      // Close the modal when the cancel button is clicked
       modalElement.style.display = DISPLAY_CLASS.HIDDEN;
     });
+  };
+
+  // Handle add new users for list users
+  btnAddUser.addEventListener('click', () => {
+    // Show the modal for adding a new user
+    showUserModal(null);
   });
 
-  /**
-   * Handle the feature for edit user
-   * Click button add user show modal edit user
-   */
+  // Handle the feature for editing user
   listUsers.addEventListener('click', (event) => {
     const editButton = event.target.closest(ELEMENT_CLASS.BTN_EDIT);
+    const userId = editButton ? parseInt(editButton.getAttribute('data-id')) : null;
+    const editedUser = userId ? getUserFromLocalStorage.find((user) => user.id === userId) : null;
 
-    if (editButton) {
-      // Get user ID from data-id attribute
-      const userId = parseInt(editButton.getAttribute('data-id'));
-
-      // Get the user to edit from Local Storage by user ID
-      const editedUser = getUserFromLocalStorage.find(
-        (user) => user.id === userId,
-      );
-
-      if (editedUser) {
-        // Show the edit user modal with the user's data
-        const modalElement = document.getElementById(ELEMENT_ID.MODAL);
-
-        // Pass 'Edit User' as the title
-        modalElement.innerHTML = generateModalUser(editedUser, TITLE_MODAL);
-
-        // Set the data-user-id attribute to store the user ID
-        modalElement.setAttribute('data-user-id', userId);
-        modalElement.style.display = DISPLAY_CLASS.FLEX;
-
-        const editUserSubmitButton = document.getElementById(ELEMENT_ID.BTN_SUBMIT);
-        const editUserCancelButton = document.getElementById(ELEMENT_ID.BTN_CANCEL);
-        const formUsers = document.getElementById(ELEMENT_ID.FORM_USER);
-        const btnCloseModal = document.getElementById(ELEMENT_ID.CLOSE_MODAL_USER);
-
-        // Once you have the phone number field (editedPhone), assign a value and handle the "input" for it
-        const editedPhoneInput = formUsers.querySelector(PROFILE_USER.PHONE);
-
-        // Assign the phone number value to the phone number field
-        editedPhoneInput.value = editedUser.phone;
-
-        // Handle the event of not being able to enter text into the phone number input
-        editedPhoneInput.addEventListener('input', formatLimitedPhoneNumberInput);
-
-        // Handles button cancel edit user
-        editUserCancelButton.addEventListener('click', () => {
-          modalElement.style.display = DISPLAY_CLASS.HIDDEN;
-        });
-
-        // Handles button submit edit user
-        editUserSubmitButton.addEventListener('click', () => {
-          const editedFirstName = trimmingString(formUsers.querySelector(PROFILE_USER.FIRST_NAME).value);
-          const editedLastName = trimmingString(formUsers.querySelector(PROFILE_USER.LAST_NAME).value);
-          const editedEmail = trimmingString(formUsers.querySelector(PROFILE_USER.EMAIL).value);
-          const editedPhone = trimmingString(formUsers.querySelector(PROFILE_USER.PHONE).value);
-          const editedRole = formUsers.querySelector(PROFILE_USER.ROLE_TYPE).value;
-
-          const errors = validateUserForm({
-            firstName: editedFirstName,
-            lastName: editedLastName,
-            email: editedEmail,
-            phone: editedPhone,
-            role: editedRole,
-          });
-
-          if (Object.entries(errors).length > 0) {
-            showFormErrors(errors);
-          } else {
-            // Show loading spinner
-            startLoadingSpinner();
-
-            editedUser.firstName = editedFirstName;
-            editedUser.lastName = editedLastName;
-            editedUser.email = editedEmail;
-            editedUser.phone = editedPhone;
-            editedUser.role = editedRole;
-            editedUser.roleId = editedRole.includes('Admin')
-              ? 'admin'
-              : 'employee';
-
-            const updatedUsers = getUserFromLocalStorage.map((user) => {
-              if (user.id === editedUser.id) {
-                return editedUser;
-              }
-
-              return user;
-            });
-
-            localStorage.setItem('listUsers', JSON.stringify(updatedUsers));
-            modalElement.style.display = DISPLAY_CLASS.HIDDEN;
-
-            // Use the delayActions function to perform actions after the delay
-            delayActions(() => {
-              generateUsersTable(updatedUsers);
-
-              showToast(TOAST_MESSAGE.EDIT_USER);
-            }, DEBOUNCE_TIME);
-          }
-        });
-
-        // Handle Button Close Modal User
-        btnCloseModal.addEventListener('click', () => {
-          modalElement.style.display = DISPLAY_CLASS.HIDDEN;
-        });
-      }
-    }
+    // Show the modal for editing user
+    editedUser && showUserModal(editedUser);
   });
 };
