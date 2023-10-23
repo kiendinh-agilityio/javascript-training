@@ -1,6 +1,1 @@
-export const trimmingString = (element) => {
-  if (element && typeof element.value === 'string') {
-    return element.value.trim();
-  }
-  return element;
-};
+export const trimmingString = (value) => typeof value === 'string' ? value.trim() : value;
