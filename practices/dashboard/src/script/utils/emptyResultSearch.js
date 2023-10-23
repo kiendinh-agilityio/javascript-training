@@ -5,4 +5,6 @@ export const generateEmptyResultMessage = () => {
       <p class="empty-result-text">No results were found.</p>
     </div>
   `;
+
+  return emptyResultMessage;
 };
