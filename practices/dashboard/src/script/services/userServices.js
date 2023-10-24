@@ -32,4 +32,10 @@ const fetchUsers = async () => {
 
 fetchUsers();
 
-export { getUserFromLocalStorage };
+/**
+ * Function to save user data to localStorage
+ * The list of users to save
+ */
+const saveUserListToLocalStorage = () => localStorage.setItem('listUsers', JSON.stringify(getUserFromLocalStorage));
+
+export { getUserFromLocalStorage, saveUserListToLocalStorage };

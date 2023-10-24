@@ -19,7 +19,10 @@
   --color-btn-confirm-cancel: #e2e8f0;
   --color-btn-confirm-delete: #c53030;
   --color-role-tag: #1d6bf6;
-  --color-clear-search: #fa9595;
+  --color-clear-search: #bfbbbb;
+  --color-box-shadow-toast: rgba(10, 3, 3, 0.15);
+  --color-border-toast: rgba(11, 6, 6, 0.1);
+  --color-bg-toast: rgba(255,255,255,.9);
 
   /* font family */
   --font-primary: OpenSans, san-serif;

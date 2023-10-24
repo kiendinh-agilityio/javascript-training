@@ -7,32 +7,13 @@ import {
 
 const { INVALID_EMAIL, INVALID_PHONE, INVALID_NAME, REQUIRED_ERROR } = VALIDATE_MESSAGE;
 
-export const displayWarningName = (name, fieldName) => {
-  if (!REGEX_NAME.test(name)) {
-    return `${INVALID_NAME.replace('{field}', fieldName)}`;
-  }
-};
+const validateField = (value, fieldName, regex, errorMessage) =>
+  !value ? REQUIRED_ERROR.replace('{field}', fieldName) : (!regex.test(value) ? errorMessage.replace('{field}', fieldName) : null);
 
-export const displayWarningEmail = (email) => {
-  if (!REGEX_EMAIL.test(email)) {
-    return INVALID_EMAIL;
-  }
+export const validateNameField = (name) => validateField(name, 'Name', REGEX_NAME, INVALID_NAME);
 
-  return null;
-};
+export const validateEmailField = (email) => validateField(email, 'Email', REGEX_EMAIL, INVALID_EMAIL);
 
-export const displayWarningPhone = (phone) => {
-  if (!REGEX_PHONE.test(phone)) {
-    return INVALID_PHONE;
-  }
+export const validatePhoneField = (phone) => validateField(phone, 'Mobile No', REGEX_PHONE, INVALID_PHONE);
 
-  return null;
-};
-
-export const requiredMessage = (value, fieldName) => {
-  if (!value) {
-    return `${REQUIRED_ERROR.replace('{field}', fieldName)}`;
-  }
-
-  return null;
-};
+export const validateRoleField = (role) => !role ? REQUIRED_ERROR.replace('{field}', 'Role Type') : null;

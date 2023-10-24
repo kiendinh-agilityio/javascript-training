@@ -33,4 +33,13 @@ export const ELEMENT_CLASS = {
 };
 
 // Title Modal
-export const TITLE_MODAL = 'Edit User';
+export const TITLE_MODAL = {
+  ADD: 'Add User',
+  EDIT: 'Edit User',
+};
+
+// Variables for Role Type
+export const ROLE_USER = {
+  ADMIN: 'admin',
+  EMPLOYEE: 'employee',
+};

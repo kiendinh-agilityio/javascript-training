@@ -6,3 +6,9 @@ export const VALIDATE_MESSAGE = {
   INVALID_PHONE:
     'Invalid phone number. Please enter a valid phone number. Example: (205)-205-5555',
 };
+
+export const TOAST_MESSAGE = {
+  ADD_USER: 'Add new user successfully!',
+  EDIT_USER: 'Edit user successfully!',
+  DELETE_USER: 'Delete user successfully!',
+};
