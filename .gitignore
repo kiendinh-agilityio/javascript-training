@@ -1,0 +1,10 @@
+.parcel-cache/
+dist/
+node_modules/
+
+# macOS-specific files
+.DS_Store
+.vercel
+/test-results/
+/playwright-report/
+/playwright/.cache/
