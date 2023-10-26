@@ -1,0 +1,8 @@
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  line-height: normal;
+  background: var(--color-light);
+  color: var(--color-dark);
+  min-height: 100vh;
+}
