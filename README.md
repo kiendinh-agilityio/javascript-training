@@ -10,7 +10,7 @@
 
 ## TIMELINE
 
-- 12 day (Oct 26, 2023 - Nov 10, 2023)
+- 12 days (Oct 26, 2023 - Nov 10, 2023)
 
 ## TECH STACKS
 
@@ -36,7 +36,7 @@
 
 - **[Figma](https://www.figma.com/file/bAMU7cSvI9cenydNVlZN4a/microsoft-ads-dashboard-gregoirevella?node-id=0%3A318&mode=dev)**
 
-## Workflow
+## WORKFLOW
 
 ![Flowchart](/Flowcharts.jpeg)
 
