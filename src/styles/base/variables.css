@@ -7,6 +7,8 @@
   --color-light: #fff;
   --color-email: #657795;
   --color-status-active: #008274;
+  --color-danger: #dc3545;
+  --color-overlay: rgba(0, 0, 0, 0.5);
 
   /* font family */
   --font-primary: Abel, san-serif;
