@@ -5,6 +5,6 @@
 }
 
 .input::placeholder {
-  color: var(--color-placeholder);
+  color: var(--color-input-placeholder);
   font-size: var(--font-size-sm);
 }
