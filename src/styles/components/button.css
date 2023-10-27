@@ -1,0 +1,15 @@
+.btn {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  border-radius: var(--rounded-sm);
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+/* CSS btn close modal */
+.btn-close-modal {
+  background: var(--color-light);
+  color: var(--color-dark);
+}
