@@ -11,7 +11,7 @@
     <div class="container">
       <section class="d-flex justify-center items-center authen-section">
         <div class="flex-column justify-between authen-content">
-          <div class="auth-header">
+          <div class="header-auth">
             <h2 id="heading-auth" class="heading-auth">Sign In</h2>
             <div class="d-flex justify-center items-center header-btn-group">
               <button
@@ -36,7 +36,7 @@
               />
               <span id="email-error" class="error-message"></span>
             </div>
-            <div class="input-group">
+            <div class="d-flex items-center relative input-group">
               <input
                 id="password"
                 name="password"
@@ -45,6 +45,9 @@
                 placeholder="Password"
               />
               <span id="password-error" class="error-message"></span>
+              <button class="absolute toggle-password">
+                <img width="20px" height="20px" src="../assets/images/svg/eye-key-password.svg" alt="Toggle Password">
+              </button>
             </div>
             <div id="confirm-password-group" class="input-group hidden">
               <input
