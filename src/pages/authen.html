@@ -9,11 +9,11 @@
   </head>
   <body class="authen-page">
     <div class="container">
-      <section class="d-flex justify-center items-center authen-section">
+      <section class="flex justify-center items-center authen-section">
         <div class="flex-column justify-between authen-content">
           <div class="header-auth">
             <h2 id="heading-auth" class="heading-auth">Sign In</h2>
-            <div class="d-flex justify-center items-center header-btn-group">
+            <div class="flex justify-center items-center header-btn-group">
               <button
                 id="btn-action-signin"
                 class="btn btn-action-signin active"
@@ -36,28 +36,31 @@
               />
               <span id="email-error" class="error-message"></span>
             </div>
-            <div class="d-flex items-center relative input-group">
+            <div class="flex items-center relative input-group">
               <input
                 id="password"
                 name="password"
                 type="password"
-                class="input input-auth"
+                class="input input-auth show-password"
                 placeholder="Password"
               />
               <span id="password-error" class="error-message"></span>
-              <button class="absolute toggle-password">
+              <button data-toggle-id="1" class="absolute toggle-password">
                 <img width="20px" height="20px" src="../assets/images/svg/eye-key-password.svg" alt="Toggle Password">
               </button>
             </div>
-            <div id="confirm-password-group" class="input-group hidden">
+            <div id="confirm-password-group" class="items-center relative input-group hidden">
               <input
                 id="confirm-password"
                 name="confirm-password"
                 type="password"
-                class="input input-auth"
+                class="input input-auth show-password"
                 placeholder="Confirm password"
               />
-              <span id="confirmPassword-error" class="error-message"></span>
+              <span id="confirm-password-error" class="error-message"></span>
+              <button data-toggle-id="2" class="absolute toggle-password">
+                <img width="20px" height="20px" src="../assets/images/svg/eye-key-password.svg" alt="Toggle Password">
+              </button>
             </div>
             <button id="btn-submit-auth" type="submit" class="btn btn-sign-in">Sign in</button>
           </form>
