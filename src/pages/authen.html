@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preload stylesheet" href="../styles/main.css" />
+    <title>Authen Page</title>
+  </head>
+  <body class="authen-page">
+    <div class="container">
+      <section class="d-flex justify-center items-center authen-section">
+        <div class="flex-column justify-between authen-content">
+          <div class="auth-header">
+            <h2 id="heading-auth" class="heading-auth">Sign In</h2>
+            <div class="d-flex justify-center items-center header-btn-group">
+              <button
+                id="btn-action-signin"
+                class="btn btn-action-signin active"
+              >
+                Sign in
+              </button>
+              <button id="btn-action-signup" class="btn btn-action-signup">
+                Sign up
+              </button>
+            </div>
+          </div>
+          <form id="form-auth" class="form form-auth" action="/login">
+            <div class="input-group">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                class="input input-auth"
+                placeholder="Email"
+              />
+              <span id="email-error" class="error-message"></span>
+            </div>
+            <div class="input-group">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                class="input input-auth"
+                placeholder="Password"
+              />
+              <span id="password-error" class="error-message"></span>
+            </div>
+            <div id="confirm-password-group" class="input-group hidden">
+              <input
+                id="confirm-password"
+                name="confirm-password"
+                type="password"
+                class="input input-auth"
+                placeholder="Confirm password"
+              />
+              <span id="confirmPassword-error" class="error-message"></span>
+            </div>
+            <button id="btn-submit-auth" type="submit" class="btn btn-sign-in">Sign in</button>
+          </form>
+        </div>
+      </section>
+    </div>
+    <script type="module" src="../scripts/pages/authen.js"></script>
+  </body>
+</html>
