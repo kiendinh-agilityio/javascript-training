@@ -34,15 +34,19 @@
 }
 
 .header-auth {
-  background-color: transparent;
   padding: 36px 0;
-  top: 0;
 }
 
 .error-message {
   margin-top: 5px;
   color: var(--color-danger);
   font-size: var(--font-size-xs);
+}
+
+.toggle-password {
+  cursor: pointer;
+  background-color: transparent;
+  right: 0;
 }
 
 @media (min-width: 992px) {
