@@ -1,17 +1,26 @@
 export const handleTogglePassword = () => {
-  const passwordField = document.getElementById('password');
-  const togglePasswordButton = document.querySelector('.toggle-password');
-  const eyeImage = togglePasswordButton.querySelector('img');
+  const togglePasswordButtons = document.querySelectorAll('.toggle-password');
+  const passwordFields = document.querySelectorAll('.show-password');
 
-  togglePasswordButton.addEventListener('click', (event) => {
+  // Event handler function for showing/hiding password
+  const togglePassword = (passwordField, toggleButton) => (event) => {
     event.preventDefault();
 
-    if (passwordField.type === 'password') {
-      passwordField.type = 'text';
-      eyeImage.src = '/images/svg/eye-password.svg';
-    } else {
-      passwordField.type = 'password';
-      eyeImage.src = '/images/svg/eye-key-password.svg';
-    }
+    const eyeImage = toggleButton.querySelector('img');
+    const isPasswordFieldHidden = passwordField.type === 'password';
+
+    // Reverse the display style of the password input field
+    passwordField.type = isPasswordFieldHidden ? 'text' : 'password';
+
+    // Change eye image
+    eyeImage.src = isPasswordFieldHidden ? '/images/svg/eye-password.svg' : '/images/svg/eye-key-password.svg';
+  };
+
+  // Assign events to each "toggle-password" button
+  togglePasswordButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
+      const toggleId = button.getAttribute('data-toggle-id');
+      togglePassword(passwordFields[toggleId - 1], button)(event);
+    });
   });
 };
