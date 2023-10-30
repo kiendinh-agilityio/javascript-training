@@ -2,8 +2,8 @@
   "name": "ads-dashboard",
   "version": "1.0.0",
   "scripts": {
-    "start": "pnpx parcel src/index.html",
-    "build": "rm -rf build && rm -rf .parcel-cache && parcel build ./src/index.html --no-cache --no-source-maps --dist-dir dist",
+    "start": "pnpx parcel src/pages/*.html",
+    "build": "rm -rf build && rm -rf .parcel-cache && parcel build ./src/pages/*.html --no-cache --no-source-maps --dist-dir dist",
     "prepare": "husky install"
   },
   "author": "Kien Dinh",

@@ -8,8 +8,32 @@
   cursor: pointer;
 }
 
-/* CSS btn close modal */
 .btn-close-modal {
   background: var(--color-light);
   color: var(--color-dark);
+}
+
+.btn-sign-in {
+  width: 100%;
+  padding: 16px 0;
+  font-size: var(--font-size-xl);
+}
+
+.btn-action-signup,
+.btn-action-signin {
+  width: 100%;
+  padding: 16px;
+  color: var(--color-light);
+  font-size: var(--font-size-lg);
+  background-color: transparent;
+  border-radius: var(--rounded-sm);
+  cursor: pointer;
+  transition: 0.4s;
+  font-family: var(--font-primary);
+}
+
+@media (min-width: 992px) {
+  .btn {
+    font-size: var(--font-size-2xl);
+  }
 }
