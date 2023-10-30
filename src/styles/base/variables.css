@@ -14,6 +14,8 @@
   --color-box-shadow-toast: rgba(10, 3, 3, 0.15);
   --color-border-toast: rgba(11, 6, 6, 0.1);
   --color-bg-toast: rgba(255, 255, 255, 0.9);
+  --color-border-auth: rgba(255, 255, 255, 0.1);
+  --color-box-shadow-auth: rgba(8, 7, 16, 0.6);
 
   /* font family */
   --font-primary: Abel, san-serif;
@@ -28,6 +30,8 @@
   --font-size-lg: 15px;
   --font-size-xl: 16px;
   --font-size-2xl: 18px;
+  --font-size-3xl: 22px;
+  --font-size-4xl: 24px;
 
   /* border radius */
   --rounded-xs: 4px;
@@ -43,4 +47,11 @@
   --width-modal-content: calc(
     533 * 100% / 1440
   ); /* 533px is the width of the modal according to the design */
+
+  /* Container */
+  --container-width-md: 768px;
+  --container-width-lg: 960px;
+  --container-width-xl: 1140px;
+  --container-width-2xl: 1320px;
+  --container-width-3xl: 1660px;
 }
