@@ -35,17 +35,10 @@ body {
   }
 }
 
-/* XX-Large devices (larger desktops, 1400px and up) */
-@media (min-width: 1400px) {
+/* XX-Large devices (larger desktops, 1440px and up) */
+@media (min-width: 1440px) {
   .container {
     max-width: var(--containerWidth2Xl);
     padding: 70px;
-  }
-}
-
-/* 1920 and up */
-@media (min-width: 1920px) {
-  .container {
-    max-width: var(--containerWidth3Xl);
   }
 }
