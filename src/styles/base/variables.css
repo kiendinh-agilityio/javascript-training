@@ -16,6 +16,7 @@
   --color-bg-toast: rgba(255, 255, 255, 0.9);
   --color-border-auth: rgba(255, 255, 255, 0.1);
   --color-box-shadow-auth: rgba(8, 7, 16, 0.6);
+  --color-sidebar-text: #696A72;
 
   /* font family */
   --font-primary: Abel, san-serif;
@@ -34,6 +35,7 @@
   --font-size-4xl: 24px;
 
   /* border radius */
+  --rounded-tiny: 3px;
   --rounded-xs: 4px;
   --rounded-sm: 8px;
   --rounded-md: 16px;
