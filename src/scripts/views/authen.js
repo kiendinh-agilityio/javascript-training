@@ -1,12 +1,21 @@
+import { handleTogglePassword } from '../utils/index';
+import { authenSection } from '../dom.js';
+
 export class AuthenView {
   constructor() {
-    this.formTitle = document.getElementById('heading-auth');
-    this.confirmPasswordGroup = document.getElementById('confirm-password-group');
-    this.actionSigninButton = document.getElementById('btn-action-signin');
-    this.actionSignupButton = document.getElementById('btn-action-signup');
-    this.btnSubmitAuth = document.getElementById('btn-submit-auth');
+    this.formTitle = authenSection.querySelector('#heading-auth');
+    this.confirmPasswordGroup = authenSection.querySelector('#confirm-password-group');
+    this.actionSigninButton = authenSection.querySelector('#btn-action-signin');
+    this.actionSignupButton = authenSection.querySelector('#btn-action-signup');
+    this.btnSubmitAuth = authenSection.querySelector('#btn-submit-auth');
+    this.togglePasswordButtons = authenSection.querySelectorAll('.toggle-password');
+
     this.actionSigninButton.addEventListener('click', this.handleSigninClick.bind(this));
     this.actionSignupButton.addEventListener('click', this.handleSignupClick.bind(this));
+
+    this.togglePasswordButtons.forEach((togglePasswordButton) => {
+      togglePasswordButton.addEventListener('click', () => handleTogglePassword(togglePasswordButton));
+    });
   }
 
   updateFormTitle(title) {
