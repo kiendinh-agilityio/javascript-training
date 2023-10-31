@@ -1,6 +1,11 @@
+.sidebar-section {
+  background-color: var(--color-bg-sidebar);
+}
+
 .sidebar {
-  background-color: #f7f7fa;
+  background-color: var(--color-bg-sidebar);
   width: 100%;
+  min-height: 100vh;
   position: absolute;
   z-index: var(--z-index-md);
 }
@@ -62,18 +67,43 @@
 
 .btn-menu {
   background: transparent;
-  width: 20px;
-  height: 20px;
+  cursor: pointer;
+}
+
+.btn-toggle-group {
+  padding: 15px;
+}
+
+.btn-logout {
+  padding: 0;
+  background-color: transparent;
   cursor: pointer;
 }
 
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-  .btn-menu {
+  .sidebar-section {
+    width: var(--width-sidebar-content);
+  }
+
+  .btn-toggle-group {
     display: none;
+    position: absolute;
   }
 
   .sidebar {
     display: flex;
+    position: relative;
+  }
+
+  .main-sidebar {
+    padding-right: 20px;
+  }
+}
+
+/* Large devices (desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .main-sidebar {
+    padding-right: 46px;
   }
 }
