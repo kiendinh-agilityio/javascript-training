@@ -1,4 +1,5 @@
 import { MAIN_SIDEBAR_ITEMS, SUB_SIDEBAR_ITEMS } from '../constants/index';
+import { handleSidebarToggle } from './handleSidebarToggle';
 
 const generateMainSideNav = MAIN_SIDEBAR_ITEMS.map((item) => {
   const { URL, ALT } = item;
@@ -43,23 +44,12 @@ const generateSubSideNav = SUB_SIDEBAR_ITEMS.map((item) => {
   }
 }).join('');
 
-export const renderSidebar = () => {
+export const initializeSidebar = () => {
   const mainSidebarList = document.querySelector('.main-sidebar-list');
   const subSidebarList = document.querySelector('.sub-sidebar-list');
 
   subSidebarList.innerHTML = generateSubSideNav;
   mainSidebarList.innerHTML = generateMainSideNav;
-};
 
-export const setupSidebarToggle = () => {
-  const toggleButton = document.querySelector('.btn-menu');
-  const sidebar = document.querySelector('.sidebar');
-
-  toggleButton.addEventListener('click', () => {
-    if (sidebar.style.display === 'none' || sidebar.style.display === '') {
-      sidebar.style.display = 'flex';
-    } else {
-      sidebar.style.display = 'none';
-    }
-  });
+  handleSidebarToggle();
 };
