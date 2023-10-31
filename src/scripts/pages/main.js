@@ -1,4 +1,3 @@
-import { renderSidebar, setupSidebarToggle } from '../utils/index';
+import { initializeSidebar } from '../utils/index';
 
-renderSidebar();
-setupSidebarToggle();
+initializeSidebar();
