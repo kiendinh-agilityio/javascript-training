@@ -17,6 +17,7 @@
   --color-border-auth: rgba(255, 255, 255, 0.1);
   --color-box-shadow-auth: rgba(8, 7, 16, 0.6);
   --color-sidebar-text: #696A72;
+  --color-bg-sidebar: #f7f7fa;
 
   /* font family */
   --font-primary: Abel, san-serif;
@@ -49,6 +50,7 @@
   --width-modal-content: calc(
     533 * 100% / 1440
   ); /* 533px is the width of the modal according to the design */
+  --width-sidebar-content: calc(300 * 100% / 1440); /* 300px is the width of the sidebar according to the design */
 
   /* Container */
   --container-width-md: 768px;
