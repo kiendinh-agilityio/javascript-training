@@ -1,2 +1,2 @@
 export * from './handleTogglePassword';
-export * from './renderSideBar';
+export * from './initializeSidebar';
