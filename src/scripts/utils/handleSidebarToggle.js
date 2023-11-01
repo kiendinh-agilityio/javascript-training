@@ -12,7 +12,7 @@ export const handleSidebarToggle = () => {
   openBtn.addEventListener('click', toggleSidebar);
   closeBtn.addEventListener('click', toggleSidebar);
 
-  document.addEventListener('click', (event) => {
+  sidebar.addEventListener('click', (event) => {
     if (event.target === sidebar) {
       toggleSidebar();
     }
