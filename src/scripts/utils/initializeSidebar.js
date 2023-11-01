@@ -6,7 +6,7 @@ const generateMainSideNav = MAIN_SIDEBAR_ITEMS.map((item) => {
 
   return `
     <li>
-      <a href="#" class="d-flex items-center nav-item">
+      <a href="#">
         <img
           loading="lazy"
           width="14px"
