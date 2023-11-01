@@ -14,7 +14,7 @@
     <title>Ads DashBoard Page</title>
   </head>
   <body>
-    <main>
+    <main class="flex-column main-content">
       <aside class="sidebar-section">
         <div id="btn-toggle-group" class="flex justify-end btn-toggle-group">
           <button id="open-btn" class="btn-menu">
@@ -65,6 +65,97 @@
           </div>
         </div>
       </aside>
+      <section class="ads-section">
+        <div class="flex justify-between items-center">
+          <h1 class="ads-heading">
+            Austerlitz
+          </h1>
+          <div class="flex items-center ads-search">
+            <button id="search-button" class="btn-search">
+              <img
+                loading="lazy"
+                width="16px"
+                height="16px"
+                class="search-icon"
+                src="../assets/images/svg/search.svg"
+                alt="search icon"
+              />
+            </button>
+            <input
+              id="search-input"
+              class="input input-search"
+              placeholder="Search"
+              type="text"
+              name="search"
+            />
+          </div>
+        </div>
+        <ul class="flex justify-between nav-list">
+          <li class="nav-item">
+            <a class="nav-description nav-disabled" href="#">Listings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-description" href="#">Advices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-description" href="#">Campaigns</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-description" href="#">Ad groups</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-description" href="#">Settings</a>
+          </li>
+          <li class="nav-item nav-active">
+            <a class="nav-description" href="#">Ads</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-description nav-disabled" href="#">Keywords</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-description nav-disabled" href="#">More</a>
+          </li>
+        </ul>
+        <div class="ads-content">
+          <div class="flex justify-between items-center">
+            <h2 class="ads-dashboard-heading">List Ads</h2>
+            <button class="btn btn-add">
+              <img width="36px" height="36px" src="../assets/images/svg/btn-add.svg" alt="Button add">
+            </button>
+          </div>
+          <table class="ads-dashboard-content">
+            <thead>
+              <tr class="table-row">
+                <th class="ads-dashboard-description ads-title-network">Network</th>
+                <th class="ads-dashboard-description">Status</th>
+                <th class="ads-dashboard-description">Email</th>
+                <th class="ads-dashboard-description">Phone</th>
+                <th class="ads-dashboard-description"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-row">
+                <td class="ads-dasboard-item">
+                  <p class="ads-network-text">Napoleon defeat</p>
+                  <p class="ads-link">www.aol.com</p>
+                </td>
+                <td class="flex justify-center table-cell ads-dasboard-item">
+                  <div class="flex justify-center items-center ads-status-tag">
+                    <span class="ads-status-text">Paused</span>
+                  </div>
+                </td>
+                <td class="table-cell ads-dasboard-item ads-email">napoleon.defeat@gmail.com</td>
+                <td class="table-cell ads-dasboard-item ads-phone-number">(205)-205-5555</td>
+                <td class="table-cell">
+                  <button class="btn btn-group">
+                    <img width="14px" height="3px" src="../assets/images/svg/more.svg" alt="Button group">
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </main>
 
     <script type="module" src="../scripts/pages/main.js"></script>
