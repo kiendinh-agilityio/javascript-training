@@ -2,7 +2,7 @@ import { MAIN_SIDEBAR_ITEMS, SUB_SIDEBAR_ITEMS } from '../constants/index';
 import { handleSidebarToggle } from './handleSidebarToggle';
 
 const generateMainSideNav = MAIN_SIDEBAR_ITEMS.map((item) => {
-  const { URL, ALT } = item;
+  const { url, alt } = item;
 
   return `
     <li>
@@ -11,33 +11,31 @@ const generateMainSideNav = MAIN_SIDEBAR_ITEMS.map((item) => {
           loading="lazy"
           width="14px"
           height="14px"
-          src="${URL}"
-          alt="${ALT}"
+          src="${url}"
+          alt="${alt}"
         />
       </a>
     </li>`;
 }).join('');
 
 const generateSubSideNav = SUB_SIDEBAR_ITEMS.map((item) => {
-  const { TEXT, URL, ALT, ACTIVE } = item;
-  if (TEXT === 'FAVOURITES' || TEXT === 'ACTIVE') {
+  const { text, url, alt, active } = item;
+  if (text === 'FAVOURITES' || text === 'ACTIVE') {
     return `
-      <li class="sidebar-item-title">${item.TEXT}</li>
+      <li class="sidebar-item-title">${text}</li>
     `;
   } else {
     return `
-      <li class="sub-sidebar-item ${ACTIVE ? 'sidebar-active' : ''}">
+      <li class="sub-sidebar-item ${active && 'sidebar-active'}">
         <a class="flex wrapper-item" href="#">
           <img
             class="item-icon"
-            src="${URL}"
-            alt="${ALT}"
+            src="${url}"
+            alt="${alt}"
             width="14px"
             height="14px"
           >
-          <span class="text-side-item ${
-            ACTIVE ? 'sidebar-text-active' : ''
-          }">${TEXT}</span>
+          <span class="text-side-item ${active && 'sidebar-text-active'}">${text}</span>
         </a>
       </li>
     `;
