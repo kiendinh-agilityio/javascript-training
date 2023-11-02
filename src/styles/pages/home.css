@@ -35,17 +35,19 @@
   padding-bottom: 19px;
 }
 
-.nav-description {
+.nav-list li a {
   font-size: var(--font-size-xs);
   color: var(--color-dark);
 }
 
-.nav-disabled {
+.nav-list li:nth-child(1) a,
+.nav-list li:nth-child(7) a,
+.nav-list li:nth-child(8) a {
   cursor: auto;
   color: var(--color-tertiary);
 }
 
-.nav-active {
+.nav-list li:nth-child(6) {
   border-bottom: 2px solid var(--color-primary);
   padding-bottom: 19px;
 }
@@ -128,7 +130,7 @@
     width: 245px;
   }
 
-  .nav-description {
+  .nav-list li a {
     font-size: var(--font-size-md);
   }
 
