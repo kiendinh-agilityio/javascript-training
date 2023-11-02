@@ -18,6 +18,9 @@
   --color-box-shadow-auth: rgba(8, 7, 16, 0.6);
   --color-sidebar-text: #696A72;
   --color-bg-sidebar: #f7f7fa;
+  --color-border-search: #e5e5e5;
+  --color-border-horizontal: #f2f2f2;
+  --color-ads-link: #018273;
 
   /* font family */
   --font-primary: Abel, san-serif;
@@ -26,6 +29,7 @@
   --font-weight-regular: 400;
 
   /* font size */
+  --font-size-tiny: 11px;
   --font-size-xs: 12px;
   --font-size-sm: 13px;
   --font-size-md: 14px;
@@ -51,6 +55,8 @@
     533 * 100% / 1440
   ); /* 533px is the width of the modal according to the design */
   --width-sidebar-content: calc(300 * 100% / 1440); /* 300px is the width of the sidebar according to the design */
+  --width-ads-section-lg: calc(1040 * 100% / 1440);
+  --width-ads-section-xl: calc(1140 * 100% / 1440);  /* 1140px is the width of the ads section according to the design on screen desktop */
 
   /* Container */
   --container-width-md: 768px;
