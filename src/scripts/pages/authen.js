@@ -1,4 +1,8 @@
-import { handleTogglePassword } from '../utils/index';
+import { AuthenController } from '../controllers/authen';
+import { AuthenView } from '../views/authen';
 
-// // Call the function to handle the show password
-handleTogglePassword();
+const authenPage = () => {
+  new AuthenController(new AuthenView(document));
+};
+
+authenPage();

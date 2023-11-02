@@ -1,17 +1,11 @@
-export const handleTogglePassword = () => {
-  const passwordField = document.getElementById('password');
-  const togglePasswordButton = document.querySelector('.toggle-password');
+export const handleTogglePassword = (togglePasswordButton) => {
+  const inputField = togglePasswordButton.parentElement.querySelector('.show-password');
   const eyeImage = togglePasswordButton.querySelector('img');
+  const isShow = inputField.getAttribute('data-show-password') === 'show';
 
-  togglePasswordButton.addEventListener('click', (event) => {
-    event.preventDefault();
+  const eyeImageSrc = isShow ? '/images/svg/eye-key-password.svg' : '/images/svg/eye-password.svg';
+  eyeImage.src = eyeImageSrc;
 
-    if (passwordField.type === 'password') {
-      passwordField.type = 'text';
-      eyeImage.src = '/images/svg/eye-password.svg';
-    } else {
-      passwordField.type = 'password';
-      eyeImage.src = '/images/svg/eye-key-password.svg';
-    }
-  });
+  inputField.type = isShow ? 'password' : 'text';
+  inputField.setAttribute('data-show-password', isShow ? 'hidden' : 'show');
 };
