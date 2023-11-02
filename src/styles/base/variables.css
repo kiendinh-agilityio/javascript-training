@@ -49,11 +49,15 @@
   /* Z Index */
   --z-index-sm: 1;
   --z-index-md: 10;
+  --z-index-lg: 20;
 
   /* width */
   --width-modal-content: calc(
     533 * 100% / 1440
   ); /* 533px is the width of the modal according to the design */
+  --width-modal-content-md: calc(
+    533 * 100% / 768
+  ); /* 533px is the width of the modal according to the design on screen tablet */
   --width-sidebar-content: calc(300 * 100% / 1440); /* 300px is the width of the sidebar according to the design */
   --width-ads-section-lg: calc(1040 * 100% / 1440);
   --width-ads-section-xl: calc(1140 * 100% / 1440);  /* 1140px is the width of the ads section according to the design on screen desktop */
