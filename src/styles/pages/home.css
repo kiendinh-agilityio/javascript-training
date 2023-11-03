@@ -125,6 +125,24 @@
   background-color: transparent;
 }
 
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  box-shadow: 0px 8px 16px 0px var(--color-box-shadow-dropdown);
+  z-index: var(--z-index-lg);
+}
+
+.dropdown-content button {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  background-color: transparent;
+}
+
 @media (min-width: 768px) {
   .ads-search {
     width: 245px;
@@ -176,6 +194,10 @@
   .ads-status-text {
     max-width: 87px;
   }
+
+  .dropdown-content button {
+    padding: 8px 10px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -204,5 +226,9 @@
     width: var(--width-ads-section-xl);
     padding-left: 60px;
     padding-right: 60px;
+  }
+
+  .dropdown-content {
+    left: 35px;
   }
 }
