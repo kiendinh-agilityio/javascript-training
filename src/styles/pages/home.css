@@ -121,7 +121,7 @@
   color: var(--color-ads-link);
 }
 
-.btn-group {
+.btn-dropdown {
   background-color: transparent;
 }
 
@@ -141,6 +141,7 @@
   width: 100%;
   padding: 5px;
   background-color: transparent;
+  cursor: pointer;
 }
 
 @media (min-width: 768px) {
