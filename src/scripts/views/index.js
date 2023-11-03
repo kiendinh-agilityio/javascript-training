@@ -1,4 +1,4 @@
-import { generateModalAds } from '../utils/index';
+import { generateModalAds, toggleDropdown } from '../utils/index';
 import { DISPLAY_CLASS, TITLE_MODAL } from '../constants/index';
 
 export class AdsView {
@@ -42,7 +42,7 @@ export class AdsView {
   setupDropdownMenu() {
     this.dropdownBtn.addEventListener('click', (event) => {
       event.stopPropagation();
-      this.toggleDropdown(this.dropdownContent);
+      toggleDropdown(this.dropdownContent);
     });
 
     // Handle click events anywhere else on the page to hide the dropdown button group
@@ -51,11 +51,6 @@ export class AdsView {
         this.closeDropdown();
       }
     });
-  }
-
-  // Show or hide the dropdown by changing the display state
-  toggleDropdown() {
-    this.dropdownContent.style.display = this.dropdownContent.style.display === DISPLAY_CLASS.FLEX ? DISPLAY_CLASS.HIDDEN : DISPLAY_CLASS.FLEX;
   }
 
   // Hide dropdown
