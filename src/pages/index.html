@@ -15,6 +15,7 @@
   </head>
   <body>
     <main class="flex-column main-content">
+      <div class="modal" id="modal"></div>
       <aside class="sidebar-section">
         <div id="btn-toggle-group" class="flex justify-end btn-toggle-group">
           <button id="open-btn" class="btn-menu">
@@ -119,7 +120,7 @@
         <div class="ads-content">
           <div class="flex justify-between items-center">
             <h2 class="ads-dashboard-heading">List Ads</h2>
-            <button class="btn btn-add">
+            <button id="btn-add" class="btn btn-add">
               <img width="36px" height="36px" src="../assets/images/svg/btn-add.svg" alt="Button add">
             </button>
           </div>
@@ -147,9 +148,19 @@
                 <td class="table-cell ads-dasboard-item ads-email">napoleon.defeat@gmail.com</td>
                 <td class="table-cell ads-dasboard-item ads-phone-number">(205)-205-5555</td>
                 <td class="table-cell">
-                  <button class="btn btn-group">
-                    <img width="14px" height="3px" src="../assets/images/svg/more.svg" alt="Button group">
-                  </button>
+                  <div class="dropdown" id="dropdown">
+                    <button class="btn btn-dropdown" id="btn-dropdown">
+                      <img width="14px" height="3px" src="../assets/images/svg/more.svg" alt="Button group">
+                    </button>
+                    <div class="dropdown-content" id="dropdown-content">
+                      <button>
+                        <img width="20px" height="20px" src="../assets/images/svg/edit.svg" alt="Button Edit">
+                      </button>
+                      <button>
+                        <img width="20px" height="20px" src="../assets/images/svg/delete.svg" alt="Button Delete">
+                      </button>
+                    </div>
+                  </div>
                 </td>
               </tr>
             </tbody>
