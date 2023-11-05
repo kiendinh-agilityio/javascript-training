@@ -21,6 +21,7 @@
   --color-border-search: #e5e5e5;
   --color-border-horizontal: #f2f2f2;
   --color-ads-link: #018273;
+  --color-box-shadow-dropdown: rgba(0,0,0,0.2);
 
   /* font family */
   --font-primary: Abel, san-serif;
