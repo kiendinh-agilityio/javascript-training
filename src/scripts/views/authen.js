@@ -12,10 +12,10 @@ export class AuthenView {
     this.togglePasswordButtons = authenSection.querySelectorAll('.toggle-password');
 
     this.formAuth = document.getElementById('form-auth');
-    this.emailInput = document.getElementById('email');
-    this.passwordInput = document.getElementById('password');
-    this.emailError = document.getElementById('email-error');
-    this.passwordError = document.getElementById('password-error');
+    this.emailInput = this.formAuth.querySelector('#email');
+    this.passwordInput = this.formAuth.querySelector('#password');
+    this.emailError = this.formAuth.querySelector('#email-error');
+    this.passwordError = this.formAuth.querySelector('#password-error');
 
     this.actionSigninButton.addEventListener('click', this.handleSigninClick.bind(this));
     this.actionSignupButton.addEventListener('click', this.handleSignupClick.bind(this));
