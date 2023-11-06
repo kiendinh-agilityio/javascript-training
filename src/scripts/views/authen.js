@@ -1,4 +1,5 @@
-import { handleTogglePassword } from '../utils/index';
+import { handleTogglePassword, showToast } from '../utils/index';
+import { validateUserAuthen, showFormErrors } from '../utils/validate/index';
 import { authenSection } from '../dom.js';
 
 export class AuthenView {
@@ -10,12 +11,20 @@ export class AuthenView {
     this.btnSubmitAuth = authenSection.querySelector('#btn-submit-auth');
     this.togglePasswordButtons = authenSection.querySelectorAll('.toggle-password');
 
+    this.formAuth = document.getElementById('form-auth');
+    this.emailInput = document.getElementById('email');
+    this.passwordInput = document.getElementById('password');
+    this.emailError = document.getElementById('email-error');
+    this.passwordError = document.getElementById('password-error');
+
     this.actionSigninButton.addEventListener('click', this.handleSigninClick.bind(this));
     this.actionSignupButton.addEventListener('click', this.handleSignupClick.bind(this));
 
     this.togglePasswordButtons.forEach((togglePasswordButton) => {
       togglePasswordButton.addEventListener('click', () => handleTogglePassword(togglePasswordButton));
     });
+
+    this.formAuth.addEventListener('submit', this.handleLoginFormSubmit.bind(this));
   }
 
   updateFormTitle(title) {
@@ -36,5 +45,39 @@ export class AuthenView {
     this.actionSignupButton.classList.add('active');
     this.actionSigninButton.classList.remove('active');
     this.btnSubmitAuth.textContent = 'Sign Up';
+  }
+
+  // Event Submit Form Sign in
+  handleLoginFormSubmit(event) {
+    event.preventDefault();
+
+    const email = this.emailInput.value;
+    const password = this.passwordInput.value;
+
+    // Clear previous error messages
+    this.emailError.textContent = '';
+    this.passwordError.textContent = '';
+
+    const user = { email, password };
+
+    // Call validateUserAuthen function to check for errors
+    const errors = validateUserAuthen(user);
+
+    if (Object.keys(errors).length > 0) {
+      // If there are errors, display them
+      showFormErrors(errors, this);
+    } else {
+      // If there are no errors, proceed with other actions, such as submitting form data, logging in, etc.
+      this.controller.login(email, password);
+    }
+  }
+
+  // Show Toast Message Success or Error
+  showSuccessToast(message) {
+    showToast(message, 'icon-success.svg', true);
+  }
+
+  showErrorToast(message) {
+    showToast(message, 'icon-error.svg', false);
   }
 }
