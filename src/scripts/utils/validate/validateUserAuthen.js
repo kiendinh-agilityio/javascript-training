@@ -1,7 +1,7 @@
-import { validateEmailField, validatePasswordField } from './validations';
+import { validateEmailField, validatePasswordField, validateConfirmPasswordField } from './validations';
 
 export const validateUserAuthen = (user) => {
-  const { email, password } = user;
+  const { email, password, confirmPassword } = user;
 
   const errors = {};
 
@@ -13,6 +13,11 @@ export const validateUserAuthen = (user) => {
   const passwordError = validatePasswordField(password);
   if (passwordError) {
     errors.password = passwordError;
+  }
+
+  const confirmPasswordError = validateConfirmPasswordField(password, confirmPassword);
+  if (confirmPasswordError) {
+    errors.confirmPassword = confirmPasswordError;
   }
 
   return errors;
