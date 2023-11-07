@@ -13,7 +13,7 @@
   color: var(--color-dark);
 }
 
-.btn-sign-in {
+.btn-submit-auth {
   width: 100%;
   padding: 16px 0;
   font-size: var(--font-size-xl);
