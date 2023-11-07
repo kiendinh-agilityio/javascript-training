@@ -38,9 +38,10 @@
 }
 
 .error-message {
-  margin-top: 5px;
   color: var(--color-danger);
   font-size: var(--font-size-xs);
+  position: absolute;
+  top: 37px;
 }
 
 .toggle-password {

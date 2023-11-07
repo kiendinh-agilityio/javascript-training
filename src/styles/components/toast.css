@@ -17,3 +17,11 @@
   font-size: var(--font-size-md);
   color: var(--color-tertiary);
 }
+
+.toast-text-success {
+  color: var(--color-primary);
+}
+
+.toast-text-error {
+  color: var(--color-danger);
+}
