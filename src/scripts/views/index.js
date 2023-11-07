@@ -3,11 +3,22 @@ import { DISPLAY_CLASS, TITLE_MODAL } from '../constants/index';
 
 export class AdsView {
   constructor() {
+    this.initElementAds();
+    this.initEventlistenersAds();
+  }
+
+  /** Initialize DOM elements */
+  initElementAds() {
     this.dropdown = document.getElementById('dropdown');
     this.dropdownContent = this.dropdown.querySelector('#dropdown-content');
     this.dropdownBtn = this.dropdown.querySelector('#btn-dropdown');
     this.modalAds = document.getElementById('modal');
     this.btnAdd = document.getElementById('btn-add');
+    this.btnLogout = document.querySelector('.btn-logout');
+  }
+
+  /** Initialize event listeners */
+  initEventlistenersAds() {
     this.btnAdd.addEventListener('click', this.showAddAdsModal.bind(this));
 
     this.modalAds.addEventListener('click', (event) => {
@@ -20,8 +31,9 @@ export class AdsView {
     this.setupDropdownMenu();
   }
 
+  /** Show the "Add Ads" modal */
   showAddAdsModal() {
-    // Hide dropdown before showing modal
+    // Hide the dropdown before showing the modal
     this.closeDropdown();
 
     const modalContent = generateModalAds(null, TITLE_MODAL.ADD);
@@ -35,17 +47,19 @@ export class AdsView {
     cancelBtn.addEventListener('click', this.closeModalHandler.bind(this));
   }
 
+  /** Handle the modal closing */
   closeModalHandler() {
     this.modalAds.style.display = DISPLAY_CLASS.HIDDEN;
   }
 
+  /** Set up the dropdown menu */
   setupDropdownMenu() {
     this.dropdownBtn.addEventListener('click', (event) => {
       event.stopPropagation();
       toggleDropdown(this.dropdownContent);
     });
 
-    // Handle click events anywhere else on the page to hide the dropdown button group
+    // Handle click events anywhere else on the page to hide the dropdown
     document.addEventListener('click', (event) => {
       if (!this.modalAds.contains(event.target)) {
         this.closeDropdown();
@@ -53,8 +67,13 @@ export class AdsView {
     });
   }
 
-  // Hide dropdown
+  /** Hide the dropdown */
   closeDropdown() {
     this.dropdownContent.style.display = DISPLAY_CLASS.HIDDEN;
+  }
+
+  /** Add a click event for the logout button and call the handler from the controller */
+  setLogoutHandler(handler) {
+    this.btnLogout.addEventListener('click', handler);
   }
 }
