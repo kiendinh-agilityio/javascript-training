@@ -41,7 +41,7 @@ export class AdsView {
     });
 
     // Handle clicking outside of dropdowns to close them.
-    document.addEventListener('click', (event) => {
+    document.addEventListener('click', () => {
       const dropdownContents = document.querySelectorAll('.dropdown-content');
       dropdownContents.forEach((content) => {
         content.style.display = DISPLAY_CLASS.HIDDEN;
