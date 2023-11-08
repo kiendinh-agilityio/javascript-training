@@ -12,8 +12,8 @@ export const TITLE_MODAL = {
   EDIT: 'Edit Ads',
 };
 
-// Endpoint name
-export const END_POINT_NAMES = {
+// Endpoints name
+export const END_POINTS = {
   USERS: 'users',
   ADS: 'ads',
 };
@@ -22,4 +22,12 @@ export const END_POINT_NAMES = {
 export const TITLE_AUTHEN_PAGE = {
   LOGIN: 'Sign In',
   REGISTER: 'Create New Account',
+};
+
+// Variables Method
+export const METHOD_API = {
+  GET: 'GET',
+  PUT: 'PUT',
+  POST: 'POST',
+  DELETE: 'DELETE',
 };
