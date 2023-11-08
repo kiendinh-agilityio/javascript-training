@@ -1,7 +1,7 @@
 import {
-  MOCK_API,
+  BASE_API,
   LOGIN_MESSAGE,
-  END_POINT_NAMES,
+  END_POINTS,
   SIGNUP_MESSAGE,
   VALIDATE_MESSAGE,
 } from '../constants/index';
@@ -24,7 +24,7 @@ export class AuthenModel {
   async login(email, password) {
     try {
       // Fetch the user data from the API
-      const response = await fetch(`${MOCK_API}${END_POINT_NAMES.USERS}`);
+      const response = await fetch(`${BASE_API}${END_POINTS.USERS}`);
       if (response.ok) {
         const users = await response.json();
 
@@ -65,7 +65,7 @@ export class AuthenModel {
       }
 
       // Fetch the user data from the API
-      const response = await fetch(`${MOCK_API}${END_POINT_NAMES.USERS}`);
+      const response = await fetch(`${BASE_API}${END_POINTS.USERS}`);
       if (response.ok) {
         const users = await response.json();
 
@@ -84,7 +84,7 @@ export class AuthenModel {
         };
 
         // Save the new user data to the API
-        const saveResponse = await fetch(`${MOCK_API}${END_POINT_NAMES.USERS}`, {
+        const saveResponse = await fetch(`${BASE_API}${END_POINTS.USERS}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
