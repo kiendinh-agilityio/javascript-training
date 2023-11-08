@@ -1,4 +1,4 @@
-import { MOCK_API, END_POINT_NAMES } from '../constants/index';
+import { BASE_API, END_POINTS, METHOD_API } from '../constants/index';
 
 export const httpServices = () => {
   return {
@@ -8,9 +8,9 @@ export const httpServices = () => {
      */
     async get() {
       try {
-        const url = `${MOCK_API}${END_POINT_NAMES.ADS}`;
+        const url = `${BASE_API}${END_POINTS.ADS}`;
         const response = await fetch(url, {
-          method: 'GET',
+          method: METHOD_API.GET,
           headers: {
             'Content-Type': 'application/json',
           },
@@ -30,9 +30,9 @@ export const httpServices = () => {
      */
     async post(data) {
       try {
-        const url = `${MOCK_API}${END_POINT_NAMES.ADS}`;
+        const url = `${BASE_API}${END_POINTS.ADS}`;
         const response = await fetch(url, {
-          method: 'POST',
+          method: METHOD_API.POST,
           headers: {
             'Content-Type': 'application/json',
           },
@@ -54,9 +54,9 @@ export const httpServices = () => {
      */
     async put(id, data) {
       try {
-        const url = `${MOCK_API}${END_POINT_NAMES.ADS}${id}`;
+        const url = `${BASE_API}${END_POINTS.ADS}${id}`;
         const response = await fetch(url, {
-          method: 'PUT',
+          method: METHOD_API.PUT,
           headers: {
             'Content-Type': 'application/json',
           },
@@ -77,9 +77,9 @@ export const httpServices = () => {
      */
     async delete(id) {
       try {
-        const url = `${MOCK_API}${END_POINT_NAMES.ADS}${id}${id}`;
+        const url = `${BASE_API}${END_POINTS.ADS}${id}`;
         const response = await fetch(url, {
-          method: 'DELETE',
+          method: METHOD_API.DELETE,
           headers: {
             'Content-Type': 'application/json',
           },
