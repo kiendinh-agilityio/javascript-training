@@ -1,4 +1,4 @@
-import { MOCK_API } from '../constants/index';
+import { MOCK_API, END_POINT_NAMES } from '../constants/index';
 
 export const httpServices = () => {
   return {
@@ -7,16 +7,20 @@ export const httpServices = () => {
      * @returns A data containing the list of advertisements.
      */
     async get() {
-      const url = `${MOCK_API}/ads`;
-      const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      try {
+        const url = `${MOCK_API}${END_POINT_NAMES.ADS}`;
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
-      const data = await response.json();
-      return data;
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        return error;
+      }
     },
 
     /**
@@ -25,17 +29,21 @@ export const httpServices = () => {
      * @returns A data containing the newly added advertisement.
      */
     async post(data) {
-      const url = `${MOCK_API}/ads`;
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      try {
+        const url = `${MOCK_API}${END_POINT_NAMES.ADS}`;
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
 
-      const responseData = await response.json();
-      return responseData;
+        const responseData = await response.json();
+        return responseData;
+      } catch (error) {
+        return error;
+      }
     },
 
     /**
@@ -45,17 +53,21 @@ export const httpServices = () => {
      * @returns Advertising data has been updated.
      */
     async put(id, data) {
-      const url = `${MOCK_API}/ads/${id}`;
-      const response = await fetch(url, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
+      try {
+        const url = `${MOCK_API}${END_POINT_NAMES.ADS}${id}`;
+        const response = await fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
 
-      const responseData = await response.json();
-      return responseData;
+        const responseData = await response.json();
+        return responseData;
+      } catch (error) {
+        return error;
+      }
     },
 
     /**
@@ -64,16 +76,20 @@ export const httpServices = () => {
      * @returns A data containing the deleted advertisement.
      */
     async delete(id) {
-      const url = `${MOCK_API}/ads/${id}`;
-      const response = await fetch(url, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      try {
+        const url = `${MOCK_API}${END_POINT_NAMES.ADS}${id}${id}`;
+        const response = await fetch(url, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
 
-      const responseData = await response.json();
-      return responseData;
+        const responseData = await response.json();
+        return responseData;
+      } catch (error) {
+        return error;
+      }
     },
   };
 };
