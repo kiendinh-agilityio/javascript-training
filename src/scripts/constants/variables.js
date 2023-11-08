@@ -15,6 +15,7 @@ export const TITLE_MODAL = {
 // Endpoint name
 export const END_POINT_NAMES = {
   USERS: 'users',
+  ADS: 'ads',
 };
 
 // Auth Form Title
