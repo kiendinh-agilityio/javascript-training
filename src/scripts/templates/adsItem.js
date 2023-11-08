@@ -1,20 +1,24 @@
 export const adsItem = (item) => {
-  const { id, network, link, email, phone, status, statusID } = item;
+  const { id, network, link, email, phone, status, statusID } = item || {};
 
   return `
-    <tr class="table-row" data-id=${id}>
-      <td class="ads-dasboard-item">
+    <div class="flex justify-between items-center table-row" data-id=${id}>
+      <div class="ads-dasboard-item">
         <p class="ads-network-text">${network}</p>
         <p class="ads-link">${link}</p>
-      </td>
-      <td class="flex justify-center table-cell ads-dasboard-item">
-        <div class="flex justify-center items-center ads-status-tag ads-status-${statusID}">
+      </div>
+      <div class="flex justify-start table-cell ads-dasboard-item">
+        <p class="flex justify-center items-center ads-status-tag ads-status-${statusID}">
           <span class="ads-status-text">${status}</span>
-        </div>
-      </td>
-      <td class="table-cell ads-dasboard-item ads-email">${email}</td>
-      <td class="table-cell ads-dasboard-item ads-phone-number">${phone}</td>
-      <td class="table-cell">
+        </p>
+      </div>
+      <div class="table-cell ads-dasboard-item">
+        <p class="ads-email">${email}</p>
+      </div>
+      <div class="table-cell ads-dasboard-item">
+        <p class="ads-phone-number">${phone}</p>
+      </div>
+      <div class="table-cell">
         <div class="dropdown">
           <button class="btn btn-dropdown" data-id=${id}>
             <img width="14px" height="3px" src="/images/svg/more.svg" alt="Button group">
@@ -28,7 +32,7 @@ export const adsItem = (item) => {
             </button>
           </div>
         </div>
-      </td>
-    </tr>
+      </div>
+    </div>
   `;
 };
