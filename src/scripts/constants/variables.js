@@ -31,3 +31,8 @@ export const METHOD_API = {
   POST: 'POST',
   DELETE: 'DELETE',
 };
+
+// Variables Key Event
+export const SPECIAL_KEYS = {
+  ENTER: 'Enter',
+};
