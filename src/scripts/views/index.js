@@ -1,56 +1,61 @@
 import { generateModalAds, toggleDropdown } from '../utils/index';
-import { DISPLAY_CLASS, TITLE_MODAL } from '../constants/index';
+import { DISPLAY_CLASS, TITLE_MODAL, RESULTS_MESSAGAE } from '../constants/index';
 import { generateListAds } from '../templates/generateAdsList';
 
 /**
  * Represents the AdsView class for handling the advertisement view.
  */
 export class AdsView {
-  /**
-   * Initializes the AdsView class.
-   */
   constructor() {
-    // Initialize HTML elements used in the view.
     this.initElementsAds();
-    // Set up event listeners for these elements.
     this.initEventListenersAds();
+    this.initializeSearchInput();
   }
 
   /**
-   * Initializes HTML elements used in the view.
+   * Initializes the DOM elements used by AdsView.
    */
   initElementsAds() {
     this.modalAds = document.getElementById('modal');
     this.btnAdd = document.getElementById('btn-add');
     this.btnLogout = document.querySelector('.btn-logout');
     this.tableElement = document.getElementById('list-ads');
+    this.searchButton = document.getElementById('search-button');
+    this.searchInput = document.getElementById('search-input');
+    this.btnClearSearch = document.getElementById('btn-clear-search');
   }
 
   /**
-   * Initializes event listeners for user interactions.
+   * Initializes event listeners for AdsView.
    */
   initEventListenersAds() {
-    // Add a click event listener to the "Add" button.
     this.btnAdd.addEventListener('click', this.showAddAdsModal.bind(this));
-
-    // Add a click event listener to the modal to close it when clicked outside.
     this.modalAds.addEventListener('click', (event) => {
       if (event.target === this.modalAds) {
         this.closeModalHandler();
       }
     });
 
-    // Handle clicking outside of dropdowns to close them.
-    document.addEventListener('click', () => {
-      const dropdownContents = document.querySelectorAll('.dropdown-content');
-      dropdownContents.forEach((content) => {
-        content.style.display = DISPLAY_CLASS.HIDDEN;
-      });
+    // Clear search button click
+    this.btnClearSearch.addEventListener('click', this.clearSearchHandler.bind(this));
+  }
+
+  /**
+   * Initializes the search input and handles its events.
+   */
+  initializeSearchInput() {
+    this.searchInput.addEventListener('input', () => {
+      const inputValue = this.searchInput.value.trim();
+      if (inputValue) {
+        this.btnClearSearch.style.display = DISPLAY_CLASS.BLOCK;
+      } else {
+        this.btnClearSearch.style.display = DISPLAY_CLASS.HIDDEN;
+      }
     });
   }
 
   /**
-   * Display the "Add Advertisement" modal dialog.
+   * Shows the Add Ads modal.
    */
   showAddAdsModal() {
     const modalContent = generateModalAds(null, TITLE_MODAL.ADD);
@@ -60,55 +65,69 @@ export class AdsView {
     const closeBtn = this.modalAds.querySelector('#close-modal-ads');
     const cancelBtn = this.modalAds.querySelector('#add-ads-cancel');
 
+    // Close modal button click and Cancel button click
     closeBtn.addEventListener('click', this.closeModalHandler.bind(this));
     cancelBtn.addEventListener('click', this.closeModalHandler.bind(this));
   }
 
   /**
-   * Close the modal dialog.
+   * Closes the modal.
    */
   closeModalHandler() {
     this.modalAds.style.display = DISPLAY_CLASS.HIDDEN;
   }
 
   /**
-   * Set up a handler for the "Logout" button.
-   * @param {function} handler - The event handler for the "Logout" button.
+   * Sets a handler for the logout button.
+   * @param {Function} handler - The handler function for the logout button.
    */
   setLogoutHandler(handler) {
     this.btnLogout.addEventListener('click', handler);
   }
 
   /**
-   * Display the list of advertisements.
-   * @param {Array} adsData - The data for the advertisements.
+   * Handles the case when no search results are found.
+   */
+  handleNoSearchResults() {
+    const noResultsMessage = RESULTS_MESSAGAE.SEARCH;
+    this.tableElement.innerHTML = `<p class="search-result-message">${noResultsMessage}</p>`;
+  }
+
+  /**
+   * Clears the search input.
+   */
+  clearSearchHandler() {
+    this.searchInput.value = '';
+    this.btnClearSearch.style.display = DISPLAY_CLASS.HIDDEN;
+    this.displayAdsList(this.adsData);
+  }
+
+  /**
+   * Displays the list of ads in the table.
+   * @param {Array} adsData - The list of ads to be displayed.
    */
   displayAdsList(adsData) {
     const adsListHTML = generateListAds(adsData);
     this.tableElement.innerHTML = adsListHTML;
 
-    // Get all dropdown buttons and their associated content.
+    // Dropdown buttons
     const dropdownButtons = this.tableElement.querySelectorAll('.btn-dropdown');
     const dropdownContents = this.tableElement.querySelectorAll('.dropdown-content');
 
-    // Iterate through each dropdown button and add a click event listener.
     dropdownButtons.forEach((button) => {
       button.addEventListener('click', (event) => {
-        // Prevent the click event from propagating to parent elements.
         event.stopPropagation();
-
-        // Get the data-id attribute of the clicked dropdown button.
         const id = event.target.getAttribute('data-id');
 
-        // Find the corresponding dropdown content with the matching data-id.
-        const dropdownContent = this.tableElement.querySelector(`.dropdown-content[data-id="${id}"]`);
+        // Find the corresponding dropdown content
+        const dropdownContent = this.tableElement.querySelector(`.dropdown-content[data-id="${id}`);
 
-        // Hide all dropdown contents before displaying the new one.
+        // Hide other dropdown contents
         dropdownContents.forEach((content) => {
           content.style.display = DISPLAY_CLASS.HIDDEN;
         });
 
-        // Call the toggleDropdown function to show or hide the dropdown content.
+        // Toggle the selected dropdown content
         toggleDropdown(dropdownContent);
       });
     });
