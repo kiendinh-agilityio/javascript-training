@@ -85,8 +85,7 @@ export class AdsView {
    * Handles the case when no search results are found.
    */
   handleNoSearchResults() {
-    const noResultsMessage = MESSAGAE.NO_RESULT;
-    this.tableElement.innerHTML = `<p class="search-result-message">${noResultsMessage}</p>`;
+    this.tableElement.innerHTML = `<p class="search-result-message">${MESSAGAE.NO_RESULT}</p>`;
   }
 
   /**
