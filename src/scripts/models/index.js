@@ -11,7 +11,7 @@ export class AdsModel {
    * @param {string} query - The query parameter to be added to the request.
    * @returns {Promise} - A promise that resolves with the response data or rejects with an error.
    */
-  async fetchDataWithQuery(query = '') {
+  async fetchAdsData(query = '') {
     try {
       const response = await httpServices().get(query);
 
@@ -25,19 +25,11 @@ export class AdsModel {
   }
 
   /**
-   * A method to fetch all advertisement data from the server.
-   * @returns {Promise} - A promise that resolves with the response data or rejects with an error.
-   */
-  async fetchAdsData() {
-    return this.fetchDataWithQuery();
-  }
-
-  /**
    * A method to search for advertisements based on a keyword.
    * @param {string} keyword - The keyword to use for searching.
    * @returns {Promise} - A promise that resolves with the response data or rejects with an error.
    */
   async searchAdsByKeyword(keyword) {
-    return this.fetchDataWithQuery(`?search=${keyword}`);
+    return this.fetchAdsData(`?search=${keyword}`);
   }
 }
