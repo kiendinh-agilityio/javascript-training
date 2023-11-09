@@ -76,7 +76,7 @@ export class AdsController {
 
         // Filter the adsData based on the keyword entered in the search input.
         const filteredAds = this.model.adsData.filter((adsItem) => {
-          const { network, link, email, phone } = adsItem;
+          const { network, link, email, phone } = adsItem || {};
 
           return network.includes(keyword) || email.includes(keyword) || phone.includes(keyword) || link.includes(keyword);
         });
