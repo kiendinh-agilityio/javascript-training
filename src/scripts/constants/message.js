@@ -18,3 +18,8 @@ export const SIGNUP_MESSAGE = {
   EMAIL: 'Email already exists. Please use a different email.',
   EMPTY: 'Email, password, and confirm password are required.',
 };
+
+// Results message
+export const RESULTS_MESSAGAE = {
+  SEARCH: 'No results were found.',
+};
