@@ -176,7 +176,7 @@
   height: 15px;
   margin: auto;
   padding: 2px;
-  font-size: 12px;
+  font-size: var(--font-size-xl);
   font-weight: 400;
   position: absolute;
   top: 0;
