@@ -1,5 +1,5 @@
 import { generateModalAds, toggleDropdown } from '../utils/index';
-import { DISPLAY_CLASS, TITLE_MODAL, RESULTS_MESSAGAE } from '../constants/index';
+import { DISPLAY_CLASS, TITLE_MODAL, MESSAGAE } from '../constants/index';
 import { generateListAds } from '../templates/generateAdsList';
 
 /**
@@ -46,11 +46,7 @@ export class AdsView {
   initializeSearchInput() {
     this.searchInput.addEventListener('input', () => {
       const inputValue = this.searchInput.value.trim();
-      if (inputValue) {
-        this.btnClearSearch.style.display = DISPLAY_CLASS.BLOCK;
-      } else {
-        this.btnClearSearch.style.display = DISPLAY_CLASS.HIDDEN;
-      }
+      this.btnClearSearch.style.display = inputValue ? DISPLAY_CLASS.BLOCK : DISPLAY_CLASS.HIDDEN;
     });
   }
 
@@ -89,7 +85,7 @@ export class AdsView {
    * Handles the case when no search results are found.
    */
   handleNoSearchResults() {
-    const noResultsMessage = RESULTS_MESSAGAE.SEARCH;
+    const noResultsMessage = MESSAGAE.NO_RESULT;
     this.tableElement.innerHTML = `<p class="search-result-message">${noResultsMessage}</p>`;
   }
 
