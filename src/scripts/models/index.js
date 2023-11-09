@@ -1,28 +1,43 @@
 import { httpServices } from '../services/httpServices';
 
-/**
- * Represents the AdsModel class for managing advertisement data.
- */
 export class AdsModel {
   constructor() {
-    // Initialize the advertisement data and error state.
     this.adsData = [];
     this.error = null;
   }
 
   /**
-   * Asynchronously fetches advertisement data from an HTTP service.
-   * @returns {Promise} A promise that resolves with the HTTP response or rejects with an error.
+   * A method to fetch data from the server with an optional query parameter.
+   * @param {string} query - The query parameter to be added to the request.
+   * @returns {Promise} - A promise that resolves with the response data or rejects with an error.
    */
-  async fetchAdsData() {
+  async fetchDataWithQuery(query = '') {
     try {
-      // Send an HTTP GET request to retrieve advertisement data.
-      const response = await httpServices().get();
-      this.adsData = response.data;
+      const response = await httpServices().get(query);
+
+      // Save the response data to the adsData array
+      this.adsData = response;
+
       return response;
     } catch (error) {
-      // Handle errors by storing the error in the model.
       this.error = error;
     }
+  }
+
+  /**
+   * A method to fetch all advertisement data from the server.
+   * @returns {Promise} - A promise that resolves with the response data or rejects with an error.
+   */
+  async fetchAdsData() {
+    return this.fetchDataWithQuery();
+  }
+
+  /**
+   * A method to search for advertisements based on a keyword.
+   * @param {string} keyword - The keyword to use for searching.
+   * @returns {Promise} - A promise that resolves with the response data or rejects with an error.
+   */
+  async searchAdsByKeyword(keyword) {
+    return this.fetchDataWithQuery(`?search=${keyword}`);
   }
 }
