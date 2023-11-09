@@ -1,4 +1,5 @@
 import { debounce } from '../utils/debounce';
+import { SPECIAL_KEYS } from '../constants/index';
 
 /**
  * Represents the AdsController class for handling the business logic and user interactions.
@@ -26,7 +27,7 @@ export class AdsController {
 
     // Add event listener for pressing Enter key in the search input
     this.view.searchInput.addEventListener('keypress', (event) => {
-      if (event.key === 'Enter') {
+      if (event.key === SPECIAL_KEYS.ENTER) {
         this.handleSearch();
       }
     });
@@ -74,11 +75,10 @@ export class AdsController {
         }
 
         // Filter the adsData based on the keyword entered in the search input.
-        const filteredAds = this.model.adsData.filter((item) => {
-          const { network, link, email, phone } = item;
-          const lowercaseKeyword = keyword.toLowerCase();
+        const filteredAds = this.model.adsData.filter((adsItem) => {
+          const { network, link, email, phone } = adsItem;
 
-          return network.includes(lowercaseKeyword) || email.includes(lowercaseKeyword) || phone.includes(lowercaseKeyword) || link.includes(lowercaseKeyword);
+          return network.includes(keyword) || email.includes(keyword) || phone.includes(keyword) || link.includes(keyword);
         });
 
         if (filteredAds.length > 0) {
