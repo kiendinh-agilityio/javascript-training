@@ -19,7 +19,7 @@ export const SIGNUP_MESSAGE = {
   EMPTY: 'Email, password, and confirm password are required.',
 };
 
-// Results message
-export const RESULTS_MESSAGAE = {
-  SEARCH: 'No results were found.',
+// Message
+export const MESSAGAE = {
+  NO_RESULT: 'No results were found.',
 };
