@@ -163,25 +163,14 @@
 }
 
 .btn-clear-search {
-  background-color: transparent;
   display: none;
-}
-
-.clear-search-icon {
   background-color: var(--color-clear-search);
   border-radius: var(--rounded-circle);
   text-align: center;
   box-shadow: 0 0 2px var(--color-clear-search);
-  width: 15px;
+  width: 14px;
   height: 15px;
-  margin: auto;
-  padding: 2px;
-  font-size: var(--font-size-xl);
-  font-weight: 400;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 10px;
+  padding: 10px;
 }
 
 .search-result-message {
