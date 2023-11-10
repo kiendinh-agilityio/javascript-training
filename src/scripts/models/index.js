@@ -35,12 +35,12 @@ export class AdsModel {
 
   /**
    * A method to delete an advertisement by ID.
-   * @param {number} adId - The ID of the ad to be deleted.
+   * @param {number} adsId - The ID of the ad to be deleted.
    * @returns {Promise} - A promise that resolves when the deletion is successful or rejects with an error.
    */
-  async deleteAd(adId) {
+  async deleteAd(adsId) {
     try {
-      await httpServices().delete(`/${adId}`);
+      await httpServices().delete(`/${adsId}`);
     } catch (error) {
       return error;
     }

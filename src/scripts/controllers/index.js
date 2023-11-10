@@ -108,15 +108,15 @@ export class AdsController {
 
   /**
    * Handles the user deletion.
-   * @param {number} adId - The ID of the ad to be deleted.
+   * @param {number} adsId - The ID of the ad to be deleted.
    */
-  async handleDeleteUser(adId) {
+  async handleDeleteUser(adsId) {
     try {
       // Call delayActions to introduce a delay before actually deleting the user
       delayActions(async () => {
-        await this.model.deleteAd(adId);
+        await this.model.deleteAd(adsId);
 
-        const updatedAdsData = this.model.adsData.filter((ad) => ad.id !== adId);
+        const updatedAdsData = this.model.adsData.filter((ads) => ads.id !== adsId);
 
         this.view.displayAdsList(updatedAdsData);
         this.initialize();

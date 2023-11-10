@@ -48,19 +48,19 @@ export class AdsView {
 
       if (deleteButton) {
         // data-id button "Delete"
-        const adId = parseInt(deleteButton.getAttribute('data-id'));
+        const adsId = parseInt(deleteButton.getAttribute('data-id'));
 
-        // Show modal or perform other actions based on adId
-        this.showDeleteModal(adId);
-        this.bindDeleteUserHandler(adId);
+        // Show modal or perform other actions based on adsId
+        this.showDeleteModal(adsId);
+        this.bindDeleteUserHandler(adsId);
       }
     });
 
     // Add event for confirm delete button
     this.confirmDeleteButton.addEventListener('click', () => {
-      const adId = parseInt(this.confirmDeleteButton.getAttribute('data-id'));
+      const adsId = parseInt(this.confirmDeleteButton.getAttribute('data-id'));
       this.hideDeleteModal();
-      this.deleteHandler(adId);
+      this.deleteHandler(adsId);
     });
 
     // Add event for cancel delete
@@ -181,10 +181,10 @@ export class AdsView {
 
   /**
    * Binds the delete user handler to the confirmation modal buttons.
-   * @param {number} adId - The ID of the ad to be deleted.
+   * @param {number} adsId - The ID of the ad to be deleted.
    */
-  bindDeleteUserHandler(adId) {
-    this.confirmDeleteButton.setAttribute('data-id', adId);
+  bindDeleteUserHandler(adsId) {
+    this.confirmDeleteButton.setAttribute('data-id', adsId);
     this.showDeleteModal();
   }
 
