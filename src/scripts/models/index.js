@@ -1,4 +1,5 @@
 import { httpServices } from '../services/httpServices';
+import { MESSAGE } from '../constants/index';
 
 export class AdsModel {
   constructor() {
@@ -41,8 +42,8 @@ export class AdsModel {
   async deleteAd(adsId) {
     try {
       await httpServices().delete(`/${adsId}`);
-    } catch (error) {
-      return error;
+    } catch {
+      console.error(MESSAGE.DELETE_ERROR);
     }
   }
 }
