@@ -32,4 +32,17 @@ export class AdsModel {
   async searchAdsByKeyword(keyword) {
     return this.fetchAdsData(`?search=${keyword}`);
   }
+
+  /**
+   * A method to delete an advertisement by ID.
+   * @param {number} adId - The ID of the ad to be deleted.
+   * @returns {Promise} - A promise that resolves when the deletion is successful or rejects with an error.
+   */
+  async deleteAd(adId) {
+    try {
+      await httpServices().delete(`/${adId}`);
+    } catch (error) {
+      return error;
+    }
+  }
 }
