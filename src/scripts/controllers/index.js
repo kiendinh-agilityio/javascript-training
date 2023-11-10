@@ -65,37 +65,31 @@ export class AdsController {
    * Handles the search action.
    */
   async handleSearch() {
-    // Check if search input value is present and not null
-    if (this.view.searchInput && this.view.searchInput.value !== null) {
-      const keyword = this.view.searchInput.value.trim().toLowerCase();
+    const keyword = this.view.searchInput.value.trim().toLowerCase();
 
-      try {
-        if (keyword && (!this.model.adsData.length || this.model.error)) {
-          await this.model.fetchAdsData();
+    // Check if a keyword is present and if ad data needs to be loaded
+    if (keyword && (!this.model.adsData.length || this.model.error)) {
+      await this.model.fetchAdsData();
 
-          // Handle any error that occurred during data fetching
-          if (this.model.error) {
-            this.view.displayError(this.model.error);
-            return;
-          }
-        }
-
-        // Filter the adsData based on the entered keyword in the search input.
-        const filteredAds = this.model.adsData.filter((adsItem) => {
-          const { network = '', link = '', email = '', phone = '' } = adsItem || {};
-
-          // Check if any property includes the keyword
-          return network.includes(keyword) || email.includes(keyword) || phone.includes(keyword) || link.includes(keyword);
-        });
-
-        // Display matching ads if results are found
-        filteredAds.length ? this.view.displayAdsList(filteredAds) : this.view.handleSearchNoResult();
-      } catch (error) {
-        // Handle any unexpected error during the search process
-        this.view.displayError(error);
+      // Handle any error that occurred during data fetching
+      if (this.model.error) {
+        this.view.displayError(this.model.error);
+        return;
       }
+    }
+
+    // Filter the adsData based on the entered keyword in the search input.
+    const filteredAds = this.model.adsData.filter((adsItem) => {
+      const { network = '', link = '', email = '', phone = '' } = adsItem || {};
+
+      return network.includes(keyword) || email.includes(keyword) || phone.includes(keyword) || link.includes(keyword);
+    });
+
+    // Display matching ads if results are found
+    if (filteredAds.length) {
+      this.view.displayAdsList(filteredAds);
     } else {
-      this.view.displayError(error);
+      this.view.handleSearchNoResult();
     }
   }
 
@@ -111,20 +105,22 @@ export class AdsController {
    * @param {number} adsId - The ID of the ad to be deleted.
    */
   async handleDeleteUser(adsId) {
-    try {
-      // Call delayActions to introduce a delay before actually deleting the user
-      delayActions(async () => {
-        await this.model.deleteAd(adsId);
+    // Introduce a delay before actually deleting the ad
+    delayActions(async () => {
+      // Delete the ad from the model
+      await this.model.deleteAd(adsId);
 
-        const updatedAdsData = this.model.adsData.filter((ads) => ads.id !== adsId);
+      // Filter out the deleted ad from the adsData list
+      const updatedAdsData = this.model.adsData.filter((ads) => ads.id !== adsId);
 
-        this.view.displayAdsList(updatedAdsData);
-        this.initialize();
+      // Display the updated list of ads
+      this.view.displayAdsList(updatedAdsData);
 
-        showToast(MESSAGE.DELETE_SUCCESS, 'icon-success.svg', true);
-      });
-    } catch (error) {
-      this.view.displayError(error);
-    }
+      // Return to the initial state
+      this.initialize();
+
+      // Show a success notification
+      showToast(MESSAGE.DELETE_SUCCESS, 'icon-success.svg', true);
+    });
   }
 }
