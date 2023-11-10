@@ -1,15 +1,14 @@
 import { generateModalAds, toggleDropdown } from '../utils/index';
-import { DISPLAY_CLASS, TITLE_MODAL, MESSAGAE } from '../constants/index';
+import { DISPLAY_CLASS, TITLE_MODAL, MESSAGE } from '../constants/index';
 import { generateListAds } from '../templates/generateAdsList';
+import { adsSearchElement } from '../dom/index';
 
-/**
- * Represents the AdsView class for handling the advertisement view.
- */
 export class AdsView {
   constructor() {
     this.initElementsAds();
     this.initEventListenersAds();
     this.initializeSearchInput();
+    this.deleteHandler = null; // Track the delete handler
   }
 
   /**
@@ -20,9 +19,13 @@ export class AdsView {
     this.btnAdd = document.getElementById('btn-add');
     this.btnLogout = document.querySelector('.btn-logout');
     this.tableElement = document.getElementById('list-ads');
-    this.searchButton = document.getElementById('search-button');
-    this.searchInput = document.getElementById('search-input');
-    this.btnClearSearch = document.getElementById('btn-clear-search');
+    this.searchButton = adsSearchElement.querySelector('#search-button');
+    this.searchInput = adsSearchElement.querySelector('#search-input');
+    this.btnClearSearch = adsSearchElement.querySelector('#btn-clear-search');
+    this.deleteModal = document.getElementById('delete-modal');
+    this.confirmDeleteButton = this.deleteModal.querySelector('#confirm-delete');
+    this.cancelDeleteButton = this.deleteModal.querySelector('#cancel-delete');
+    this.closeDeleteModalButton = this.deleteModal.querySelector('#close-modal');
   }
 
   /**
@@ -38,6 +41,43 @@ export class AdsView {
 
     // Clear search button click
     this.btnClearSearch.addEventListener('click', this.clearSearchHandler.bind(this));
+
+    // Add click event to handle delete button clicks
+    this.tableElement.addEventListener('click', (event) => {
+      const deleteButton = event.target.closest('.dropdown-content button:last-child');
+
+      if (deleteButton) {
+        // data-id button "Delete"
+        const adId = parseInt(deleteButton.getAttribute('data-id'));
+
+        // Show modal or perform other actions based on adId
+        this.showDeleteModal(adId);
+        this.bindDeleteUserHandler(adId);
+      }
+    });
+
+    // Add event for confirm delete button
+    this.confirmDeleteButton.addEventListener('click', () => {
+      const adId = parseInt(this.confirmDeleteButton.getAttribute('data-id'));
+      this.hideDeleteModal();
+      this.deleteHandler(adId);
+    });
+
+    // Add event for cancel delete
+    this.cancelDeleteButton.addEventListener('click', () => {
+      this.hideDeleteModal();
+    });
+
+    // Add event for button close modal confirm
+    this.closeDeleteModalButton.addEventListener('click', () => {
+      this.hideDeleteModal();
+    });
+
+    this.deleteModal.addEventListener('click', (event) => {
+      if (event.target === this.deleteModal) {
+        this.hideDeleteModal();
+      }
+    });
   }
 
   /**
@@ -46,7 +86,7 @@ export class AdsView {
   initializeSearchInput() {
     this.searchInput.addEventListener('input', () => {
       const inputValue = this.searchInput.value.trim();
-      this.btnClearSearch.style.display = inputValue ? DISPLAY_CLASS.BLOCK : DISPLAY_CLASS.HIDDEN;
+      this.btnClearSearch.style.display = inputValue ? DISPLAY_CLASS.FLEX : DISPLAY_CLASS.HIDDEN;
     });
   }
 
@@ -84,8 +124,8 @@ export class AdsView {
   /**
    * Handles the case when no search results are found.
    */
-  handleNoSearchResults() {
-    this.tableElement.innerHTML = `<p class="search-result-message">${MESSAGAE.NO_RESULT}</p>`;
+  handleSearchNoResult() {
+    this.tableElement.innerHTML = `<p class="search-result-message">${MESSAGE.NO_RESULT}</p>`;
   }
 
   /**
@@ -109,6 +149,16 @@ export class AdsView {
     const dropdownButtons = this.tableElement.querySelectorAll('.btn-dropdown');
     const dropdownContents = this.tableElement.querySelectorAll('.dropdown-content');
 
+    const closeDropdowns = (event) => {
+      const isInsideDropdown = Array.from(dropdownContents).some(content => content.contains(event.target));
+
+      if (!isInsideDropdown) {
+        dropdownContents.forEach((content) => {
+          content.style.display = DISPLAY_CLASS.HIDDEN;
+        });
+      }
+    };
+
     dropdownButtons.forEach((button) => {
       button.addEventListener('click', (event) => {
         event.stopPropagation();
@@ -118,13 +168,45 @@ export class AdsView {
         const dropdownContent = this.tableElement.querySelector(`.dropdown-content[data-id="${id}`);
 
         // Hide other dropdown contents
-        dropdownContents.forEach((content) => {
-          content.style.display = DISPLAY_CLASS.HIDDEN;
-        });
+        closeDropdowns(event);
 
         // Toggle the selected dropdown content
         toggleDropdown(dropdownContent);
       });
     });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', closeDropdowns);
   }
-}
+
+  /**
+   * Binds the delete user handler to the confirmation modal buttons.
+   * @param {number} adId - The ID of the ad to be deleted.
+   */
+  bindDeleteUserHandler(adId) {
+    this.confirmDeleteButton.setAttribute('data-id', adId);
+    this.showDeleteModal();
+  }
+
+  /**
+   * Binds the delete user handler to the table element.
+   * @param {Function} handler - The handler function for deleting an ad.
+   */
+  bindDeleteUser(handler) {
+    this.deleteHandler = handler;
+  }
+
+  /**
+   * Displays the delete modal.
+   */
+  showDeleteModal() {
+    this.deleteModal.style.display = DISPLAY_CLASS.FLEX;
+  }
+
+  /**
+   * Hides the delete modal.
+   */
+  hideDeleteModal() {
+    this.deleteModal.style.display = DISPLAY_CLASS.HIDDEN;
+  }
+};
