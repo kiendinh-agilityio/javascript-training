@@ -36,3 +36,6 @@ export const METHOD_API = {
 export const SPECIAL_KEYS = {
   ENTER: 'Enter',
 };
+
+// Debounce time
+export const DEBOUNCE_TIME = 500;
