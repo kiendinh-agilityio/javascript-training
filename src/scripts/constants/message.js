@@ -20,6 +20,7 @@ export const SIGNUP_MESSAGE = {
 };
 
 // Message
-export const MESSAGAE = {
+export const MESSAGE = {
   NO_RESULT: 'No results were found.',
+  DELETE_SUCCESS: 'You have successfully deleted it',
 };
