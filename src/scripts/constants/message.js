@@ -22,5 +22,6 @@ export const SIGNUP_MESSAGE = {
 // Message
 export const MESSAGE = {
   NO_RESULT: 'No results were found.',
-  DELETE_SUCCESS: 'You have successfully deleted it',
+  DELETE_SUCCESS: 'You have deleted it successfully!',
+  DELETE_ERROR: 'Failed to delete ad with Id',
 };
