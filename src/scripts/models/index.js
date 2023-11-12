@@ -68,4 +68,24 @@ export class AdsModel {
       console.error(MESSAGE.ADD_ERROR);
     }
   }
+
+  /**
+   * A method to edit an existing advertisement by ID.
+   * @param {number} adsId - The ID of the ad to be edited.
+   * @param {object} updatedAdsItem - The updated data of the ad.
+   * @returns {Promise} - A promise that resolves when the editing is successful or rejects with an error.
+   */
+  async editAds(adsId, updatedAdsItem) {
+    try {
+      // Check the condition for statusID and update updatedAdsItem
+      updatedAdsItem.statusID = updatedAdsItem.status.includes('Active') ? ROLE_STATUS.ACTIVE : ROLE_STATUS.PAUSED;
+
+      // Send a PUT or PATCH request with the updated data
+      const response = await httpServices().put(`/${adsId}`, updatedAdsItem); // You need to adjust the endpoint and HTTP method based on your API
+
+      return response;
+    } catch (error) {
+      console.error(MESSAGE.EDIT_ERROR);
+    }
+  }
 }

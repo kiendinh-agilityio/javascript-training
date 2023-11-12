@@ -37,6 +37,9 @@ export class AdsController {
 
     // Bind add hander to the view
     this.view.bindAddAds(this.handleAddAds.bind(this));
+
+    // Bind edit handler to the view
+    this.view.bindEditAds(this.handleEditAds.bind(this));
   }
 
   /**
@@ -157,5 +160,35 @@ export class AdsController {
   // Show the ads modal with the given adsData
   handleShowAdsModal(adsData) {
     this.view.showAdsModal(adsData);
+  }
+
+  /**
+   * Handles the asynchronous editing of existing ads.
+   * @param {number} adsId - The ID of the ad to be edited.
+   * @param {object} updatedAdsItem - The updated data of the ad.
+   */
+  async handleEditAds(adsId, updatedAdsItem) {
+    // Introduce a delay before actually editing the ad
+    delayActions(async () => {
+      // Edit the ad in the model
+      const response = await this.model.editAds(adsId, updatedAdsItem);
+
+      // Find the edited ad in the adsData array
+      const editedAd = this.model.adsData.find((ads) => ads.id === adsId) || null;
+
+      // Update the edited ad with the response data
+      if (editedAd) {
+        Object.assign(editedAd, response);
+      }
+
+      // Display the updated list of ads
+      this.view.displayAdsList(this.model.adsData);
+
+      // Return to the initial state
+      this.initialize();
+
+      // Assuming `editAds` method handles errors internally, you can directly show the success notification
+      showToast(MESSAGE.EDIT_SUCCESS, 'icon-success.svg', true);
+    });
   }
 }

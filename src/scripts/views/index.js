@@ -17,6 +17,7 @@ export class AdsView {
     this.initializeSearchInput();
     this.deleteHandler = null; // Track the delete handler
     this.addAdsHandler = null;
+    this.editAdsHandler = null;
   }
 
   /**
@@ -40,7 +41,6 @@ export class AdsView {
    * Initializes event listeners for AdsView.
    */
   initEventListenersAds() {
-    this.btnAdd.addEventListener('click', this.showAdsModal.bind(this));
     this.modalAds.addEventListener('click', (event) => {
       if (event.target === this.modalAds) {
         this.closeModalHandler();
@@ -160,8 +160,14 @@ export class AdsView {
       if (Object.entries(errors).length > 0) {
         showFormErrors(errors);
       } else {
-        // If no errors, invoke the addAdsHandler and close the modal
-        await this.addAdsHandler(adsItem);
+        // If no errors, invoke the appropriate handler (add or edit) and close the modal
+        if (adsData) {
+          // If adsData is present, it's an edit operation
+          await this.editAdsHandler(adsData.id, adsItem);
+        } else {
+          // If adsData is not present, it's an add operation
+          await this.addAdsHandler(adsItem);
+        }
 
         this.closeModalHandler();
       }
@@ -174,6 +180,14 @@ export class AdsView {
    */
   bindAddAds(handler) {
     this.addAdsHandler = handler;
+  }
+
+  /**
+   * Binds the handler for editing existing ads.
+   * @param {Function} handler - The handler function for editing ads.
+   */
+  bindEditAds(handler) {
+    this.editAdsHandler = handler;
   }
 
   /**

@@ -31,4 +31,6 @@ export const MESSAGE = {
   DELETE_ERROR: 'Failed to delete ads with Id',
   ADD_ERROR: 'Failed to add new ads',
   ADD_SUCCESS: 'You have added it successfully!',
+  EDIT_ERROR: 'Failed to edit ads',
+  EDIT_SUCCESS: 'You have edited it successfully!',
 };
