@@ -180,6 +180,12 @@
   color: var(--color-tertiary);
 }
 
+.error-message-form {
+  color: var(--color-danger);
+  font-size: var(--font-size-xs);
+  padding: 10px 8px;
+}
+
 @media (min-width: 768px) {
   .ads-search {
     width: 245px;
