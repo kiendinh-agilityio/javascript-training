@@ -33,7 +33,10 @@ export class AdsController {
     });
 
     // Bind delete handler to the view
-    this.view.bindDeleteUser(this.handleDeleteUser.bind(this));
+    this.view.bindDeleteAds(this.handleDeleteAds.bind(this));
+
+    // Bind add hander to the view
+    this.view.bindAddAds(this.handleAddAds.bind(this));
   }
 
   /**
@@ -104,11 +107,11 @@ export class AdsController {
    * Handles the user deletion.
    * @param {number} adsId - The ID of the ad to be deleted.
    */
-  async handleDeleteUser(adsId) {
+  async handleDeleteAds(adsId) {
     // Introduce a delay before actually deleting the ad
     delayActions(async () => {
       // Delete the ad from the model
-      await this.model.deleteAd(adsId);
+      await this.model.deleteAds(adsId);
 
       // Filter out the deleted ad from the adsData list
       const updatedAdsData = this.model.adsData.filter((ads) => ads.id !== adsId);
@@ -122,5 +125,37 @@ export class AdsController {
       // Show a success notification
       showToast(MESSAGE.DELETE_SUCCESS, 'icon-success.svg', true);
     });
+  }
+
+  /**
+   * Handles the asynchronous addition of new ads.
+   * @param {object} newAds - The data of the new ad to be added.
+   */
+  async handleAddAds(newAds) {
+    // Introduce a delay before adding the new ad
+    delayActions(async () => {
+      // Send a request to add the new ad and await the response
+      const response = await this.model.addAds(newAds);
+
+      // Update this.model.adsData with the new data from the response
+      this.model.adsData.push(response);
+
+      // Refresh adsData after adding
+      await this.model.fetchAdsData();
+
+      // Display the list of ads after adding
+      this.view.displayAdsList(this.model.adsData);
+
+      // Return to the initial state
+      this.initialize();
+
+      // Show a success notification
+      showToast(MESSAGE.ADD_SUCCESS, 'icon-success.svg', true);
+    });
+  }
+
+  // Show the ads modal with the given adsData
+  handleShowAdsModal(adsData) {
+    this.view.showAdsModal(adsData);
   }
 }
