@@ -1,5 +1,5 @@
-import { debounce, delayActions, showToast } from '../utils/index';
-import { SPECIAL_KEYS, MESSAGE } from '../constants/index';
+import { debounce, delayActions, showToast } from '../../scripts/utils/index';
+import { SPECIAL_KEYS, MESSAGE } from '../../scripts/constants/index';
 
 /**
  * Represents the AdsController class for handling the business logic and user interactions.
@@ -14,8 +14,14 @@ export class AdsController {
     this.view.setLogoutHandler(this.handleLogout.bind(this));
 
     // Add event listeners for search and clear search buttons
-    this.view.searchButton.addEventListener('click', this.handleSearch.bind(this));
-    this.view.btnClearSearch.addEventListener('click', this.handleClearSearch.bind(this));
+    this.view.searchButton.addEventListener(
+      'click',
+      this.handleSearch.bind(this),
+    );
+    this.view.btnClearSearch.addEventListener(
+      'click',
+      this.handleClearSearch.bind(this),
+    );
 
     // Initialize debounced search handling
     this.handleSearchDebounced = debounce(this.handleSearch.bind(this), 500);
@@ -37,6 +43,12 @@ export class AdsController {
 
     // Bind add hander to the view
     this.view.bindAddAds(this.handleAddAds.bind(this));
+
+    // Bind edit handler to the view
+    this.view.bindEditAds(this.handleEditAds.bind(this));
+
+    // add event edit
+    this.view.bindGetDetailAds(this.handleGetDetailAds.bind(this));
   }
 
   /**
@@ -85,7 +97,12 @@ export class AdsController {
     const filteredAds = this.model.adsData.filter((adsItem) => {
       const { network = '', link = '', email = '', phone = '' } = adsItem || {};
 
-      return network.includes(keyword) || email.includes(keyword) || phone.includes(keyword) || link.includes(keyword);
+      return (
+        network.includes(keyword) ||
+        email.includes(keyword) ||
+        phone.includes(keyword) ||
+        link.includes(keyword)
+      );
     });
 
     // Display matching ads if results are found
@@ -114,7 +131,9 @@ export class AdsController {
       await this.model.deleteAds(adsId);
 
       // Filter out the deleted ad from the adsData list
-      const updatedAdsData = this.model.adsData.filter((ads) => ads.id !== adsId);
+      const updatedAdsData = this.model.adsData.filter(
+        (ads) => ads.id !== adsId,
+      );
 
       // Display the updated list of ads
       this.view.displayAdsList(updatedAdsData);
@@ -157,5 +176,46 @@ export class AdsController {
   // Show the ads modal with the given adsData
   handleShowAdsModal(adsData) {
     this.view.showAdsModal(adsData);
+  }
+
+  /**
+   * Handles the asynchronous editing of existing ads.
+   * @param {number} adsId - The ID of the ad to be edited.
+   * @param {object} updatedAdsItem - The updated data of the ad.
+   */
+  async handleEditAds(adsId, updatedAdsItem) {
+    // Introduce a delay before actually editing the ad
+    delayActions(async () => {
+      // Edit the ad in the model
+      const response = await this.model.editAds(adsId, updatedAdsItem);
+
+      // Find the edited ad in the adsData array
+      const editedAd =
+        this.model.adsData.find((ads) => ads.id === adsId) || null;
+
+      // Update the edited ad with the response data
+      editedAd && Object.assign(editedAd, response);
+
+      // Display the updated list of ads
+      this.view.displayAdsList(this.model.adsData);
+
+      // Return to the initial state
+      this.initialize();
+
+      // Assuming `editAds` method handles errors internally, you can directly show the success notification
+      showToast(MESSAGE.EDIT_SUCCESS, 'icon-success.svg', true);
+    });
+  }
+
+  /**
+   * Asynchronously handles the retrieval of detailed information for a specific advertisement.
+   * @param {string} adsId - The unique identifier of the advertisement.
+   */
+  async handleGetDetailAds(adsId) {
+    // Await the retrieval of detailed advertisement information using the provided adsId.
+    await this.model.getAdsDetail(adsId);
+
+    // Display the advertisement modal with the retrieved details from the model.
+    this.view.showAdsModal(this.model.adsDetail);
   }
 }
