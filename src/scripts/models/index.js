@@ -107,4 +107,41 @@ export class AdsModel {
       console.error(MESSAGE.EDIT_ERROR);
     }
   }
+
+  /**
+   * Sorts the adsData based on the specified column and order.
+   * @param {number} columnIndex - The index of the column to sort.
+   * @param {string} sortOrder - The sort order ('asc' or 'desc').
+   */
+  sortAdsData(columnIndex, sortOrder) {
+    const columnName = this.getColumnKey(columnIndex);
+
+    this.adsData.sort((a, b) => {
+      const valueA = a[columnName].toLowerCase();
+      const valueB = b[columnName].toLowerCase();
+
+      if (sortOrder === 'asc') {
+        return valueA.localeCompare(valueB);
+      } else {
+        return valueB.localeCompare(valueA);
+      }
+    });
+  }
+
+  /**
+   * Gets the corresponding key for the given column index.
+   * @param {number} columnIndex - The index of the column.
+   * @returns {string} - The key of the column.
+   */
+  getColumnKey(columnIndex) {
+    switch (columnIndex) {
+      case 0:
+        return 'network';
+      case 1:
+        return 'status';
+      // Add more cases for other columns if needed
+      default:
+        return '';
+    }
+  }
 }
