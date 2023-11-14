@@ -25,6 +25,10 @@ export class AdsView {
     this.addAdsHandler = null;
     this.editAdsHandler = null;
     this.getDetailAdsHandler = null;
+    this.sortOrder = 'asc'; // Initial sort order
+    this.currentSortColumnIndex = null; // Initial sort column index
+    this.initSortHandlers();
+    this.sortHandler = null; // Sort handler function
   }
 
   /**
@@ -65,6 +69,15 @@ export class AdsView {
     this.tableElement.addEventListener('click', async (event) => {
       const editButton = event.target.closest('.dropdown-content button:first-child');
       const deleteButton = event.target.closest('.dropdown-content button:last-child');
+
+      // Handle sort button click
+      const iconSelectors = ['.thead li:nth-child(1)', '.thead li:nth-child(2)'];
+
+      for (const selector of iconSelectors) {
+        const sortIcon = event.target.closest(selector);
+
+        sortIcon && this.handleSort(+sortIcon.getAttribute('data-index'));
+      }
 
       const handleActionButtonClick = async (button, action) => {
         button && await action(parseInt(button.getAttribute('data-id')));
@@ -336,5 +349,44 @@ export class AdsView {
       const errorElement = this.modalAds.querySelector(`#${field}-error`);
       errorElement.textContent = '';
     });
+  }
+
+  /**
+   * Initializes event listeners for sorting columns.
+   */
+  initSortHandlers() {
+    const columnHeaders = document.querySelectorAll('.thead li');
+    columnHeaders.forEach(header => {
+      header.addEventListener('click', () => {
+        const columnIndex = Array.from(columnHeaders).indexOf(header);
+        this.handleSort(columnIndex);
+      });
+    });
+  }
+
+  /**
+   * Handles the sorting of columns.
+   * @param {number} columnIndex - The index of the column to sort.
+   */
+  handleSort(columnIndex) {
+    if (this.currentSortColumnIndex === columnIndex) {
+      // Reverse the sort order if the same column is clicked again
+      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+      // Set the sort order to 'asc' for a new column
+      this.sortOrder = 'asc';
+      this.currentSortColumnIndex = columnIndex;
+    }
+
+    // Notify the controller about the sorting
+    this.sortHandler && this.sortHandler(columnIndex, this.sortOrder);
+  }
+
+  /**
+   * Sets the sort handler for the view.
+   * @param {Function} handler - The handler function for sorting columns.
+   */
+  setSortHandler(handler) {
+    this.sortHandler = handler;
   }
 }
