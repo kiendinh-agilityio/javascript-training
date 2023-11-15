@@ -4,8 +4,8 @@ export const generateListAds = (items) => {
   return `
     <div class="table-container">
       <ul class="flex flex-wrap justify-between table-row thead">
-        <li>Network</li>
-        <li>Status</li>
+        <li data-column="network" data-index="0">Network</li>
+        <li data-column="status" data-index="1">Status</li>
         <li>Email</li>
         <li>Phone</li>
         <li></li>
