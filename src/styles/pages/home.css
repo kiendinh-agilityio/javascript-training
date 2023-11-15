@@ -109,12 +109,12 @@
 }
 
 .thead li:before {
-	border-bottom-color: #666;
+	border-bottom-color: var(--color-tertiary);
 	margin-top: -9px;
 }
 
 .thead li:after {
-	border-top-color: #666;
+	border-top-color: var(--color-tertiary);
 	margin-top: 1px;
 }
 
