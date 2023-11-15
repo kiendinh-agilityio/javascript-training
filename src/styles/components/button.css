@@ -40,6 +40,7 @@
   border-radius: var(--rounded-sm);
   cursor: pointer;
   padding: 10px 40px;
+  width: 160px;
 }
 
 .btn-confirm:not(:last-child) {
