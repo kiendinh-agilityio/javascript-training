@@ -70,5 +70,15 @@ export const httpServices = () => {
       const url = `${BASE_API}${END_POINTS.ADS}${id}`;
       return sendRequest(url, METHOD_API.DELETE);
     },
+
+    /**
+     * Get the information of an advertisement using the GET method.
+     * @param {number} id - The ID of the advertisement to be updated.
+     * @returns {Promise} A promise that resolves to the updated advertising data.
+     */
+    async getDetail(id) {
+      const url = `${BASE_API}${END_POINTS.ADS}/${id}`;
+      return sendRequest(url, METHOD_API.GET);
+    },
   };
 };
