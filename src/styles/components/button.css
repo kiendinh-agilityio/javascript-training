@@ -65,6 +65,10 @@
   right: 0;
 }
 
+.btn:focus-visible {
+  outline: auto;
+}
+
 @media (min-width: 992px) {
   .btn-confirm,
   .btn {
