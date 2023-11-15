@@ -27,7 +27,7 @@ export const generateModalAds = (item, title) => {
             placeholder="Network"
             value="${network}"
           />
-          <div id="network-error" class="error-message"></div>
+          <div id="network-error" class="error-message-form"></div>
         </div>
         <div class="flex-column">
           <input
@@ -37,7 +37,7 @@ export const generateModalAds = (item, title) => {
             placeholder="www.example.org"
             value="${link}"
           />
-          <div id="link-error" class="error-message"></div>
+          <div id="link-error" class="error-message-form"></div>
         </div>
         <div class="flex-column">
           <input
@@ -47,7 +47,7 @@ export const generateModalAds = (item, title) => {
             placeholder="Email"
             value="${email}"
           />
-          <div id="email-error" class="error-message"></div>
+          <div id="email-error" class="error-message-form"></div>
         </div>
         <div class="flex justify-between form-group">
           <div class="phone-number-input flex-column">
@@ -58,10 +58,10 @@ export const generateModalAds = (item, title) => {
               type="text"
               value="${phone}"
             />
-            <div id="phone-error" class="error-message"></div>
+            <div id="phone-error" class="error-message-form"></div>
           </div>
           <div class="form-select flex-column">
-            <select id="role-type" name="role-type" class="form-input-select">
+            <select id="status-type" name="status-type" class="form-input-select">
               <option value="">Select Status</option>
               <option value="Paused" ${
                 status === 'Paused' ? 'selected' : ''
@@ -70,7 +70,7 @@ export const generateModalAds = (item, title) => {
                 status === 'Active' ? 'selected' : ''
               }>Active</option>
             </select>
-            <div id="role-error" class="error-message"></div>
+            <div id="status-error" class="error-message-form"></div>
           </div>
         </div>
         <div class="flex justify-end btn-modal-group">

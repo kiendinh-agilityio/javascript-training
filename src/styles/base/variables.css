@@ -22,6 +22,9 @@
   --color-border-horizontal: #f2f2f2;
   --color-ads-link: #018273;
   --color-box-shadow-dropdown: rgba(0,0,0,0.2);
+  --color-clear-search: #bfbbbb;
+  --color-btn-confirm-cancel: #e2e8f0;
+  --color-btn-add: #aeaeb3;
 
   /* font family */
   --font-primary: Abel, san-serif;

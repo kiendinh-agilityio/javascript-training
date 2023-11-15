@@ -41,7 +41,7 @@
             class="flex-column items-center justify-between main-sidebar"
           >
             <div class="flex-column items-center">
-              <a class="logo-sidebar" href="./index.html">
+              <a class="logo-sidebar" href="/">
                 <img
                   width="26px"
                   height="26px"
@@ -89,6 +89,9 @@
               type="text"
               name="search"
             />
+            <button id="btn-clear-search" class="justify-center items-center btn btn-clear-search">
+              x
+            </button>
           </div>
         </div>
         <ul class="flex justify-between nav-list">
@@ -120,51 +123,38 @@
         <div class="ads-content">
           <div class="flex justify-between items-center">
             <h2 class="ads-dashboard-heading">List Ads</h2>
-            <button id="btn-add" class="btn btn-add">
-              <img width="36px" height="36px" src="../assets/images/svg/btn-add.svg" alt="Button add">
+            <button id="btn-add" class="flex items-center btn btn-add">
+              <span>Add Ads</span>
+              <img
+                loading="lazy"
+                width="10px"
+                height="10x"
+                class="add-icon"
+                src="../assets/images/svg/btn-add.svg"
+                alt="Add Icon"
+              />
             </button>
           </div>
-          <table class="ads-dashboard-content">
-            <thead>
-              <tr class="table-row">
-                <th>Network</th>
-                <th>Status</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="table-row">
-                <td class="ads-dasboard-item">
-                  <p class="ads-network-text">Napoleon defeat</p>
-                  <p class="ads-link">www.aol.com</p>
-                </td>
-                <td class="flex justify-center table-cell ads-dasboard-item">
-                  <div class="flex justify-center items-center ads-status-tag">
-                    <span class="ads-status-text">Paused</span>
-                  </div>
-                </td>
-                <td class="table-cell ads-dasboard-item ads-email">napoleon.defeat@gmail.com</td>
-                <td class="table-cell ads-dasboard-item ads-phone-number">(205)-205-5555</td>
-                <td class="table-cell">
-                  <div class="dropdown" id="dropdown">
-                    <button class="btn btn-dropdown" id="btn-dropdown">
-                      <img width="14px" height="3px" src="../assets/images/svg/more.svg" alt="Button group">
-                    </button>
-                    <div class="dropdown-content" id="dropdown-content">
-                      <button>
-                        <img width="20px" height="20px" src="../assets/images/svg/edit.svg" alt="Button Edit">
-                      </button>
-                      <button>
-                        <img width="20px" height="20px" src="../assets/images/svg/delete.svg" alt="Button Delete">
-                      </button>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div id="list-ads" class="ads-dashboard-content"></div>
+        </div>
+        <div id="delete-modal" class="modal-confirm-delete">
+          <div class="modal-confirm-content">
+            <button class="btn btn-close" id="close-modal">
+              x
+            </button>
+            <p class="heading-confirm">
+              Are you sure you want to delete this ads from the list ads?
+            </p>
+            <div class="flex justify-end">
+              <button id="cancel-delete" class="btn-confirm">
+                Cancel
+              </button>
+              <button id="confirm-delete" class="btn-confirm">Delete User</button>
+            </div>
+          </div>
+        </div>
+        <div class="loading-container" id="loading-container">
+          <span class="loading-indicator" id="loading-indicator"></span>
         </div>
       </section>
     </main>
