@@ -83,6 +83,7 @@
 /* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) {
   .sidebar-section {
+    display: flex;
     width: var(--width-sidebar-content);
   }
 
