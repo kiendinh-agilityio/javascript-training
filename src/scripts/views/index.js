@@ -26,7 +26,7 @@ export class AdsView {
     this.addAdsHandler = null;
     this.editAdsHandler = null;
     this.getDetailAdsHandler = null;
-    this.sortOrder = 'asc'; // Initial sort order
+    this.sortOrder = SORT_VALUE.ASC; // Initial sort order
     this.currentSortColumnIndex = null; // Initial sort column index
     this.initSortHandlers();
     this.sortHandler = null; // Sort handler function
