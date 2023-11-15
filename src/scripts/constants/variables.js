@@ -62,3 +62,9 @@ export const ROLE_STATUS = {
   ACTIVE: 'active',
   PAUSED: 'paused',
 };
+
+// Variables for sort type
+export const SORT_VALUE = {
+  DESC: 'desc',
+  ASC: 'asc',
+};
