@@ -36,7 +36,7 @@ export class AuthenModel {
           this.view.showSuccessToast(LOGIN_MESSAGE.SUCCESS);
 
           // Redirect to the index page
-          window.location.href = 'index.html';
+          window.location.href = '/';
         } else {
           // Login unsuccessful
           throw new Error(LOGIN_MESSAGE.UNSUCCESSFUL);
