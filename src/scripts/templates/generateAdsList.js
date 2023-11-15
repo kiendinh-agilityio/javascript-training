@@ -10,7 +10,7 @@ export const generateListAds = (items) => {
         <li>Phone</li>
         <li></li>
       </ul>
-      <div class="flex-column flex-wrap tbody">
+      <div class="flex-column flex-wrap tbody relative">
         ${items
           .map((item) => {
             return adsItem(item);

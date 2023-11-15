@@ -18,7 +18,7 @@ export const adsItem = (item) => {
       <div class="table-cell ads-dasboard-item">
         <p class="ads-phone-number">${phone}</p>
       </div>
-      <div class="table-cell">
+      <div class="table-cell dropdown-group">
         <div class="dropdown">
           <button class="btn btn-dropdown" data-id=${id}>
             <img width="14px" height="3px" src="/images/svg/more.svg" alt="Button group">
