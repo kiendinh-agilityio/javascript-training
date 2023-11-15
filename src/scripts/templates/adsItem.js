@@ -5,7 +5,7 @@ export const adsItem = (item) => {
     <div class="flex justify-between items-center table-row" data-id=${id}>
       <div class="ads-dasboard-item">
         <p class="ads-network-text">${network}</p>
-        <p class="ads-link">${link}</p>
+        <a href ="https://${link}" class="ads-link" target="_blank">${link}</a>
       </div>
       <div class="flex justify-start table-cell ads-dasboard-item">
         <p class="flex justify-center items-center ads-status-tag ads-status-${statusID}">
