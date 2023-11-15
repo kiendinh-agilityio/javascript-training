@@ -355,8 +355,8 @@ export class AdsView {
    * Initializes event listeners for sorting columns.
    */
   initSortHandlers() {
-    const columnHeaders = document.querySelectorAll('.thead li');
-    columnHeaders.forEach(header => {
+    this.columnHeaders = this.tableElement.querySelectorAll('.thead li');
+    this.columnHeaders.forEach(header => {
       header.addEventListener('click', () => {
         const columnIndex = Array.from(columnHeaders).indexOf(header);
         this.handleSort(columnIndex);
