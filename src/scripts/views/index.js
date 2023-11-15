@@ -12,6 +12,7 @@ import {
   MESSAGE,
   PROFILE_ADS,
   ELEMENT_ID,
+  SORT_VALUE,
 } from '../../scripts/constants/index';
 import { generateListAds } from '../../scripts/templates/generateAdsList';
 import { adsSearchElement } from '../../scripts/dom/index';
@@ -79,6 +80,7 @@ export class AdsView {
         sortIcon && this.handleSort(+sortIcon.getAttribute('data-index'));
       }
 
+      // Handle action click for edit and delete
       const handleActionButtonClick = async (button, action) => {
         button && await action(parseInt(button.getAttribute('data-id')));
       };
@@ -370,11 +372,9 @@ export class AdsView {
    */
   handleSort(columnIndex) {
     if (this.currentSortColumnIndex === columnIndex) {
-      // Reverse the sort order if the same column is clicked again
-      this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc';
+      this.sortOrder = this.sortOrder === SORT_VALUE.ASC ? SORT_VALUE.DESC : SORT_VALUE.ASC;
     } else {
-      // Set the sort order to 'asc' for a new column
-      this.sortOrder = 'asc';
+      this.sortOrder = SORT_VALUE.ASC;
       this.currentSortColumnIndex = columnIndex;
     }
 
