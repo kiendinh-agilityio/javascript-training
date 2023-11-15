@@ -50,12 +50,14 @@
   right: 0;
 }
 
+@media (min-width: 768px) {
+  .heading-auth {
+    font-size: var(--font-size-4xl);
+  }
+}
+
 @media (min-width: 992px) {
   .authen-content {
     max-width: 576px;
-  }
-
-  .heading-auth {
-    font-size: var(--font-size-4xl);
   }
 }
