@@ -1,5 +1,5 @@
 import { debounce, delayActions, showToast } from '../../scripts/utils/index';
-import { SPECIAL_KEYS, MESSAGE } from '../../scripts/constants/index';
+import { SPECIAL_KEYS, MESSAGE, SORT_VALUE } from '../../scripts/constants/index';
 
 /**
  * Represents the AdsController class for handling the business logic and user interactions.
@@ -230,12 +230,19 @@ export class AdsController {
   sortAdsData(columnIndex, sortOrder) {
     const columnName = this.getColumnKey(columnIndex);
 
+    // Sort the data
     this.model.adsData = this.model.adsData.sort((a, b) => {
-      const valueA = a[columnName].toLowerCase();
-      const valueB = b[columnName].toLowerCase();
+      // Convert column values to strings and convert to lowercase (handling null values)
+      const valueA = String(a[columnName]).toLowerCase() || '';
+      const valueB = String(b[columnName]).toLowerCase() || '';
 
-      return (sortOrder === 'asc') ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
+      // Compare the string values of two elements
+      const result = valueA.localeCompare(valueB);
+
+      // Reverse the result if sortOrder is 'desc'
+      return sortOrder === SORT_VALUE.ASC ? result : -result;
     });
+
     this.view.displayAdsList(this.model.adsData);
   }
 
