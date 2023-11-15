@@ -96,15 +96,21 @@ export class AdsController {
       }
     }
 
+    // Remove spaces in the keyword
+    const formattedKeyword = keyword.replace(/\s/g, '');
+
     // Filter the adsData based on the entered keyword in the search input.
     const filteredAds = this.model.adsData.filter((adsItem) => {
       const { network = '', link = '', email = '', phone = '' } = adsItem || {};
 
+      // Remove spaces and convert to lowercase
+      const formattedNetwork = network.replace(/\s/g, '').toLowerCase();
+
       return (
-        network.includes(keyword) ||
-        email.includes(keyword) ||
-        phone.includes(keyword) ||
-        link.includes(keyword)
+        formattedNetwork.includes(formattedKeyword) ||
+        email.includes(formattedKeyword) ||
+        phone.includes(formattedKeyword) ||
+        link.includes(formattedKeyword)
       );
     });
 
