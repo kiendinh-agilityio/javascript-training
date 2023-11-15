@@ -14,6 +14,7 @@
     "space-before-function-paren": "off",
     "no-new": "off",
     "quotes": "off",
-    "no-undef": "off"
+    "no-undef": "off",
+    "no-extra-boolean-cast": "off"
   }
 }
