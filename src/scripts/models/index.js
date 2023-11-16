@@ -41,7 +41,8 @@ export class AdsModel {
    */
   async deleteAds(adsId) {
     try {
-      await httpServices().delete(`/${adsId}`);
+      const response = await httpServices().delete(`/${adsId}`);
+      return response;
     } catch {
       console.error(MESSAGES.DELETE_ERROR);
     }
