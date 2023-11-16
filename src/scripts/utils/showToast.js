@@ -23,5 +23,5 @@ export const showToast = (message, icon, isSuccess) => {
   setTimeout(() => {
     toastContainer.style.display = 'none';
     document.body.removeChild(toastContainer);
-  }, 500);
+  }, 1000);
 };
