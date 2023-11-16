@@ -1,5 +1,3 @@
-import { DEBOUNCE_TIME } from '../constants/index';
-
 const loadingContainer = document.getElementById('loading-container');
 
 const loadingSpinner = {
@@ -22,8 +20,5 @@ export const stopLoadingSpinner = () => {
 
 export const delayActions = (callback) => {
   startLoadingSpinner();
-  setTimeout(() => {
-    callback();
-    stopLoadingSpinner();
-  }, DEBOUNCE_TIME);
+  callback();
 };
