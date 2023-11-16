@@ -6,7 +6,7 @@ export const REGEX = {
   CHARACTERS: /^.{8,}$/,
 
   // Check regex for link
-  LINK: /^www\.[\w-]+\.com$/i,
+  LINK: /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+(\.[a-zA-Z]{2,})?([/?].*)?$/,
 
   // Check the character must match the phone number format. Example: (205)-205-5555
   PHONE: /^\(\d{3}\)-\d{3}-\d{4}$/,
