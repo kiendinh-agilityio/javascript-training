@@ -1,5 +1,5 @@
 import { debounce, delayActions, showToast } from '../../scripts/utils/index';
-import { SPECIAL_KEYS, MESSAGE, SORT_VALUE } from '../../scripts/constants/index';
+import { SPECIAL_KEYS, MESSAGES, SORT_VALUE, DEBOUNCE_TIME, ICONS, REGEX } from '../../scripts/constants/index';
 
 /**
  * Represents the AdsController class for handling the business logic and user interactions.
@@ -24,7 +24,7 @@ export class AdsController {
     );
 
     // Initialize debounced search handling
-    this.handleSearchDebounced = debounce(this.handleSearch.bind(this), 500);
+    this.handleSearchDebounced = debounce(this.handleSearch.bind(this), DEBOUNCE_TIME);
 
     // Add event listeners for real-time search
     this.view.searchInput.addEventListener('input', () => {
@@ -97,14 +97,14 @@ export class AdsController {
     }
 
     // Remove spaces in the keyword
-    const formattedKeyword = keyword.replace(/\s/g, '');
+    const formattedKeyword = keyword.replace(REGEX.KEYWORD, '');
 
     // Filter the adsData based on the entered keyword in the search input.
     const filteredAds = this.model.adsData.filter((adsItem) => {
       const { network = '', link = '', email = '', phone = '' } = adsItem || {};
 
       // Remove spaces and convert to lowercase
-      const formattedNetwork = network.replace(/\s/g, '').toLowerCase();
+      const formattedNetwork = network.replace(REGEX.KEYWORD, '').toLowerCase();
 
       return (
         formattedNetwork.includes(formattedKeyword) ||
@@ -151,7 +151,7 @@ export class AdsController {
       this.initialize();
 
       // Show a success notification
-      showToast(MESSAGE.DELETE_SUCCESS, 'icon-success.svg', true);
+      showToast(MESSAGES.DELETE_SUCCESS, ICONS.SUCCESS, true);
     });
   }
 
@@ -178,7 +178,7 @@ export class AdsController {
       this.initialize();
 
       // Show a success notification
-      showToast(MESSAGE.ADD_SUCCESS, 'icon-success.svg', true);
+      showToast(MESSAGES.ADD_SUCCESS, ICONS.SUCCESS, true);
     });
   }
 
@@ -212,7 +212,7 @@ export class AdsController {
       this.initialize();
 
       // Assuming `editAds` method handles errors internally, you can directly show the success notification
-      showToast(MESSAGE.EDIT_SUCCESS, 'icon-success.svg', true);
+      showToast(MESSAGES.EDIT_SUCCESS, ICONS.SUCCESS, true);
     });
   }
 
