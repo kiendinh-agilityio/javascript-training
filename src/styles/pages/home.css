@@ -1,7 +1,7 @@
 .ads-section {
   padding: 36px 15px;
   box-shadow: -10px 0px 15px 0px var(--color-box-sadow);
-  z-index: var(--z-index-lg);
+  z-index: var(--z-index-md);
 }
 
 .ads-heading {
