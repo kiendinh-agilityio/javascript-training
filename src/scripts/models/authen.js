@@ -1,9 +1,9 @@
 import {
   BASE_API,
-  LOGIN_MESSAGE,
+  LOGIN_MESSAGES,
   END_POINTS,
-  SIGNUP_MESSAGE,
-  VALIDATE_MESSAGE,
+  SIGNUP_MESSAGES,
+  VALIDATE_MESSAGES,
 } from '../constants/index';
 
 /** Class representing the authentication model. */
@@ -33,13 +33,13 @@ export class AuthenModel {
 
         if (user && user.password === password) {
           // Successful login
-          this.view.showSuccessToast(LOGIN_MESSAGE.SUCCESS);
+          this.view.showSuccessToast(LOGIN_MESSAGES.SUCCESS);
 
           // Redirect to the index page
           window.location.href = '/';
         } else {
           // Login unsuccessful
-          throw new Error(LOGIN_MESSAGE.UNSUCCESSFUL);
+          throw new Error(LOGIN_MESSAGES.UNSUCCESSFUL);
         }
       } else {
         // Error when fetching user data
@@ -61,7 +61,7 @@ export class AuthenModel {
     try {
       // Check if email, password, and confirmPassword are empty
       if (!email || !password || !confirmPassword) {
-        throw new Error(SIGNUP_MESSAGE.EMPTY);
+        throw new Error(SIGNUP_MESSAGES.EMPTY);
       }
 
       // Fetch the user data from the API
@@ -71,11 +71,11 @@ export class AuthenModel {
 
         const userExists = users.some((user) => user.email === email);
         if (userExists) {
-          throw new Error(SIGNUP_MESSAGE.EMAIL);
+          throw new Error(SIGNUP_MESSAGES.EMAIL);
         }
 
         if (password !== confirmPassword) {
-          throw new Error(VALIDATE_MESSAGE.INVALID_CONFIRM_PASSWORD);
+          throw new Error(VALIDATE_MESSAGES.INVALID_CONFIRM_PASSWORD);
         }
 
         const newUser = {
@@ -94,7 +94,7 @@ export class AuthenModel {
 
         if (saveResponse.ok) {
           // Registration successful
-          this.view.showSuccessToast(SIGNUP_MESSAGE.SUCCESS);
+          this.view.showSuccessToast(SIGNUP_MESSAGES.SUCCESS);
         } else {
           // Error when saving user data
           throw new Error(error.message);
