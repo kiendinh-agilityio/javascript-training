@@ -1,5 +1,5 @@
 import { httpServices } from '../services/httpServices';
-import { MESSAGE, ROLE_STATUS } from '../constants/index';
+import { MESSAGES, ROLE_STATUS } from '../constants/index';
 
 export class AdsModel {
   constructor() {
@@ -43,7 +43,7 @@ export class AdsModel {
     try {
       await httpServices().delete(`/${adsId}`);
     } catch {
-      console.error(MESSAGE.DELETE_ERROR);
+      console.error(MESSAGES.DELETE_ERROR);
     }
   }
 
@@ -65,7 +65,7 @@ export class AdsModel {
 
       return response;
     } catch (error) {
-      console.error(MESSAGE.ADD_ERROR);
+      console.error(MESSAGES.ADD_ERROR);
     }
   }
 
@@ -84,7 +84,7 @@ export class AdsModel {
 
       return response;
     } catch (error) {
-      console.error(MESSAGE.GET_DETAIL_ID_ERROR);
+      console.error(MESSAGES.GET_DETAIL_ID_ERROR);
     }
   }
 
@@ -104,7 +104,7 @@ export class AdsModel {
 
       return response;
     } catch (error) {
-      console.error(MESSAGE.EDIT_ERROR);
+      console.error(MESSAGES.EDIT_ERROR);
     }
   }
 }
