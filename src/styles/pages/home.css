@@ -1,5 +1,7 @@
 .ads-section {
   padding: 36px 15px;
+  box-shadow: -10px 0px 15px 0px var(--color-box-sadow);
+  z-index: var(--z-index-lg);
 }
 
 .ads-heading {
@@ -11,15 +13,14 @@
   background-color: transparent;
   cursor: pointer;
   padding: 0;
+  margin: 8px;
 }
 
 .ads-search {
-  padding: 8px 10px;
+  padding-right: 10px;
   background: var(--color-light);
   border-radius: var(--rounded-tiny);
   border: 1px solid var(--color-border-search);
-  gap: 10px;
-  position: relative;
 }
 
 .input-search::placeholder {
@@ -127,7 +128,7 @@
 }
 
 .ads-dasboard-item {
-  font-size: var(--font-size-tiny);
+  font-size: var(--font-size-xs);
   padding-top: 20px;
   padding-bottom: 20px;
   width: calc(100% / 5);
@@ -310,6 +311,7 @@
   .btn-add {
     font-size: var(--font-size-2xl);
     padding: 13px 22px 12px;
+    width: 120px;
   }
 
   .add-icon {
@@ -367,10 +369,6 @@
 }
 
 @media (min-width: 1200px) {
-  .main-content {
-    justify-content: space-between;
-  }
-
   .ads-section {
     width: var(--width-ads-section-xl);
     padding-left: 60px;
@@ -379,12 +377,5 @@
 
   .dropdown-content {
     left: -15px;
-  }
-}
-
-@media (min-width: 1440) {
-  .ads-section {
-    max-width: 1140px;
-    margin: 0 auto;
   }
 }

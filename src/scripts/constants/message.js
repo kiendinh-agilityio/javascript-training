@@ -7,7 +7,7 @@ export const VALIDATE_MESSAGE = {
     'Please enter a minimum of 4 and a maximum of 20 characters for the network',
   INVALID_PHONE:
     'Invalid phone number. Please enter a valid phone number. Example: (205)-205-5555',
-  INVALID_LINK: 'Please enter a valid URL.',
+  INVALID_LINK: 'Please enter a valid link.',
 };
 
 // Message Login
@@ -34,4 +34,5 @@ export const MESSAGE = {
   EDIT_ERROR: 'Failed to edit ads',
   EDIT_SUCCESS: 'You have edited it successfully!',
   GET_DETAIL_ID_ERROR: 'Failed to get detail id ads',
+  NO_CHANGES: 'No changes were made',
 };

@@ -5,6 +5,7 @@ import {
   StrimmingString,
   validateAdsForm,
   showFormErrors,
+  showToast,
 } from '../../scripts/utils/index';
 import {
   DISPLAY_CLASS,
@@ -166,6 +167,17 @@ export class AdsView {
     const phoneInput = formAds.querySelector(PROFILE_ADS.PHONE);
     phoneInput.addEventListener('input', formatLimitedPhoneNumberInput);
 
+    // Initialize a flag to track whether changes have been made
+    let changesMade = false;
+
+    // Add event listeners for input changes to set the changesMade flag
+    const formInputs = this.modalAds.querySelectorAll('input, select');
+    formInputs.forEach(input => {
+      input.addEventListener('input', () => {
+        changesMade = true;
+      });
+    });
+
     // Handle the event of submitting the form
     submitBtn.addEventListener('click', async () => {
       // Extract values from the form inputs
@@ -197,17 +209,11 @@ export class AdsView {
       const errors = validateAdsForm(adsItem);
       if (Object.entries(errors).length > 0) {
         showFormErrors(errors);
-      } else {
-        // If no errors, invoke the appropriate handler (add or edit) and close the modal
-        if (adsData) {
-          // If adsData is present, it's an edit operation
-          await this.editAdsHandler(adsData.id, adsItem);
-        } else {
-          // If adsData is not present, it's an add operation
-          await this.addAdsHandler(adsItem);
-        }
-
+      } else if (changesMade) {
+        adsData ? await this.editAdsHandler(adsData.id, adsItem) : await this.addAdsHandler(adsItem);
         this.closeModalHandler();
+      } else {
+        showToast(MESSAGE.NO_CHANGES, 'icon-error.svg', false);
       }
     });
   }

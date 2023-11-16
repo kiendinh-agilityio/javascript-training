@@ -34,7 +34,7 @@ export const generateModalAds = (item, title) => {
             id="link"
             class="form-input"
             type="text"
-            placeholder="www.example.org"
+            placeholder="www.example.com"
             value="${link}"
           />
           <div id="link-error" class="error-message-form"></div>
