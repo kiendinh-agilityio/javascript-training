@@ -1,4 +1,4 @@
-import { debounce, delayActions, showToast } from '../../scripts/utils/index';
+import { debounce, delayActions, showToast, stopLoadingSpinner } from '../../scripts/utils/index';
 import { SPECIAL_KEYS, MESSAGES, SORT_VALUE, DEBOUNCE_TIME, ICONS, REGEX } from '../../scripts/constants/index';
 
 /**
@@ -137,8 +137,8 @@ export class AdsController {
     // Introduce a delay before actually deleting the ad
     delayActions(async () => {
       // Delete the ad from the model
-      await this.model.deleteAds(adsId);
-
+      const response = await this.model.deleteAds(adsId);
+      console.log(response);
       // Filter out the deleted ad from the adsData list
       const updatedAdsData = this.model.adsData.filter(
         (ads) => ads.id !== adsId,
@@ -148,7 +148,11 @@ export class AdsController {
       this.view.displayAdsList(updatedAdsData);
 
       // Return to the initial state
-      this.initialize();
+      await this.initialize();
+
+      if (response) {
+        stopLoadingSpinner();
+      }
 
       // Show a success notification
       showToast(MESSAGES.DELETE_SUCCESS, ICONS.SUCCESS, true);
@@ -175,10 +179,13 @@ export class AdsController {
       this.view.displayAdsList(this.model.adsData);
 
       // Return to the initial state
-      this.initialize();
+      await this.initialize();
 
-      // Show a success notification
-      showToast(MESSAGES.ADD_SUCCESS, ICONS.SUCCESS, true);
+      if (response) {
+        stopLoadingSpinner();
+      }
+
+      showToast(MESSAGES.DELETE_SUCCESS, ICONS.SUCCESS, true);
     });
   }
 
@@ -209,10 +216,14 @@ export class AdsController {
       this.view.displayAdsList(this.model.adsData);
 
       // Return to the initial state
-      this.initialize();
+      await this.initialize();
 
-      // Assuming `editAds` method handles errors internally, you can directly show the success notification
-      showToast(MESSAGES.EDIT_SUCCESS, ICONS.SUCCESS, true);
+      if (response) {
+        stopLoadingSpinner();
+      }
+
+      // Show a success notification
+      showToast(MESSAGES.DELETE_SUCCESS, ICONS.SUCCESS, true);
     });
   }
 
