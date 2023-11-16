@@ -4,6 +4,7 @@ export const DISPLAY_CLASS = {
   HIDDEN: 'none',
   BLOCK: 'block',
   ACTIVE: 'active',
+  DISABLED: 'disabled',
 };
 
 // Title Modal
@@ -67,4 +68,10 @@ export const ROLE_STATUS = {
 export const SORT_VALUE = {
   DESC: 'desc',
   ASC: 'asc',
+};
+
+// Varibales for icon
+export const ICONS = {
+  SUCCESS: 'icon-success.svg',
+  ERROR: 'icon-error.svg',
 };
