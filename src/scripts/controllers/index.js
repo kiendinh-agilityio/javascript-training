@@ -1,4 +1,4 @@
-import { debounce, delayActions, showToast, stopLoadingSpinner } from '../../scripts/utils/index';
+import { debounce, delayAction, showToast, stopLoadingSpinner } from '../../scripts/utils/index';
 import { SPECIAL_KEYS, MESSAGES, SORT_VALUE, DEBOUNCE_TIME, ICONS, REGEX } from '../../scripts/constants/index';
 
 /**
@@ -135,7 +135,7 @@ export class AdsController {
    */
   async handleDeleteAds(adsId) {
     // Introduce a delay before actually deleting the ad
-    delayActions(async () => {
+    delayAction(async () => {
       // Delete the ad from the model
       const response = await this.model.deleteAds(adsId);
 
@@ -165,7 +165,7 @@ export class AdsController {
    */
   async handleAddAds(newAds) {
     // Introduce a delay before adding the new ad
-    delayActions(async () => {
+    delayAction(async () => {
       // Send a request to add the new ad and await the response
       const response = await this.model.addAds(newAds);
 
@@ -201,7 +201,7 @@ export class AdsController {
    */
   async handleEditAds(adsId, updatedAdsItem) {
     // Introduce a delay before actually editing the ad
-    delayActions(async () => {
+    delayAction(async () => {
       // Edit the ad in the model
       const response = await this.model.editAds(adsId, updatedAdsItem);
 
