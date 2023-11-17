@@ -1,12 +1,14 @@
+import { DISPLAY_CLASS } from "../constants";
+
 const loadingContainer = document.getElementById('loading-container');
 
 const loadingSpinner = {
   start: function () {
-    loadingContainer.style.display = 'flex';
+    loadingContainer.style.display = DISPLAY_CLASS.FLEX;
   },
 
   stop: function () {
-    loadingContainer.style.display = 'none';
+    loadingContainer.style.display = DISPLAY_CLASS.HIDDEN;
   },
 };
 
@@ -18,12 +20,9 @@ export const stopLoadingSpinner = () => {
   loadingSpinner.stop();
 };
 
-export const delayActions = (callback, delayTime) => {
+export const delayAction = (callback, delayTime) => {
   startLoadingSpinner();
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      callback();
-      resolve();
-    }, delayTime);
-  });
+  setTimeout(() => {
+    callback();
+  }, delayTime);
 };
