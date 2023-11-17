@@ -1,7 +1,8 @@
 import {
   DISPLAY_CLASS,
   TITLE_AUTHEN_PAGE,
-  LOGIN_MESSAGE,
+  LOGIN_MESSAGES,
+  ICONS,
 } from '../constants/index';
 import {
   handleTogglePassword,
@@ -98,7 +99,7 @@ export class AuthenView {
     const isBothFieldsEmpty = email.trim() === '' && password.trim() === '';
 
     if (isBothFieldsEmpty) {
-      this.showErrorToast(LOGIN_MESSAGE.EMPTY);
+      this.showErrorToast(LOGIN_MESSAGES.EMPTY);
     } else {
       this.controller.login(email, password);
     }
@@ -133,7 +134,7 @@ export class AuthenView {
     };
     const errors = validateUserAuthen(user);
 
-    if (Object.keys(errors).length > 0) {
+    if (Object.keys(errors).length) {
       showFormErrors(errors, this);
     } else {
       try {
@@ -161,6 +162,6 @@ export class AuthenView {
    * @param {string} message - The error message to display.
    */
   showErrorToast(message) {
-    showToast(message, 'icon-error.svg', false);
+    showToast(message, ICONS.ERROR, false);
   }
 }

@@ -1,5 +1,5 @@
-import { debounce, delayActions, showToast } from '../../scripts/utils/index';
-import { SPECIAL_KEYS, MESSAGE, SORT_VALUE } from '../../scripts/constants/index';
+import { debounce, delayAction, showToast, stopLoadingSpinner } from '../../scripts/utils/index';
+import { SPECIAL_KEYS, MESSAGES, SORT_VALUE, DEBOUNCE_TIME, ICONS, REGEX } from '../../scripts/constants/index';
 
 /**
  * Represents the AdsController class for handling the business logic and user interactions.
@@ -24,7 +24,7 @@ export class AdsController {
     );
 
     // Initialize debounced search handling
-    this.handleSearchDebounced = debounce(this.handleSearch.bind(this), 500);
+    this.handleSearchDebounced = debounce(this.handleSearch.bind(this), DEBOUNCE_TIME);
 
     // Add event listeners for real-time search
     this.view.searchInput.addEventListener('input', () => {
@@ -97,14 +97,14 @@ export class AdsController {
     }
 
     // Remove spaces in the keyword
-    const formattedKeyword = keyword.replace(/\s/g, '');
+    const formattedKeyword = keyword.replace(REGEX.KEYWORD, '');
 
     // Filter the adsData based on the entered keyword in the search input.
     const filteredAds = this.model.adsData.filter((adsItem) => {
       const { network = '', link = '', email = '', phone = '' } = adsItem || {};
 
       // Remove spaces and convert to lowercase
-      const formattedNetwork = network.replace(/\s/g, '').toLowerCase();
+      const formattedNetwork = network.replace(REGEX.KEYWORD, '').toLowerCase();
 
       return (
         formattedNetwork.includes(formattedKeyword) ||
@@ -135,9 +135,9 @@ export class AdsController {
    */
   async handleDeleteAds(adsId) {
     // Introduce a delay before actually deleting the ad
-    delayActions(async () => {
+    delayAction(async () => {
       // Delete the ad from the model
-      await this.model.deleteAds(adsId);
+      const response = await this.model.deleteAds(adsId);
 
       // Filter out the deleted ad from the adsData list
       const updatedAdsData = this.model.adsData.filter(
@@ -148,10 +148,14 @@ export class AdsController {
       this.view.displayAdsList(updatedAdsData);
 
       // Return to the initial state
-      this.initialize();
+      await this.initialize();
+
+      if (response) {
+        stopLoadingSpinner();
+      }
 
       // Show a success notification
-      showToast(MESSAGE.DELETE_SUCCESS, 'icon-success.svg', true);
+      showToast(MESSAGES.DELETE_SUCCESS, ICONS.SUCCESS, true);
     });
   }
 
@@ -161,7 +165,7 @@ export class AdsController {
    */
   async handleAddAds(newAds) {
     // Introduce a delay before adding the new ad
-    delayActions(async () => {
+    delayAction(async () => {
       // Send a request to add the new ad and await the response
       const response = await this.model.addAds(newAds);
 
@@ -175,10 +179,13 @@ export class AdsController {
       this.view.displayAdsList(this.model.adsData);
 
       // Return to the initial state
-      this.initialize();
+      await this.initialize();
 
-      // Show a success notification
-      showToast(MESSAGE.ADD_SUCCESS, 'icon-success.svg', true);
+      if (response) {
+        stopLoadingSpinner();
+      }
+
+      showToast(MESSAGES.DELETE_SUCCESS, ICONS.SUCCESS, true);
     });
   }
 
@@ -194,7 +201,7 @@ export class AdsController {
    */
   async handleEditAds(adsId, updatedAdsItem) {
     // Introduce a delay before actually editing the ad
-    delayActions(async () => {
+    delayAction(async () => {
       // Edit the ad in the model
       const response = await this.model.editAds(adsId, updatedAdsItem);
 
@@ -209,10 +216,14 @@ export class AdsController {
       this.view.displayAdsList(this.model.adsData);
 
       // Return to the initial state
-      this.initialize();
+      await this.initialize();
 
-      // Assuming `editAds` method handles errors internally, you can directly show the success notification
-      showToast(MESSAGE.EDIT_SUCCESS, 'icon-success.svg', true);
+      if (response) {
+        stopLoadingSpinner();
+      }
+
+      // Show a success notification
+      showToast(MESSAGES.DELETE_SUCCESS, ICONS.SUCCESS, true);
     });
   }
 

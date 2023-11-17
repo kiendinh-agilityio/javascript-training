@@ -1,4 +1,4 @@
-export const VALIDATE_MESSAGE = {
+export const VALIDATE_MESSAGES = {
   REQUIRED_ERROR: '{field} is required',
   INVALID_EMAIL: 'Invalid email. Please enter a valid email address',
   INVALID_PASSWORD: 'Invalid password. Password must have at least 8 characters',
@@ -11,21 +11,21 @@ export const VALIDATE_MESSAGE = {
 };
 
 // Message Login
-export const LOGIN_MESSAGE = {
+export const LOGIN_MESSAGES = {
   SUCCESS: 'Sign in successfully',
   UNSUCCESSFUL: 'Sign in unsuccessful',
   EMPTY: 'Please enter both email and password.',
 };
 
 // Message Signup
-export const SIGNUP_MESSAGE = {
+export const SIGNUP_MESSAGES = {
   SUCCESS: 'Registration successful. You can now sign in.',
   EMAIL: 'Email already exists. Please use a different email.',
   EMPTY: 'Email, password, and confirm password are required.',
 };
 
 // Message
-export const MESSAGE = {
+export const MESSAGES = {
   NO_RESULT: 'No results were found.',
   DELETE_SUCCESS: 'You have deleted it successfully!',
   DELETE_ERROR: 'Failed to delete ads with Id',

@@ -5,12 +5,11 @@ import {
   StrimmingString,
   validateAdsForm,
   showFormErrors,
-  showToast,
 } from '../../scripts/utils/index';
 import {
   DISPLAY_CLASS,
   TITLE_MODAL,
-  MESSAGE,
+  MESSAGES,
   PROFILE_ADS,
   ELEMENT_ID,
   SORT_VALUE,
@@ -46,9 +45,11 @@ export class AdsView {
     this.searchInput = adsSearchElement.querySelector('#search-input');
     this.btnClearSearch = adsSearchElement.querySelector('#btn-clear-search');
     this.deleteModal = document.getElementById('delete-modal');
-    this.confirmDeleteButton = this.deleteModal.querySelector('#confirm-delete');
+    this.confirmDeleteButton =
+      this.deleteModal.querySelector('#confirm-delete');
     this.cancelDeleteButton = this.deleteModal.querySelector('#cancel-delete');
-    this.closeDeleteModalButton = this.deleteModal.querySelector('#close-modal');
+    this.closeDeleteModalButton =
+      this.deleteModal.querySelector('#close-modal');
   }
 
   /**
@@ -69,11 +70,18 @@ export class AdsView {
 
     // Add click event to handle edit or delete button clicks
     this.tableElement.addEventListener('click', async (event) => {
-      const editButton = event.target.closest('.dropdown-content button:first-child');
-      const deleteButton = event.target.closest('.dropdown-content button:last-child');
+      const editButton = event.target.closest(
+        '.dropdown-content button:first-child',
+      );
+      const deleteButton = event.target.closest(
+        '.dropdown-content button:last-child',
+      );
 
       // Handle sort button click
-      const iconSelectors = ['.thead li:nth-child(1)', '.thead li:nth-child(2)'];
+      const iconSelectors = [
+        '.thead li:nth-child(1)',
+        '.thead li:nth-child(2)',
+      ];
 
       for (const selector of iconSelectors) {
         const sortIcon = event.target.closest(selector);
@@ -83,7 +91,7 @@ export class AdsView {
 
       // Handle action click for edit and delete
       const handleActionButtonClick = async (button, action) => {
-        button && await action(parseInt(button.getAttribute('data-id')));
+        button && (await action(parseInt(button.getAttribute('data-id'))));
       };
 
       // Handle edit button click
@@ -175,21 +183,16 @@ export class AdsView {
     formInputs.forEach(input => {
       input.addEventListener('input', () => {
         changesMade = true;
+        // Enable the submit button when changes are made and the modal is "Edit Ads"
+        title === TITLE_MODAL.EDIT && submitBtn.removeAttribute(DISPLAY_CLASS.DISABLED);
       });
     });
 
     // Handle the event of submitting the form
     submitBtn.addEventListener('click', async () => {
-      // Extract values from the form inputs
-      const network = StrimmingString(
-        formAds.querySelector(PROFILE_ADS.NETWORK).value,
-      );
-      const link = StrimmingString(
-        formAds.querySelector(PROFILE_ADS.LINK).value,
-      );
-      const email = StrimmingString(
-        formAds.querySelector(PROFILE_ADS.EMAIL).value,
-      );
+      const network = StrimmingString(formAds.querySelector(PROFILE_ADS.NETWORK).value);
+      const link = StrimmingString(formAds.querySelector(PROFILE_ADS.LINK).value);
+      const email = StrimmingString(formAds.querySelector(PROFILE_ADS.EMAIL).value);
       const phone = StrimmingString(phoneInput.value);
       const status = formAds.querySelector(PROFILE_ADS.STATUS_TYPE).value;
 
@@ -212,10 +215,11 @@ export class AdsView {
       } else if (changesMade) {
         adsData ? await this.editAdsHandler(adsData.id, adsItem) : await this.addAdsHandler(adsItem);
         this.closeModalHandler();
-      } else {
-        showToast(MESSAGE.NO_CHANGES, 'icon-error.svg', false);
       }
     });
+
+    // Disable the submit button initially when no changes are made and the modal is "Edit Ads"
+    title === TITLE_MODAL.EDIT && submitBtn.setAttribute(DISPLAY_CLASS.DISABLED, DISPLAY_CLASS.DISABLED);
   }
 
   /**
@@ -257,7 +261,7 @@ export class AdsView {
    * Handles the case when no search results are found.
    */
   handleSearchNoResult() {
-    this.tableElement.innerHTML = `<p class="search-result-message">${MESSAGE.NO_RESULT}</p>`;
+    this.tableElement.innerHTML = `<p class="search-result-message">${MESSAGES.NO_RESULT}</p>`;
   }
 
   /**
@@ -364,7 +368,7 @@ export class AdsView {
    */
   initSortHandlers() {
     this.columnHeaders = this.tableElement.querySelectorAll('.thead li');
-    this.columnHeaders.forEach(header => {
+    this.columnHeaders.forEach((header) => {
       header.addEventListener('click', () => {
         const columnIndex = Array.from(columnHeaders).indexOf(header);
         this.handleSort(columnIndex);
@@ -378,7 +382,8 @@ export class AdsView {
    */
   handleSort(columnIndex) {
     if (this.currentSortColumnIndex === columnIndex) {
-      this.sortOrder = this.sortOrder === SORT_VALUE.ASC ? SORT_VALUE.DESC : SORT_VALUE.ASC;
+      this.sortOrder =
+        this.sortOrder === SORT_VALUE.ASC ? SORT_VALUE.DESC : SORT_VALUE.ASC;
     } else {
       this.sortOrder = SORT_VALUE.ASC;
       this.currentSortColumnIndex = columnIndex;
