@@ -138,7 +138,7 @@ export class AdsController {
     delayActions(async () => {
       // Delete the ad from the model
       const response = await this.model.deleteAds(adsId);
-      console.log(response);
+
       // Filter out the deleted ad from the adsData list
       const updatedAdsData = this.model.adsData.filter(
         (ads) => ads.id !== adsId,
