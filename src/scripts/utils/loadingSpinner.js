@@ -18,7 +18,12 @@ export const stopLoadingSpinner = () => {
   loadingSpinner.stop();
 };
 
-export const delayActions = (callback) => {
+export const delayActions = (callback, delayTime) => {
   startLoadingSpinner();
-  callback();
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      callback();
+      resolve();
+    }, delayTime);
+  });
 };
